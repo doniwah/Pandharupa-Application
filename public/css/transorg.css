@@ -1,5 +1,5 @@
 #transformasi-organisasi {
-    height: 75vh;
+    height: 65vh;
     background: blueviolet;
     padding: 50px 70px;
     display: flex;
@@ -13,13 +13,65 @@
     height: 100%;
 }
 
-.transformasi-organisasi-left {
-    background: yellow;
-    width: 50%;
-    height: 100%;
+.transformasi-organisasi-left h1 {
+    font-size: 36px;
+}
+
+.transformasi-organisasi-left p {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.transformasi-organisasi-left ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 25px;
+}
+
+.transformasi-organisasi-left ul li::marker {
+    font-weight: bold;
+    font-size: 24px;
+    color: orange;
 }
 
 .transformasi-organisasi-right {
     background: green;
     width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 40px 60px 40px;
+}
+
+.transformasi-organisasi-right .box-stats {
+    background: brown;
+    width: 100%;
+    padding: 40px 50px;
+    border-radius: 10px;
+}
+
+.transformasi-organisasi-right .box-stats h3 {
+    font-size: 24px;
+    text-align: center;
+}
+
+.transformasi-organisasi-right .box-stats .value {
+    display: flex;
+    flex-direction: row;
+    background: blue;
+    gap: 40px;
+}
+
+.transformasi-organisasi-right .box-stats .value div {
+    width: 50%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.transformasi-organisasi-right .box-stats .value div h4 {
+    font-size: 28px;
+    color: orange;
 }

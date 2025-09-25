@@ -16,9 +16,9 @@
     @include('components.transorg')
     {{-- Transformasi-Organisasi End --}}
 
-    {{-- Benefit --}}
-    {{-- @include('components.benefit') --}}
-    {{-- Benefit End --}}
+    {{-- Aktivitas Komunitas --}}
+    @include('components.aktifkom')
+    {{-- Aktivitas Komunitas End --}}
 
     {{-- Infographic --}}
     {{-- @include('components.infographic') --}}
