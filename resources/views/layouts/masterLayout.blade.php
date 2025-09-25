@@ -20,9 +20,9 @@
     @include('components.aktifkom')
     {{-- Aktivitas Komunitas End --}}
 
-    {{-- Infographic --}}
-    {{-- @include('components.infographic') --}}
-    {{-- Infographic End --}}
+    {{-- Join Comunity --}}
+    @include('components.joincomunity')
+    {{-- Join Comunity End --}}
 
     {{-- Relevance --}}
     {{-- @include('components.relevance') --}}
