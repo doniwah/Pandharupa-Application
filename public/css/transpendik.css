@@ -1,0 +1,60 @@
+#transformasi-pendidikan {
+    height: 75vh;
+    background: gray;
+    padding: 50px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transformasi-pendidikan-content {
+    background: blue;
+}
+
+.title-transformasi-pendidikan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-transformasi-pendidikan h1 {
+    font-size: 36px;
+}
+
+.title-transformasi-pendidikan p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.body-transformasi-pendidikan {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: center;
+    padding: 0 25px;
+    gap: 30px;
+}
+
+.body-transformasi-pendidikan .box {
+    height: 210px;
+    width: 400px;
+    background: green;
+    border-radius: 15px;
+    padding: 15px 20px 10px 20px;
+}
+
+.body-transformasi-pendidikan .box i {
+    font-size: 50px;
+    color: orange;
+    font-weight: bold;
+}
+
+.body-transformasi-pendidikan .box h4 {
+    font-size: 22px;
+    margin: 15px 0 20px 0;
+}
+
+.body-transformasi-pendidikan .box p {
+    font-size: 16px;
+}

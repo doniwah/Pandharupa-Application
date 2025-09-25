@@ -1,0 +1,45 @@
+#hero {
+    height: 100vh;
+    background: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    background: blue;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-hero {
+    font-size: 48px;
+}
+
+.title-hero-next {
+    font-size: 48px;
+}
+
+.description-hero {
+    margin-top: 10px;
+    width: 60%;
+    font-size: 19px;
+}
+
+.hero-btn {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.hero-btn a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid black;
+}

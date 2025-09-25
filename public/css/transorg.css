@@ -1,0 +1,25 @@
+#transformasi-organisasi {
+    height: 75vh;
+    background: blueviolet;
+    padding: 50px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transformasi-organisasi-left {
+    background: yellow;
+    width: 50%;
+    height: 100%;
+}
+
+.transformasi-organisasi-left {
+    background: yellow;
+    width: 50%;
+    height: 100%;
+}
+
+.transformasi-organisasi-right {
+    background: green;
+    width: 50%;
+}
