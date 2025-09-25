@@ -1,0 +1,64 @@
+#aktivitas-komunitas {
+    height: 75vh;
+    background: gray;
+    padding: 50px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aktivitas-komunitas-content {
+    background: blue;
+}
+
+.title-aktivitas-komunitas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-aktivitas-komunitas h1 {
+    font-size: 36px;
+}
+
+.title-aktivitas-komunitas p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.body-aktivitas-komunitas {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: center;
+    padding: 0 25px;
+    gap: 30px;
+}
+
+.body-aktivitas-komunitas .box {
+    height: 170px;
+    width: 270px;
+    background: green;
+    border-radius: 15px;
+    padding: 15px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.body-aktivitas-komunitas .box i {
+    font-size: 36px;
+    color: orange;
+    font-weight: bold;
+}
+
+.body-aktivitas-komunitas .box h4 {
+    font-size: 18px;
+    margin: 10px 0 20px 0;
+}
+
+.body-aktivitas-komunitas .box p {
+    font-size: 14px;
+}
