@@ -1,6 +1,6 @@
 #transformasi-organisasi {
     height: 65vh;
-    background: blueviolet;
+    background: #fafaf9;
     padding: 50px 70px;
     display: flex;
     justify-content: center;
@@ -8,12 +8,12 @@
 }
 
 .transformasi-organisasi-left {
-    background: yellow;
     width: 50%;
     height: 100%;
 }
 
 .transformasi-organisasi-left h1 {
+    color: #664d36;
     font-size: 36px;
 }
 
@@ -21,6 +21,7 @@
     font-size: 18px;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: #ccbba8;
 }
 
 .transformasi-organisasi-left ul {
@@ -28,6 +29,7 @@
     flex-direction: column;
     gap: 15px;
     margin-left: 25px;
+    color: #ccbba8;
 }
 
 .transformasi-organisasi-left ul li::marker {
@@ -37,7 +39,6 @@
 }
 
 .transformasi-organisasi-right {
-    background: green;
     width: 50%;
     height: 100%;
     display: flex;
@@ -47,7 +48,6 @@
 }
 
 .transformasi-organisasi-right .box-stats {
-    background: brown;
     width: 100%;
     padding: 40px 50px;
     border-radius: 10px;
@@ -56,12 +56,12 @@
 .transformasi-organisasi-right .box-stats h3 {
     font-size: 24px;
     text-align: center;
+    color: #664d36;
 }
 
 .transformasi-organisasi-right .box-stats .value {
     display: flex;
     flex-direction: row;
-    background: blue;
     gap: 40px;
 }
 

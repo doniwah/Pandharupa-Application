@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css') }}/transorg.css">
     <link rel="stylesheet" href="{{ asset('css') }}/aktifkom.css">
     <link rel="stylesheet" href="{{ asset('css') }}/joincomunity.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 

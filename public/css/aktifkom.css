@@ -1,14 +1,10 @@
 #aktivitas-komunitas {
     height: 75vh;
-    background: gray;
+    background: #f5f4ef;
     padding: 50px 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.aktivitas-komunitas-content {
-    background: blue;
 }
 
 .title-aktivitas-komunitas {
@@ -20,11 +16,13 @@
 
 .title-aktivitas-komunitas h1 {
     font-size: 36px;
+    color: #664d36;
 }
 
 .title-aktivitas-komunitas p {
     margin-top: 10px;
     font-size: 20px;
+    color: #ccbba8;
 }
 
 .body-aktivitas-komunitas {
@@ -39,13 +37,14 @@
 .body-aktivitas-komunitas .box {
     height: 170px;
     width: 270px;
-    background: green;
+    background: #ffffff;
     border-radius: 15px;
     padding: 15px 20px 10px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    outline: 1px solid #ccbba8;
 }
 
 .body-aktivitas-komunitas .box i {
@@ -57,8 +56,10 @@
 .body-aktivitas-komunitas .box h4 {
     font-size: 18px;
     margin: 10px 0 20px 0;
+    font-weight: 500;
 }
 
 .body-aktivitas-komunitas .box p {
     font-size: 14px;
+    color: #ccbba8;
 }

@@ -41,6 +41,20 @@
     transition: all 0.3s ease;
 }
 
+.nav-center a.active {
+    text-decoration: none;
+    background: ##fff7d0;
+    color: #f2873c;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-center a:hover {
+    color: #f2873c;
+}
+
 .nav-center a:hover::after {
     width: 100%;
     left: 0;

@@ -1,6 +1,6 @@
 #hero {
     height: 100vh;
-    background: yellow;
+    background: rgb(174, 174, 163);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,17 +16,17 @@
 }
 
 .title-hero {
-    font-size: 48px;
+    font-size: 56px;
 }
 
 .title-hero-next {
-    font-size: 48px;
+    font-size: 56px;
 }
 
 .description-hero {
     margin-top: 10px;
     width: 60%;
-    font-size: 19px;
+    font-size: 22px;
 }
 
 .hero-btn {

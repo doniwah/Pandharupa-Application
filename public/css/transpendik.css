@@ -1,14 +1,10 @@
 #transformasi-pendidikan {
     height: 75vh;
-    background: gray;
+    background: #f5f4ef;
     padding: 50px 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.transformasi-pendidikan-content {
-    background: blue;
 }
 
 .title-transformasi-pendidikan {
@@ -20,11 +16,13 @@
 
 .title-transformasi-pendidikan h1 {
     font-size: 36px;
+    color: #664d36;
 }
 
 .title-transformasi-pendidikan p {
     margin-top: 10px;
     font-size: 20px;
+    color: #ccbba8;
 }
 
 .body-transformasi-pendidikan {
@@ -39,9 +37,10 @@
 .body-transformasi-pendidikan .box {
     height: 210px;
     width: 400px;
-    background: green;
+    background: #ffffff;
     border-radius: 15px;
-    padding: 15px 20px 10px 20px;
+    padding: 15px 20px 15px 20px;
+    outline: 1px solid #ccbba8;
 }
 
 .body-transformasi-pendidikan .box i {
@@ -57,4 +56,5 @@
 
 .body-transformasi-pendidikan .box p {
     font-size: 16px;
+    color: #ccbba8;
 }

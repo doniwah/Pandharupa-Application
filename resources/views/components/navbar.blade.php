@@ -5,9 +5,12 @@
         </div>
     </div>
     <div class="nav-center">
-        <a href="#">Kelas Nusantara</a>
-        <a href="#">E-Library</a>
-        <a href="#">Bahasa Daerah</a>
+        <a href="{{ route('kelas.index') }}" class="{{ request()->routeIs('kelas.index') ? 'active' : '' }}">Kelas
+            Nusantara</a>
+        <a href="{{ route('elibrary.index') }}"
+            class="{{ request()->routeIs('elibrary.index') ? 'active' : '' }}">E-Library</a>
+        <a href="#">Bahasa
+            Daerah</a>
         <a href="#">Quiz & Games</a>
         <a href="#">Forum</a>
         <a href="#">Events</a>
