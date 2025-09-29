@@ -9,7 +9,7 @@
             Nusantara</a>
         <a href="{{ route('elibrary.index') }}"
             class="{{ request()->routeIs('elibrary.index') ? 'active' : '' }}">E-Library</a>
-        <a href="#">Bahasa
+        <a href="{{ route('bahasa.index') }}" class="{{ request()->routeIs('bahasa.index') ? 'active' : '' }}">Bahasa
             Daerah</a>
         <a href="#">Quiz & Games</a>
         <a href="#">Forum</a>

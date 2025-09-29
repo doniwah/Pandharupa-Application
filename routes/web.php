@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\BahasaDaerahController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\KelasController;
 use App\Http\Controllers\auth\ElibraryController;
@@ -11,3 +12,8 @@ Route::get('/', function () {
 
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
 Route::get('/elibrary', [ElibraryController::class, 'index'])->name('elibrary.index');
+
+
+
+//PERUBAHANKU
+Route::get('/bahasa', [BahasaDaerahController::class, 'index'])->name('bahasa.index');
