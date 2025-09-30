@@ -46,7 +46,7 @@
     background: white;
     border-radius: 15px;
     padding: 30px;
-    border: 1px solid #b4b4b4ff;
+    border: 1px solid #e7e5e0;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -186,7 +186,7 @@
     padding: 15px;
     text-align: center;
     transition: transform 0.3s ease;
-    border: 1px solid #b4b4b4ff;
+    border: 1px solid #e7e5e0;
 }
 
 .feature-card:hover {
@@ -229,6 +229,7 @@
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e7e5e0;
 }
 
 .path-badge {
@@ -270,7 +271,7 @@
     width: 100%;
     background: #ffffff;
     color: #333;
-    border: 1px solid #b4b4b4ff;
+    border: 1px solid #e7e5e0;
     padding: 10px;
     border-radius: 5px;
     font-size: 0.85rem;

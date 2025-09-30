@@ -11,7 +11,8 @@
             class="{{ request()->routeIs('elibrary.index') ? 'active' : '' }}">E-Library</a>
         <a href="{{ route('bahasa.index') }}" class="{{ request()->routeIs('bahasa.index') ? 'active' : '' }}">Bahasa
             Daerah</a>
-        <a href="#">Quiz & Games</a>
+        <a href="{{ route('quiz.index') }}" class="{{ request()->routeIs('quiz.index') ? 'active' : '' }}">Quiz &
+            Games</a>
         <a href="#">Forum</a>
         <a href="#">Events</a>
         <a href="#">Kolaborasi</a>

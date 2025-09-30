@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class QuizGamesController extends Controller
 {
-    //
+    public function index(){
+        return view('pages.quiz_games.quiz');
+    }
 }
