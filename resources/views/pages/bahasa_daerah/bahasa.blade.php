@@ -33,10 +33,11 @@
                         <div class="progress-fill" style="width: 65%"></div>
                     </div>
                 </div>
-                <button class="continue-btn">Lanjutkan Belajar</button>
+                <a class="continue-btn" href="{{ route('bahasa.bahasa_madura') }}">Lanjutkan
+                    Belajar</a>
             </div>
 
-            <div class="language-card">
+            <div class=" language-card">
                 <div class="difficulty-badge sedang">Sedang</div>
                 <div class="language-indicator green"></div>
                 <h3 class="language-name">Bahasa Jawa</h3>
@@ -58,7 +59,7 @@
                         <div class="progress-fill" style="width: 45%"></div>
                     </div>
                 </div>
-                <button class="continue-btn">Lanjutkan Belajar</button>
+                <a class="continue-btn" href="{{ route('bahasa.bahasa_jawa') }}">Lanjutkan Belajar</a>
             </div>
 
             <div class="language-card">
@@ -83,7 +84,7 @@
                         <div class="progress-fill" style="width: 80%"></div>
                     </div>
                 </div>
-                <button class="continue-btn">Lanjutkan Belajar</button>
+                <a class="continue-btn" href="{{ route('bahasa.bahasa_osing') }}">Lanjutkan Belajar</a>
             </div>
         </div>
     </section>
@@ -138,7 +139,7 @@
                     <span>Keluarga dan Profesi</span>
                     <i class="bi bi-arrow-right"></i>
                 </div>
-                <button class="start-path-btn">Mulai Jalur Ini</button>
+                <a class="start-path-btn" href="{{ route('dasar.bahasa') }}">Mulai Jalur Ini</a>
             </div>
 
             <div class="path-card">
@@ -160,7 +161,7 @@
                     <span>Makan dan Minuman</span>
                     <i class="bi bi-arrow-right"></i>
                 </div>
-                <button class="start-path-btn">Mulai Jalur Ini</button>
+                <a class="start-path-btn" href="{{ route('menengah.bahasa') }}">Mulai Jalur Ini</a>
             </div>
 
             <div class="path-card">
@@ -182,7 +183,7 @@
                     <span>Percakapan Formal</span>
                     <i class="bi bi-arrow-right"></i>
                 </div>
-                <button class="start-path-btn">Mulai Jalur Ini</button>
+                <a class="start-path-btn" href="{{ route('lanjutan.bahasa') }}">Mulai Jalur Ini</a>
             </div>
         </div>
     </section>

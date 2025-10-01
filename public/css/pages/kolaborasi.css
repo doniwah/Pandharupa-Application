@@ -1,0 +1,484 @@
+.container-kolaborasi {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px 0;
+}
+
+.hero-section-kolaborasi {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero-title-kolaborasi {
+    font-size: 2.7rem;
+    color: #8b6f47;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-description-kolaborasi {
+    color: #666;
+    font-size: 1.15rem;
+    max-width: 950px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.stats-grid-kolaborasi {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.stat-item-kolaborasi {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e7e5e0;
+}
+
+.stat-icon-kolaborasi {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #f28436;
+}
+
+.stat-number-kolaborasi {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #8b6f47;
+}
+
+.stat-label-kolaborasi {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.filter-upload-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-tabs i {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.filter-tab {
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.filter-tab.active {
+    background: #e67e22;
+    color: white;
+    border-color: #e67e22;
+}
+
+.upload-btn {
+    background: #e67e22;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    gap: 15px;
+}
+
+.section-title-kolaborasi {
+    font-size: 1.5rem;
+    color: #8b6f47;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.content-grid-kolaborasi {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.content-card-kolaborasi {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.content-card-kolaborasi:hover {
+    transform: translateY(-3px);
+}
+
+.card-content-kolaborasi {
+    padding: 25px;
+    position: relative;
+}
+
+.card-icon-kolaborasi {
+    width: 50px;
+    height: 50px;
+    background: #e67e22;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: white;
+}
+
+.card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+}
+
+.badge-video-kolaborasi {
+    background: #8b5cf6;
+}
+
+.badge-outstanding-kolaborasi {
+    background: #ef4444;
+}
+
+.card-title-kolaborasi {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-description-kolaborasi {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card-collaborators-kolaborasi {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.card-stats-kolaborasi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.stat-icons-kolaborasi {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-actions-kolaborasi {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-kolaborasi {
+    background: #e67e22;
+    color: white;
+    flex: 1;
+}
+
+.btn-secondary-kolaborasi {
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.all-works-grid-kolaborasi {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.small-card-kolaborasi {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.small-card-kolaborasi:hover {
+    transform: translateY(-3px);
+}
+
+.small-card-content-kolaborasi {
+    padding: 20px;
+    position: relative;
+}
+
+.small-card-icon-kolaborasi {
+    width: 40px;
+    height: 40px;
+    background: #e67e22;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: white;
+}
+
+.small-card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: white;
+}
+
+.badge-puisi-kolaborasi {
+    background: #10b981;
+}
+
+.badge-musik-kolaborasi {
+    background: #3b82f6;
+}
+
+.badge-foto-kolaborasi {
+    background: #f59e0b;
+}
+
+.badge-kerajinan-kolaborasi {
+    background: #ec4899;
+}
+
+.small-card-title-kolaborasi {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.small-card-description-kolaborasi {
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.small-card-meta-kolaborasi {
+    color: #888;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.small-card-stats-kolaborasi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.small-card-actions-kolaborasi {
+    display: flex;
+    gap: 8px;
+}
+
+.small-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+}
+
+.small-btn-primary-kolaborasi {
+    background: #e67e22;
+    color: white;
+    flex: 1;
+}
+
+.small-btn-secondary-kolaborasi {
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.collaboration-cta-kolaborasi {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    padding: 50px 40px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.cta-icon-kolaborasi {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 24px;
+}
+
+.cta-title-kolaborasi {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.cta-description-kolaborasi {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.cta-buttons-kolaborasi {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-btn-kolaborasi {
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cta-btn-primary-kolaborasi {
+    background: white;
+    color: #e67e22;
+}
+
+.cta-btn-secondary-kolaborasi {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-btn-kolaborasi:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+    .stats-grid-kolaborasi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .all-works-grid-kolaborasi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title-kolaborasi {
+        font-size: 2rem;
+    }
+
+    .stats-grid-kolaborasi {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .content-grid-kolaborasi,
+    .all-works-grid-kolaborasi {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-upload-section-kolaborasi {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .collaboration-cta-kolaborasi {
+        padding: 30px 20px;
+    }
+
+    .cta-buttons-kolaborasi {
+        flex-direction: column;
+        align-items: center;
+    }
+}

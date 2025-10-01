@@ -17,7 +17,10 @@
 
     {{-- Tambahan --}}
     <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa/other_bahasa.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa/jalur_pembelajaran/rute_bahasa.css">
     <link rel="stylesheet" href="{{ asset('css') }}/pages/quiz.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/pages/kolaborasi.css">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">

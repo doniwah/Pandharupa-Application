@@ -154,7 +154,9 @@
 }
 
 .continue-btn {
+    display: inline-block;
     width: 100%;
+    text-align: center;
     background: linear-gradient(45deg, #e67e22, #f39c12);
     color: white;
     border: none;
@@ -164,6 +166,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease;
+    text-decoration: none;
 }
 
 .continue-btn:hover {
@@ -268,6 +271,7 @@
 }
 
 .start-path-btn {
+    display: inline-block;
     width: 100%;
     background: #ffffff;
     color: #333;
@@ -279,6 +283,8 @@
     cursor: pointer;
     margin-top: 20px;
     transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
 }
 
 .start-path-btn:hover {

@@ -15,7 +15,8 @@
             Games</a>
         <a href="#">Forum</a>
         <a href="#">Events</a>
-        <a href="#">Kolaborasi</a>
+        <a href="{{ route('kolaborasi.index') }}"
+            class="{{ request()->routeIs('kolaborasi.index') ? 'active' : '' }}">Kolaborasi</a>
     </div>
     <div class="nav-right">
         <a href="" class="login">Masuk</a>
