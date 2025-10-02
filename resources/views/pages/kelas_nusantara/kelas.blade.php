@@ -87,7 +87,7 @@
                         <h3 class="topic-title">{{ $kelas->judul }}</h3>
                         <p class="topic-description">{{ $kelas->deskripsi }}</p>
                         <div class="topic-duration">Durasi: {{ $kelas->durasi }} minggu</div>
-                        <a href="{{ $kelas->url_kelas }}" class="btn">Mulai Belajar</a>
+                        <a href="{{ route('kelas.show', $kelas->id) }}" class="btn">Mulai Belajar</a>
                     </div>
                 @empty
                     <div class="col-12 text-center">
