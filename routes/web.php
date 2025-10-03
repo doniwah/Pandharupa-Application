@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\KelasController;
-use App\Http\Controllers\auth\ElibraryController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\ForumController;
+use App\Http\Controllers\auth\EventController;
+use App\Http\Controllers\auth\LibraryController;
 
 
 Route::get('/', function () {
@@ -37,11 +38,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/forum/{id}/like', [ForumController::class, 'toggleLike'])->name('forum.like');
 });
 
-Route::get('/elibrary', [ElibraryController::class, 'index'])->name('elibrary.index');
-Route::get('/elibrary/{id}', [ElibraryController::class, 'show'])->name('elibrary.show');
-Route::get('/elibrary/{id}/lihat', [ElibraryController::class, 'lihat'])->name('elibrary.lihat');
-Route::get('/elibrary/{id}/unduh', [ElibraryController::class, 'unduh'])->name('elibrary.unduh');
-
+Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
+Route::get('/library/{id}', [LibraryController::class, 'show'])->name('library.show');
+Route::get('/library/{id}/download', [LibraryController::class, 'download'])->name('library.download');
 // Login
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
@@ -51,3 +50,8 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::post('/events/{id}/register', [EventController::class, 'register'])->name('events.register');
