@@ -16,12 +16,12 @@
 
     <div class="page-container">
         <div class="container">
-            <!-- Back Button -->
+
             <a href="{{ route('kelas.index') }}" class="back-button">
                 <i class="bi bi-arrow-left"></i> Kembali ke Beranda
             </a>
 
-            <!-- Course Header -->
+
             <div class="course-header">
                 <div class="course-icon-wrapper">
                     <div class="course-icon">{!! $kelas->icon !!}</div>
@@ -46,15 +46,11 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Daftar Pelajaran -->
             <h2 class="section-title">Daftar Pelajaran</h2>
-
             <div class="lesson-list">
                 @php
                     $completed = 0;
                 @endphp
-
                 @forelse($pelajaran as $index => $lesson)
                     @php
                         $isCompleted = false;
@@ -93,7 +89,7 @@
                 @endforelse
             </div>
 
-            <!-- Progress Section -->
+
             @if ($pelajaran->count() > 0)
                 <div class="progress-section" id="progressSection">
                     <div class="progress-number">
@@ -106,10 +102,7 @@
         </div>
     </div>
 
-    @include('components.footer')
-
     <script>
-        // Real-time progress update
         @if (auth()->check())
             function updateProgressDisplay() {
                 fetch('{{ route('kelas.progress', $kelas->id) }}', {

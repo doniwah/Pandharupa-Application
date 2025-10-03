@@ -45,4 +45,26 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    // Topik yang sudah ditandai terjawab oleh user ini
+    public function answeredTopics()
+    {
+        return $this->belongsToMany(Topic::class, 'topic_user_answered')
+            ->withTimestamps();
+    }
 }

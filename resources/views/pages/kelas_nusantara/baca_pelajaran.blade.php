@@ -74,8 +74,6 @@
         </div>
     </div>
 
-    @include('components.footer')
-
     <script>
         // Mark as complete functionality
         document.getElementById('markComplete')?.addEventListener('click', function() {

@@ -10,12 +10,9 @@ use App\Models\Pelajaran;
 
 class KelasSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run()
     {
-        // Kelas 1: Musik Pendalungan
         $kelas1 = Kelas::create([
             'judul' => 'Musik Pendalungan',
             'deskripsi' => 'Pelajari harmoni sempurna dari berbagai tradisi musikal Pendalungan',

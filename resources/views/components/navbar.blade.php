@@ -12,12 +12,12 @@
         <a href="#">Bahasa
             Daerah</a>
         <a href="#">Quiz & Games</a>
-        <a href="#">Forum</a>
+        <a href="{{ route('forum.index') }}">Forum</a>
         <a href="#">Events</a>
         <a href="#">Kolaborasi</a>
     </div>
     <div class="nav-right">
-        <a href="" class="login">Masuk</a>
+        <a href="{{ route('login.index') }}" class="login">Masuk</a>
         <a href="" class="register">Daftar Sekarang</a>
     </div>
     <button class="mobile-menu-toggle">☰</button>
