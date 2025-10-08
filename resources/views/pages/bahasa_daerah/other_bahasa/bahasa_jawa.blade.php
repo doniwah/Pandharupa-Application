@@ -30,7 +30,7 @@
 
                 @foreach($lessons as $lesson)
                 <div class="lesson-item-other-bahasa" onclick="window.location='{{ $lesson['route'] }}'">
-                    <div class=" lesson-content-other-bahasa">
+                    <div class="lesson-content-other-bahasa">
                         <div
                             class="lesson-icon-other-bahasa {{ $lesson['completed'] ? 'completed' : 'not-completed' }}">
                             <i class="bi bi-book"></i>
@@ -139,7 +139,6 @@
         { indo: 'Selamat Siang', local: 'Sugeng Siyang' },
         { indo: 'Selamat Sore', local: 'Sugeng Sonten' },
         { indo: 'Selamat Malam', local: 'Sugeng Dalu' },
-        { indo: 'Terima Kasih', local: 'Matur Nuwun' }
     ];
 
     let currentPhraseIndex = 0;
@@ -191,15 +190,32 @@
     }
 
     function updateActivePhrase() {
-        const phraseItems = document.querySelectorAll('.audio-phrase-item');
-        phraseItems.forEach((item, index) => {
-            if (index === currentPhraseIndex) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
+    const phraseItems = document.querySelectorAll('.audio-phrase-item');
+    const phraseList = document.querySelector('.audio-phrase-list');
+    
+    phraseItems.forEach((item, index) => {
+        if (index === currentPhraseIndex) {
+            item.classList.add('active');
+            
+            if (window.innerWidth <= 768 && phraseList) {
+                setTimeout(() => {
+                    const itemOffsetLeft = item.offsetLeft;
+                    const itemWidth = item.offsetWidth;
+                    const containerWidth = phraseList.offsetWidth;
+                    
+                    const scrollPosition = itemOffsetLeft - (containerWidth / 2) + (itemWidth / 2);
+                    
+                    phraseList.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                }, 50);
             }
-        });
-    }
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
 
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.audio-phrase-item').forEach((item, index) => {

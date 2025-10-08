@@ -193,11 +193,15 @@
 }
 
 @media (max-width: 768px) {
-    .card-detail-rute {
-        padding: 30px 20px;
+    .container-detail-rute {
+        padding: 40px 20px 0;
     }
 
-    container-detail-rute h1 {
+    .main-content-detail-rute {
+        padding: 0;
+    }
+
+    .container-detail-rute h1 {
         font-size: 24px;
     }
 

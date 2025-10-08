@@ -154,25 +154,123 @@
 .topic-action-rute-learn i {
     margin-left: 5px;
 }
-
 @media (max-width: 768px) {
     .container-rute-learn {
-        padding: 10px;
+        max-width: 100%;
+        margin: 0 auto !important;
+        padding: 120px 20px 20px 20px;
+    }
+
+    .content-rute-learn {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .back-btn-rute-learn {
+        font-size: 13px;
+        padding: 6px 10px;
+        margin-bottom: 20px;
+    }
+
+    .badge-rute-learn {
+        font-size: 11px;
+        padding: 6px 16px;
+    }
+
+    .header-rute-learn {
+        margin-bottom: 20px;
     }
 
     .header-rute-learn h1 {
-        font-size: 24px;
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .header-rute-learn p {
+        font-size: 14px;
     }
 
     .progress-section-rute-learn {
-        padding: 20px;
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+
+    .progress-header-rute-learn {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        gap: 8px;
+    }
+
+    .progress-header-rute-learn h2 {
+        font-size: 18px;
+    }
+
+    .progress-count-rute-learn {
+        font-size: 13px;
     }
 
     .topic-item-rute-learn {
-        padding: 15px;
+        padding: 15px 12px;
+        margin-bottom: 12px;
+    }
+
+    .status-icon-rute-learn {
+        width: 28px;
+        height: 28px;
+        margin-right: 15px;
+    }
+
+    .status-icon-rute-learn.completed::after {
+        font-size: 14px;
+    }
+
+    .topic-title-rute-learn {
+        font-size: 15px;
+    }
+
+    .topic-subtitle-rute-learn {
+        font-size: 12px;
     }
 
     .topic-action-rute-learn {
         display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-rute-learn {
+        margin: 0 auto !important;
+        padding: 100px 15px 15px 15px;  
+    }
+
+    .content-rute-learn {
+        padding: 0 15px;
+    }
+
+    .header-rute-learn h1 {
+        font-size: 20px;
+    }
+
+    .header-rute-learn p {
+        font-size: 13px;
+    }
+
+    .progress-section-rute-learn {
+        padding: 15px 12px;
+    }
+
+    .topic-item-rute-learn {
+        padding: 12px 10px;
+    }
+
+    .status-icon-rute-learn {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    .topic-title-rute-learn {
+        font-size: 14px;
     }
 }
