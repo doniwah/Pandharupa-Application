@@ -18,8 +18,11 @@
     {{-- Tambahan --}}
     <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa.css">
     <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa/other_bahasa.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa/belajar_bahasa/detail_bahasa.css">
     <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa/jalur_pembelajaran/rute_bahasa.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/pages/bahasa/jalur_pembelajaran/dasar_bahasa/detail_rute.css">
     <link rel="stylesheet" href="{{ asset('css') }}/pages/quiz.css">
+    <link rel="stylesheet" href="{{ asset('css') }}/pages/quiz/all_quiz.css">
     <link rel="stylesheet" href="{{ asset('css') }}/pages/kolaborasi.css">
 
 

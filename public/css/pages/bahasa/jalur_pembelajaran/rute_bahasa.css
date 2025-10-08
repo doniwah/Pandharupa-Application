@@ -28,11 +28,8 @@
 }
 
 .content-rute-learn {
-    max-width: 1300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 1300px;
+    padding: 0 120px;
 }
 
 .badge-rute-learn {
@@ -156,42 +153,6 @@
 
 .topic-action-rute-learn i {
     margin-left: 5px;
-}
-
-.cta-box-rute-learn {
-    background: linear-gradient(135deg, #ff8844, #ff6633);
-    border-radius: 12px;
-    padding: 30px;
-    color: white;
-}
-
-.cta-box-rute-learn h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-}
-
-.cta-box-rute-learn p {
-    font-size: 15px;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.cta-btn-rute-learn {
-    display: inline-block;
-    background-color: #22c55e;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.cta-btn-rute-learn:hover {
-    background-color: #16a34a;
 }
 
 @media (max-width: 768px) {

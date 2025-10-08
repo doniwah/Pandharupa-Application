@@ -431,12 +431,14 @@
 .cta-btn-primary-kolaborasi {
     background: white;
     color: #e67e22;
+    text-decoration: none;
 }
 
 .cta-btn-secondary-kolaborasi {
     background: transparent;
     color: white;
     border: 2px solid white;
+    text-decoration: none;
 }
 
 .cta-btn-kolaborasi:hover {
@@ -480,5 +482,567 @@
     .cta-buttons-kolaborasi {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+.modal-overlay-kolaborasi {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay-kolaborasi.active {
+    display: flex;
+}
+
+.modal-container-kolaborasi {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close-btn-kolaborasi {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn-kolaborasi:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-content-kolaborasi {
+    padding: 40px;
+}
+
+.modal-header-kolaborasi {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal-title-kolaborasi {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.modal-badge-kolaborasi {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    position: static !important;
+}
+
+.modal-video-container-kolaborasi {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    display: none;
+}
+
+.modal-video-container-kolaborasi.active {
+    display: block;
+}
+
+.modal-video-container-kolaborasi iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.modal-audio-container-kolaborasi {
+    width: 100%;
+    background: #fef5f1;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 25px;
+    display: none;
+    text-align: center;
+}
+
+.modal-audio-container-kolaborasi.active {
+    display: block;
+}
+
+.modal-audio-icon-kolaborasi {
+    width: 80px;
+    height: 80px;
+    background: #ffe5d9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.modal-audio-icon-kolaborasi i {
+    font-size: 36px;
+    color: #ff6b35;
+}
+
+.modal-audio-container-kolaborasi audio {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modal-audio-title-kolaborasi {
+    font-size: 14px;
+    color: #999;
+    margin-top: 10px;
+}
+
+.modal-text-container-kolaborasi {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 25px;
+    display: none;
+}
+
+.modal-text-container-kolaborasi.active {
+    display: block;
+}
+
+.modal-text-header-kolaborasi {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #ff6b35;
+    font-weight: 600;
+}
+
+.modal-text-header-kolaborasi i {
+    font-size: 24px;
+}
+
+.modal-text-content-kolaborasi {
+    color: #555;
+    line-height: 1.8;
+    white-space: pre-line;
+    font-size: 15px;
+}
+
+.modal-gallery-container-kolaborasi {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.modal-gallery-container-kolaborasi.active {
+    display: grid;
+}
+
+.modal-gallery-item-kolaborasi {
+    aspect-ratio: 16/10;
+    background: #fef5f1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #ff9c7a;
+}
+
+.modal-gallery-item-kolaborasi i {
+    font-size: 48px;
+}
+
+.modal-gallery-item-kolaborasi span {
+    font-size: 14px;
+    color: #999;
+}
+
+.modal-craft-container-kolaborasi {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: #fef5f1;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 15px;
+    color: #ff9c7a;
+}
+
+.modal-craft-container-kolaborasi.active {
+    display: flex;
+}
+
+.modal-craft-container-kolaborasi i {
+    font-size: 80px;
+}
+
+.modal-craft-container-kolaborasi span {
+    font-size: 16px;
+    color: #999;
+}
+
+.modal-description-kolaborasi {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.modal-collaborators-section-kolaborasi {
+    margin-bottom: 25px;
+}
+
+.modal-collaborators-section-kolaborasi h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.modal-collaborators-list-kolaborasi {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.modal-collaborator-item-kolaborasi {
+    font-size: 15px;
+    color: #666;
+    background: #f5f2f0;
+    padding: 4px 8px;
+    border-radius: 20px;
+}
+
+.modal-stats-section-kolaborasi {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.modal-stats-left-kolaborasi {
+    display: flex;
+    gap: 25px;
+}
+
+.modal-stat-item-kolaborasi {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #666;
+}
+
+.modal-stat-item-kolaborasi i {
+    font-size: 18px;
+}
+
+.modal-time-kolaborasi {
+    font-size: 14px;
+    color: #999;
+}
+
+.modal-actions-kolaborasi {
+    display: flex;
+    gap: 15px;
+}
+
+.modal-btn-kolaborasi {
+    flex: 1;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.modal-btn-download-kolaborasi {
+    background: #e67e22;
+    color: white;
+    flex: 3;
+}
+
+.modal-btn-download-kolaborasi:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+}
+
+.modal-btn-favorite-kolaborasi {
+    background: white;
+    color: #666;
+    border: 1px solid #e0e0e0;
+    flex: 1;
+}
+
+.modal-btn-favorite-kolaborasi:hover {
+    background: #e67e22;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .modal-content-kolaborasi {
+        padding: 20px;
+    }
+
+    .modal-title-kolaborasi {
+        font-size: 22px;
+    }
+
+    .modal-collaborators-list-kolaborasi {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-stats-section-kolaborasi {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .modal-actions-kolaborasi {
+        flex-direction: column;
+    }
+
+    .modal-gallery-container-kolaborasi {
+        grid-template-columns: 1fr;
+    }
+}
+.modal-overlay-upload {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay-upload.active {
+    display: flex;
+}
+
+.modal-container-upload {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-close-btn-upload {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn-upload:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-content-upload {
+    padding: 30px;
+}
+
+.modal-title-upload {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.modal-subtitle-upload {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label-upload {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-input-upload,
+.form-select-upload,
+.form-textarea-upload {
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #333;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-input-upload:focus,
+.form-select-upload:focus,
+.form-textarea-upload:focus {
+    outline: none;
+    border-color: #e67e22;
+}
+
+.form-textarea-upload {
+    resize: vertical;
+    max-height: 75px;
+}
+
+.file-upload-wrapper {
+    position: relative;
+}
+
+.file-input-upload {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.file-label-upload {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    gap: 20px;
+}
+
+.file-label-upload:hover {
+    border-color: #e67e22;
+    background: #fef5f1;
+}
+
+.file-label-upload #fileName {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e67e22;
+}
+
+.file-label-upload #fileStatus {
+    font-size: 13px;
+    color: #999;
+}
+
+.btn-upload-submit {
+    padding: 12px 20px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    margin-top: 4px;
+}
+
+.btn-upload-submit:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+}
+
+@media (max-width: 768px) {
+    .modal-content-upload {
+        padding: 30px 20px;
+    }
+
+    .modal-title-upload {
+        font-size: 20px;
     }
 }

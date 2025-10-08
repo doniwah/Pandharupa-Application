@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="topic-list-rute-learn">
-                    <div class="topic-item-rute-learn" onclick="startTopic(1)">
+                    <div class="topic-item-rute-learn" data-route="{{ route('upacara-adat.bahasa') }}">
                         <div class="status-icon-rute-learn completed"></div>
                         <div class="topic-content-rute-learn">
                             <div class="topic-title-rute-learn">Upacara Adat</div>
@@ -30,7 +30,7 @@
                         <div class="topic-action-rute-learn">Mulai <i class="bi bi-chevron-right"></i></div>
                     </div>
 
-                    <div class="topic-item-rute-learn" onclick="startTopic(2)">
+                    <div class="topic-item-rute-learn" data-route="{{ route('cerita-rakyat.bahasa') }}">
                         <div class="status-icon-rute-learn"></div>
                         <div class="topic-content-rute-learn">
                             <div class="topic-title-rute-learn">Cerita Rakyat</div>
@@ -39,7 +39,7 @@
                         <div class="topic-action-rute-learn">Mulai <i class="bi bi-chevron-right"></i></div>
                     </div>
 
-                    <div class="topic-item-rute-learn" onclick="startTopic(3)">
+                    <div class="topic-item-rute-learn" data-route="{{ route('pantun-puisi-lanjutan.bahasa') }}">
                         <div class="status-icon-rute-learn"></div>
                         <div class="topic-content-rute-learn">
                             <div class="topic-title-rute-learn">Pantun dan Puisi</div>
@@ -48,7 +48,7 @@
                         <div class="topic-action-rute-learn">Mulai <i class="bi bi-chevron-right"></i></div>
                     </div>
 
-                    <div class="topic-item-rute-learn" onclick="startTopic(4)">
+                    <div class="topic-item-rute-learn" data-route="{{ route('percakapan-formal-lanjutan.bahasa') }}">
                         <div class="status-icon-rute-learn"></div>
                         <div class="topic-content-rute-learn">
                             <div class="topic-title-rute-learn">Percakapan Formal</div>
@@ -58,13 +58,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="cta-box-rute-learn">
-                <h3>Siap Memulai?</h3>
-                <p>Jalur pembelajaran ini dirancang khusus untuk level pemula. Selesaikan semua topik untuk mendapatkan
-                    sertifikat!</p>
-                <button class="cta-btn-rute-learn" onclick="startLearning()">Mulai Sekarang</button>
-            </div>
         </div>
     </div>
 </div>
@@ -72,14 +65,19 @@
 @include('components.footer')
 
 <script>
-    function startTopic(topicNumber) {
-            alert(`Memulai Topik ${topicNumber}`);
+    document.querySelectorAll('.topic-item-rute-learn').forEach(item => {
+    item.style.cursor = 'pointer';
 
+    item.addEventListener('click', function() {
+        const route = this.getAttribute('data-route');
+        const topic = this.getAttribute('data-topic');
+
+        if (route) {
+            window.location.href = route;
+        } else if (topic) {
+            startTopic(parseInt(topic));
         }
-
-        function startLearning() {
-            alert('Memulai pembelajaran dari topik pertama yang belum selesai');
-
-        }
+    });
+});
 
 </script>

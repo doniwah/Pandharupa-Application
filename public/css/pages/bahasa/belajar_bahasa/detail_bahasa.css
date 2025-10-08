@@ -1,0 +1,125 @@
+.container-detail-bahasa {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    padding: 40px 0;
+}
+
+.back-button-detail-bahasa {
+    display: inline-flex;
+    align-items: center;
+    background: #f28436;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 24px;
+    transition: all 0.2s;
+}
+
+.back-button-detail-bahasa:hover {
+    background: #d66f2f;
+}
+
+.content-detail-bahasa {
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-card-detail-bahasa {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    width: 90%;
+    border: 1px solid #e7e5e0;
+}
+
+.content-card-detail-bahasa h1 {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.intro-text-detail-bahasa {
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.content-card-detail-bahasa h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.section-text-detail-bahasa {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.info-box-detail-bahasa {
+    background: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 1fr 4px 1fr;
+    gap: 20px;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.info-box-detail-bahasa:hover {
+    background: #e9ecef;
+}
+
+.info-label-detail-bahasa {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+}
+
+.vertical-divider-detail-bahasa {
+    width: 4px;
+    height: 100%;
+    background: #28a745;
+    border-radius: 2px;
+}
+
+.info-value-detail-bahasa {
+    color: #666;
+    font-size: 15px;
+    text-align: left;
+}
+
+.return-button-detail-bahasa {
+    display: inline-block;
+    background: #16a249;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 40px;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.return-button-detail-bahasa:hover {
+    background: #1ccb5b;
+}
+
+.divider-detail-bahasa {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 30px 0;
+}

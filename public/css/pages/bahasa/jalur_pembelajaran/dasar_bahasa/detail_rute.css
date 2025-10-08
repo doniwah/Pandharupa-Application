@@ -1,0 +1,207 @@
+.container-detail-rute {
+    max-width: 1300px;
+    margin: 50px auto;
+    padding: 40px;
+}
+
+.main-content-detail-rute {
+    padding: 0 50px;
+}
+
+.back-link-detail-rute {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+    background: #f28436;
+    padding: 8px 12px;
+    color: white;
+    border-radius: 7px;
+}
+
+.back-link-detail-rute :hover {
+    text-decoration: underline;
+}
+
+.container-detail-rute h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.progress-bar-container-detail-rute {
+    margin-bottom: 40px;
+}
+
+.progress-header-detail-rute {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.progress-label-detail-rute {
+    color: #666;
+    font-size: 14px;
+}
+
+.progress-count-detail-rute {
+    color: #666;
+    font-size: 14px;
+}
+
+.progress-bar-detail-rute {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(
+        to right,
+        #ff6b6b 0%,
+        #ff6b6b 33%,
+        #4ecdc4 33%,
+        #4ecdc4 100%
+    );
+    border-radius: 10px;
+}
+
+.card-detail-rute {
+    background: white;
+    border-radius: 12px;
+    padding: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.letter-display-detail-rute {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.letter-main-detail-rute {
+    font-size: 72px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.pronunciation-buttons-detail-rute {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.pronunciation-btn-detail-rute {
+    background: #f28436;
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    border: none;
+}
+
+.pronunciation-btn-detail-rute i {
+    font-size: 16px;
+}
+
+.pronunciation-btn-detail-rute:hover {
+    background: #d66f2f;
+    color: white;
+}
+
+.info-section-detail-rute {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.info-label-detail-rute {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.info-content-detail-rute {
+    color: #333;
+    font-size: 16px;
+}
+
+.example-section-detail-rute {
+    background: #fff9f0;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #ff6b6b;
+    margin-bottom: 30px;
+}
+
+.example-label-detail-rute {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.example-content-detail-rute {
+    color: #333;
+    font-size: 16px;
+}
+
+.continue-btn-detail-rute {
+    width: 100%;
+    background: #4ecdc4;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.continue-btn-detail-rute :hover {
+    background: #45b8b0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+}
+
+.tip-box-detail-rute {
+    background: #fff9e6;
+    border: 1px solid #ffe9a3;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tip-icon-detail-rute {
+    font-size: 20px;
+}
+
+.tip-text-detail-rute {
+    color: #856404;
+    font-size: 14px;
+}
+
+.tip-label-detail-rute {
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .card-detail-rute {
+        padding: 30px 20px;
+    }
+
+    container-detail-rute h1 {
+        font-size: 24px;
+    }
+
+    .letter-main-detail-rute {
+        font-size: 56px;
+    }
+}

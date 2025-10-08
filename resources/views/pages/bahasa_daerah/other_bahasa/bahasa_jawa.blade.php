@@ -29,8 +29,8 @@
                 <h2>Daftar Pelajaran</h2>
 
                 @foreach($lessons as $lesson)
-                <div class="lesson-item-other-bahasa">
-                    <div class="lesson-content-other-bahasa">
+                <div class="lesson-item-other-bahasa" onclick="window.location='{{ $lesson['route'] }}'">
+                    <div class=" lesson-content-other-bahasa">
                         <div
                             class="lesson-icon-other-bahasa {{ $lesson['completed'] ? 'completed' : 'not-completed' }}">
                             <i class="bi bi-book"></i>
@@ -70,7 +70,7 @@
                 <div class="audio-icon-other-bahasa"><i class="bi bi-volume-up"></i></div>
                 <h3>Audio Native Speaker</h3>
                 <p>Dengarkan pengucapan asli dari penutur native</p>
-                <button class="audio-button-other-bahasa" onclick="playAudio()">Mulai Latihan Audio</button>
+                <button class="audio-button-other-bahasa" onclick="openAudioModal()">Mulai Latihan Audio</button>
             </div>
         </div>
     </div>
@@ -78,16 +78,165 @@
 
 @include('components.footer')
 
-<script>
-    function playAudio() {
-            alert('Fitur audio akan segera tersedia!');
-        }
+<div class="audio-modal-overlay" id="audioModal">
+    <div class="audio-modal">
+        <div class="audio-modal-header">
+            <div class="audio-modal-title">
+                <i class="bi bi-volume-up-fill audio-speaker-icon"></i>
+                <span>Latihan Mendengar</span>
+            </div>
+            <button class="audio-close-btn" onclick="closeAudioModal()">&times;</button>
+        </div>
 
-        window.addEventListener('load', function() {
+        <div class="audio-progress-container">
+            <div class="audio-progress-label">
+                <span>Progres</span>
+                <span id="progressText">0/5</span>
+            </div>
+            <div class="audio-progress-bar">
+                <div class="audio-progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="audio-modal-content">
+            <div class="audio-phase-label">Dengarkan dan ulangi</div>
+            <div class="audio-main-phrase" id="mainPhrase">Selamat Pagi</div>
+            <div class="audio-sub-phrase" id="subPhrase">Sugeng Enjang</div>
+            <button class="audio-play-button" onclick="playAudio()">
+                <div class="audio-play-icon"></div>
+            </button>
+        </div>
+
+        <div class="audio-phrase-list">
+            <div class="audio-phrase-item active" data-index="0">Selamat Pagi</div>
+            <div class="audio-phrase-item" data-index="1">Selamat Siang</div>
+            <div class="audio-phrase-item" data-index="2">Selamat Sore</div>
+            <div class="audio-phrase-item" data-index="3">Selamat Malam</div>
+        </div>
+
+        <div class="audio-modal-footer">
+            <button class="audio-footer-btn audio-skip-btn" onclick="closeAudioModal()">Lewati</button>
+            <button class="audio-footer-btn audio-replay-btn" onclick="playAudio()">
+                <i class="bi bi-arrow-clockwise"></i>
+                Ulangi
+            </button>
+            <button class="audio-footer-btn audio-continue-btn" onclick="nextPhrase()">Lanjut</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
             const progressBar = document.querySelector('.progress-bar-other-bahasa');
             progressBar.style.width = '0%';
             setTimeout(() => {
                 progressBar.style.width = '65%';
             }, 300);
+    });
+
+    const audioPhrases = [
+        { indo: 'Selamat Pagi', local: 'Sugeng Enjang' },
+        { indo: 'Selamat Siang', local: 'Sugeng Siyang' },
+        { indo: 'Selamat Sore', local: 'Sugeng Sonten' },
+        { indo: 'Selamat Malam', local: 'Sugeng Dalu' },
+        { indo: 'Terima Kasih', local: 'Matur Nuwun' }
+    ];
+
+    let currentPhraseIndex = 0;
+    const totalPhrases = audioPhrases.length;
+
+    function openAudioModal() {
+        document.getElementById('audioModal').classList.add('show');
+        currentPhraseIndex = 0;
+        updateModalContent();
+    }
+
+    function closeAudioModal() {
+        document.getElementById('audioModal').classList.remove('show');
+        currentPhraseIndex = 0;
+        updateProgress();
+    }
+
+    function playAudio() {
+        console.log('Playing audio for:', audioPhrases[currentPhraseIndex]);
+        const playButton = document.querySelector('.audio-play-button');
+        playButton.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            playButton.style.transform = 'scale(1)';
+        }, 200);
+    }
+
+    function nextPhrase() {
+        if (currentPhraseIndex < totalPhrases - 1) {
+            currentPhraseIndex++;
+            updateModalContent();
+        } else {
+            alert('Selamat! Anda telah menyelesaikan semua latihan mendengar.');
+            closeAudioModal();
+        }
+    }
+
+    function updateModalContent() {
+        const phrase = audioPhrases[currentPhraseIndex];
+        document.getElementById('mainPhrase').textContent = phrase.indo;
+        document.getElementById('subPhrase').textContent = phrase.local;
+        updateProgress();
+        updateActivePhrase();
+    }
+
+    function updateProgress() {
+        const progress = ((currentPhraseIndex + 1) / totalPhrases) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
+        document.getElementById('progressText').textContent = `${currentPhraseIndex + 1}/${totalPhrases}`;
+    }
+
+    function updateActivePhrase() {
+        const phraseItems = document.querySelectorAll('.audio-phrase-item');
+        phraseItems.forEach((item, index) => {
+            if (index === currentPhraseIndex) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
         });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.audio-phrase-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                currentPhraseIndex = index;
+                updateModalContent();
+            });
+        });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            const icon = card.querySelector('.bi-volume-up');
+            if (icon) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function() {
+                    openAudioModal();
+                });
+            }
+        });
+
+        document.getElementById('audioModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAudioModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('audioModal');
+            if (modal.classList.contains('show')) {
+                if (e.key === 'Escape') {
+                    closeAudioModal();
+                } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
+                    nextPhrase();
+                } else if (e.key === ' ') {
+                    e.preventDefault();
+                    playAudio();
+                }
+            }
+        });
+    });
 </script>

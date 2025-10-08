@@ -3,13 +3,11 @@
 @include('components.navbar')
 
 <div class="container-quiz">
-    <!-- Header Section -->
     <div class="header-quiz">
         <h1>Quiz & Gamifikasi Budaya</h1>
         <p>Uji pengetahuan budaya Pendalungan Anda melalui quiz interaktif dan tantangan menarik</p>
     </div>
 
-    <!-- Statistics Section -->
     <div class="stats-grid-quiz">
         <div class="stat-card-quiz">
             <div class="stat-icon-quiz"><i class="bi bi-people"></i></div>
@@ -33,8 +31,7 @@
         </div>
     </div>
 
-    <!-- Quiz Categories -->
-    <h2 class="section-title-quiz">Kategori Quiz</h2>
+    <h2 class="section-title-quiz" id="quiz">Kategori Quiz</h2>
     <div class="quiz-grid">
         <div class="quiz-card">
             <div class="quiz-badge badge-mudah">Mudah</div>
@@ -49,7 +46,7 @@
                 <span>Peserta:</span>
                 <span>456</span>
             </div>
-            <button class="quiz-btn">Mulai Quiz</button>
+            <button class="quiz-btn" onclick="window.location= '{{ route('sejarah-budaya-quiz') }}'">Mulai Quiz</button>
         </div>
 
         <div class="quiz-card">
@@ -65,7 +62,7 @@
                 <span>Peserta:</span>
                 <span>456</span>
             </div>
-            <button class="quiz-btn">Mulai Quiz</button>
+            <button class="quiz-btn" onclick="window.location= '{{ route('bahasa-daerah-quiz') }}'">Mulai Quiz</button>
         </div>
 
         <div class="quiz-card">
@@ -81,7 +78,7 @@
                 <span>Peserta:</span>
                 <span>456</span>
             </div>
-            <button class="quiz-btn">Mulai Quiz</button>
+            <button class="quiz-btn" onclick="window.location= '{{ route('seni-kerajinan-quiz') }}'">Mulai Quiz</button>
         </div>
 
         <div class="quiz-card">
@@ -97,7 +94,8 @@
                 <span>Peserta:</span>
                 <span>456</span>
             </div>
-            <button class="quiz-btn">Mulai Quiz</button>
+            <button class="quiz-btn" onclick="window.location= '{{ route('kuliner-tradisional-quiz') }}'">Mulai
+                Quiz</button>
         </div>
 
         <div class="quiz-card">
@@ -113,7 +111,7 @@
                 <span>Peserta:</span>
                 <span>456</span>
             </div>
-            <button class="quiz-btn">Mulai Quiz</button>
+            <button class="quiz-btn" onclick="window.location= '{{ route('tarian-musik-quiz') }}'">Mulai Quiz</button>
         </div>
 
         <div class="quiz-card">
@@ -129,13 +127,11 @@
                 <span>Peserta:</span>
                 <span>456</span>
             </div>
-            <button class="quiz-btn">Mulai Quiz</button>
+            <button class="quiz-btn" onclick="window.location= '{{ route('upacara-adat-quiz') }}'">Mulai Quiz</button>
         </div>
     </div>
 
-    <!-- Two Column Section -->
     <div class="two-column">
-        <!-- Achievements -->
         <div>
             <h2 class="section-title-quiz">Pencapaian</h2>
             <div class="achievement-item">
@@ -187,7 +183,6 @@
             </div>
         </div>
 
-        <!-- Leaderboard -->
         <div>
             <h2 class="section-title-quiz">Papan Peringkat</h2>
             <div class="leaderboard-item">
@@ -296,21 +291,23 @@
         </div>
     </div>
 
-    <!-- Call to Action -->
     <div class="cta-section">
         <div class="cta-icon"><i class="bi bi-trophy"></i></div>
         <h2 class="cta-title">Siap Menjadi Master Budaya?</h2>
         <p class="cta-subtitle">Mulai perjalanan quiz Anda dan raih peringkat tertasi!</p>
-        <button class="cta-btn">Mulai Quiz Sekarang</button>
+        <button class="cta-btn" id="startQuiz" s>Mulai Quiz Sekarang</button>
     </div>
 </div>
 
 @include('components.footer')
 
 <script>
-    // Add interactive hover effects and animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click effect to quiz buttons
+    document.getElementById('startQuiz').addEventListener('click', function() {
+    document.getElementById('quiz').scrollIntoView({
+        behavior: 'smooth' 
+    });
+});
+    document.addEventListener('DOMContentLoaded', function() {
             const quizButtons = document.querySelectorAll('.quiz-btn');
             quizButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -321,7 +318,6 @@
                 });
             });
 
-            // Add click effect to CTA button
             const ctaButton = document.querySelector('.cta-btn');
             ctaButton.addEventListener('click', function() {
                 this.style.transform = 'translateY(-2px) scale(0.95)';
@@ -330,7 +326,6 @@
                 }, 150);
             });
 
-            // Animate progress bars on scroll
             const observerOptions = {
                 threshold: 0.5,
                 rootMargin: '0px 0px -50px 0px'
@@ -353,7 +348,6 @@
 
             progressBars.forEach(bar => observer.observe(bar));
 
-            // Add hover effect to cards
             const cards = document.querySelectorAll('.quiz-card, .achievement-item, .leaderboard-item');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
