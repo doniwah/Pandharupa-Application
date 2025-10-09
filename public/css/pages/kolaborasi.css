@@ -834,34 +834,6 @@
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .modal-content-kolaborasi {
-        padding: 20px;
-    }
-
-    .modal-title-kolaborasi {
-        font-size: 22px;
-    }
-
-    .modal-collaborators-list-kolaborasi {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .modal-stats-section-kolaborasi {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .modal-actions-kolaborasi {
-        flex-direction: column;
-    }
-
-    .modal-gallery-container-kolaborasi {
-        grid-template-columns: 1fr;
-    }
-}
 .modal-overlay-upload {
     display: none;
     position: fixed;
@@ -1038,11 +1010,351 @@
 }
 
 @media (max-width: 768px) {
-    .modal-content-upload {
+    .container-kolaborasi {
+        margin: 20px auto;
+        padding: 20px 15px;
+    }
+
+    .hero-title-kolaborasi {
+        font-size: 1.8rem;
+        padding: 0 10px;
+        margin-top: 60px;
+    }
+
+    .hero-description-kolaborasi {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    .stats-grid-kolaborasi {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .stat-item-kolaborasi {
+        padding: 10px 8px;
+    }
+
+    .stat-icon-kolaborasi {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    .stat-number-kolaborasi {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+
+    .stat-label-kolaborasi {
+        font-size: 0.65rem;
+        line-height: 1.2;
+    }
+
+    .content-grid-kolaborasi,
+    .all-works-grid-kolaborasi {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .filter-upload-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .filter-tabs i {
+        flex-shrink: 0;
+        margin-right: 2px;
+    }
+
+    .filter-tab {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .upload-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+
+    .section-title-kolaborasi {
+        font-size: 1.3rem;
+        padding: 0 5px;
+    }
+
+    .card-content-kolaborasi,
+    .small-card-content-kolaborasi {
+        padding: 20px 15px;
+    }
+
+    .card-title-kolaborasi,
+    .small-card-title-kolaborasi {
+        font-size: 1rem;
+    }
+
+    .card-description-kolaborasi,
+    .small-card-description-kolaborasi {
+        font-size: 0.85rem;
+    }
+
+    .card-actions-kolaborasi,
+    .small-card-actions-kolaborasi {
+        flex-direction: column;
+    }
+
+    .btn,
+    .small-btn {
+        width: 100%;
+    }
+
+    .collaboration-cta-kolaborasi {
         padding: 30px 20px;
     }
 
+    .cta-title-kolaborasi {
+        font-size: 1.5rem;
+    }
+
+    .cta-description-kolaborasi {
+        font-size: 0.9rem;
+    }
+
+    .cta-buttons-kolaborasi {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-btn-kolaborasi {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-container-kolaborasi,
+    .modal-container-upload {
+        width: 95%;
+        max-height: 85vh;
+        margin: 10px;
+    }
+
+    .modal-content-kolaborasi {
+        padding: 25px 15px;
+    }
+
+    .modal-content-upload {
+        padding: 25px 15px;
+    }
+
+    .modal-title-kolaborasi {
+        font-size: 1.3rem;
+        padding-right: 30px;
+    }
+
     .modal-title-upload {
-        font-size: 20px;
+        font-size: 1.2rem;
+    }
+
+    .modal-subtitle-upload {
+        font-size: 0.85rem;
+    }
+
+    .modal-close-btn-kolaborasi,
+    .modal-close-btn-upload {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 24px;
+    }
+
+    .modal-badge-kolaborasi {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+
+    .modal-description-kolaborasi {
+        font-size: 0.9rem;
+    }
+
+    .modal-collaborators-section-kolaborasi h4 {
+        font-size: 0.95rem;
+    }
+
+    .modal-collaborator-item-kolaborasi {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+
+    .modal-stats-section-kolaborasi {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .modal-stats-left-kolaborasi {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .modal-stat-item-kolaborasi {
+        font-size: 0.85rem;
+    }
+
+    .modal-actions-kolaborasi {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-btn-kolaborasi {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .modal-gallery-container-kolaborasi {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .modal-gallery-item-kolaborasi {
+        aspect-ratio: 16/9;
+    }
+
+    .modal-audio-container-kolaborasi {
+        padding: 25px 15px;
+    }
+
+    .modal-text-container-kolaborasi {
+        padding: 20px 15px;
+    }
+
+    .modal-text-content-kolaborasi {
+        font-size: 0.9rem;
+    }
+
+    .form-group-upload {
+        gap: 5px;
+    }
+
+    .form-label-upload {
+        font-size: 0.85rem;
+    }
+
+    .form-input-upload,
+    .form-select-upload,
+    .form-textarea-upload {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .file-label-upload {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .btn-upload-submit {
+        font-size: 0.95rem;
+        padding: 12px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-kolaborasi {
+        padding: 15px 8px;
+    }
+
+    .hero-title-kolaborasi {
+        font-size: 1.6rem;
+        padding: 0 5px;
+    }
+
+    .hero-description-kolaborasi {
+        font-size: 0.9rem;
+        padding: 0 5px;
+    }
+
+    .stats-grid-kolaborasi {
+        gap: 8px;
+    }
+
+    .stat-item-kolaborasi {
+        padding: 8px 6px;
+    }
+
+    .stat-icon-kolaborasi {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .stat-number-kolaborasi {
+        font-size: 0.95rem;
+    }
+
+    .stat-label-kolaborasi {
+        font-size: 0.6rem;
+    }
+
+    .filter-tabs {
+        gap: 6px;
+    }
+
+    .filter-tab {
+        padding: 7px 10px;
+        font-size: 0.75rem;
+    }
+
+    .upload-btn {
+        padding: 9px 12px;
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+
+    .modal-container-kolaborasi,
+    .modal-container-upload {
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .modal-content-kolaborasi,
+    .modal-content-upload {
+        padding: 20px 12px;
+    }
+
+    .modal-title-kolaborasi {
+        font-size: 1.1rem;
+    }
+
+    .modal-audio-icon-kolaborasi {
+        width: 60px;
+        height: 60px;
+    }
+
+    .modal-audio-icon-kolaborasi i {
+        font-size: 28px;
+    }
+
+    .modal-craft-container-kolaborasi i {
+        font-size: 60px;
     }
 }
