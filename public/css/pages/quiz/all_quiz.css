@@ -351,7 +351,6 @@
     font-size: 18px;
 }
 
-/* Modal Styles - UPDATED */
 .modal-overlay-all-quiz {
     position: fixed;
     top: 0;
@@ -559,32 +558,289 @@
     transform: translateY(-2px);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+    .back-button-all-quiz {
+        margin-top: 50px;
+    }
+
+    .main-content-all-quiz {
+        padding: 0 20px;
+    }
+
+    .progress-card-all-quiz {
+        padding: 15px;
+    }
+
+    .progress-header-all-quiz {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .title-section-all-quiz {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .title-section-all-quiz h1 {
+        font-size: 20px;
+    }
+
+    .progress-info-all-quiz {
+        text-align: left;
+        width: 100%;
+    }
+
+    .progress-percentage-all-quiz {
+        font-size: 24px;
+    }
+
+    .quiz-meta-all-quiz {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .question-card-all-quiz {
+        padding: 20px;
+    }
+
+    .question-body-all-quiz {
+        flex-direction: column;
+    }
+
+    .question-number-all-quiz {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .question-text-all-quiz {
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .option-all-quiz {
+        padding: 15px 18px;
+    }
+
+    .option-text-all-quiz {
+        font-size: 14px;
+    }
+
+    .navigation-buttons-all-quiz {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-prev-all-quiz,
+    .btn-next-all-quiz {
+        width: 100%;
+        padding: 12px 18px;
+    }
+
+    .question-nav-all-quiz {
+        padding: 20px;
+    }
+
+    .nav-numbers-all-quiz {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-number-all-quiz {
+        width: 45px;
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .stats-grid-all-quiz {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-box-all-quiz {
+        padding: 15px 10px;
+    }
+
     .modal-content-all-quiz {
-        padding: 30px 25px;
-        width: 95%;
+        padding: 20px 15px;
+        width: 90%;
     }
 
     .trophy-icon-all-quiz {
-        width: 70px;
-        height: 70px;
-        font-size: 35px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        margin-bottom: 10px;
     }
 
     .modal-title-all-quiz {
-        font-size: 24px;
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+
+    .modal-subtitle-all-quiz {
+        font-size: 11px;
+        margin-bottom: 12px;
+    }
+
+    .score-card-all-quiz {
+        padding: 15px 12px;
+        margin-bottom: 12px;
     }
 
     .score-percentage-all-quiz {
-        font-size: 42px;
+        font-size: 32px;
+        margin-bottom: 4px;
+    }
+
+    .score-label-all-quiz {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .score-detail-all-quiz {
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    .check-circle-all-quiz {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+    }
+
+    .stats-grid-all-quiz {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .stat-box-all-quiz {
+        padding: 12px 8px;
     }
 
     .stat-number-all-quiz {
-        font-size: 24px;
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+
+    .stat-label-modal-all-quiz {
+        font-size: 10px;
+    }
+
+    .modal-buttons-all-quiz {
+        gap: 8px;
     }
 
     .modal-btn-all-quiz {
-        font-size: 13px;
-        padding: 12px 8px;
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container-all-quiz {
+        padding: 20px 0;
+        margin-top: 30px !important;
+    }
+
+    .back-button-all-quiz {
+        margin-left: 15px;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .main-content-all-quiz {
+        padding: 0 15px;
+    }
+
+    .title-section-all-quiz h1 {
+        font-size: 18px;
+    }
+
+    .difficulty-badge-all-quiz {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .question-card-all-quiz {
+        padding: 15px;
+    }
+
+    .question-text-all-quiz {
+        font-size: 15px;
+    }
+
+    .option-all-quiz {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .option-radio-all-quiz {
+        width: 20px;
+        height: 20px;
+    }
+
+    .option-all-quiz.selected .option-radio-all-quiz::after {
+        width: 10px;
+        height: 10px;
+    }
+
+    .check-icon-all-quiz {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+
+    .nav-number-all-quiz {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-number-all-quiz.active {
+        font-size: 16px;
+    }
+
+    .modal-content-all-quiz {
+        padding: 15px 12px;
+        width: 92%;
+    }
+
+    .trophy-icon-all-quiz {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .modal-title-all-quiz {
+        font-size: 16px;
+    }
+
+    .modal-subtitle-all-quiz {
+        font-size: 12px;
+        margin-bottom: 18px;
+    }
+
+    .score-card-all-quiz {
+        padding: 18px 12px;
+    }
+
+    .score-percentage-all-quiz {
+        font-size: 36px;
+    }
+
+    .stat-box-all-quiz {
+        padding: 10px 8px;
+    }
+
+    .stat-number-all-quiz {
+        font-size: 20px;
+    }
+
+    .stat-label-modal-all-quiz {
+        font-size: 11px;
     }
 }

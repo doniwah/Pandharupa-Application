@@ -384,16 +384,178 @@
 }
 
 @media (max-width: 768px) {
+    .container-quiz {
+        padding: 80px 15px 0;
+        margin: 20px auto;
+    }
+
+    .header-quiz h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-quiz p {
+        width: 90%;
+        font-size: 0.95rem;
+    }
+
+    .stats-grid-quiz {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card-quiz {
+        padding: 15px 10px;
+    }
+
+    .stat-icon-quiz {
+        font-size: 1.5rem;
+    }
+
+    .stat-number-quiz {
+        font-size: 1.2rem;
+    }
+
+    .stat-label-quiz {
+        font-size: 0.7rem;
+    }
+
+    .section-title-quiz {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .quiz-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .quiz-card {
+        padding: 20px;
+    }
+
+    .quiz-badge {
+        top: 15px;
+        right: 15px;
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+
+    .quiz-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 28px;
+    }
+
+    .quiz-title {
+        font-size: 1rem;
+    }
+
+    .quiz-description {
+        font-size: 0.8rem;
+    }
+
     .two-column {
         grid-template-columns: 1fr;
         gap: 30px;
     }
 
-    .header h1 {
-        font-size: 2rem;
+    .achievement-item {
+        padding: 15px 12px;
+    }
+
+    .achievement-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        margin-right: 12px;
+    }
+
+    .achievement-title {
+        font-size: 0.9rem;
+    }
+
+    .achievement-desc {
+        font-size: 0.75rem;
+    }
+
+    .achievement-percent {
+        font-size: 0.8rem;
+        margin-left: 10px;
+    }
+
+    .leaderboard-item {
+        padding: 12px 15px;
+    }
+
+    .rank {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+        margin-right: 10px;
+    }
+
+    .profile-username {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    .username {
+        font-size: 0.85rem;
+    }
+
+    .user-level {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+
+    .score-number {
+        font-size: 0.9rem;
+    }
+
+    .score-label {
+        font-size: 0.7rem;
+    }
+
+    .cta-section {
+        padding: 30px 20px;
+        margin-top: 30px;
+    }
+
+    .cta-icon {
+        font-size: 45px;
+    }
+
+    .cta-title {
+        font-size: 1.5rem;
+    }
+
+    .cta-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-quiz h1 {
+        font-size: 1.5rem;
     }
 
     .stats-grid-quiz {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+    }
+
+    .cta-title {
+        font-size: 1.3rem;
+    }
+
+    .cta-subtitle {
+        font-size: 0.9rem;
     }
 }
