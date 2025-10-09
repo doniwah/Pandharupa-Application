@@ -27,6 +27,7 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>

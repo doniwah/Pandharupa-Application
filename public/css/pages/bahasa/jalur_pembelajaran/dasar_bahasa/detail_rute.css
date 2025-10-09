@@ -192,6 +192,13 @@
     font-weight: 600;
 }
 
+.progress-fill-detail-rute {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50, #45a049);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
 @media (max-width: 768px) {
     .container-detail-rute {
         padding: 40px 20px 0;

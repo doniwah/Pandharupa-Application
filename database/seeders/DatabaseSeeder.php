@@ -2,22 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\bahasa\Language;
+use App\Models\bahasa\Lesson;
+use App\Models\bahasa\AudioPhrase;
+use App\Models\bahasa\Vocabulary;
+use App\Models\bahasa\LearningPath;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            BahasaSeeder::class,
+            LearningPathSeeder::class,
+            LessonSeeder::class,
         ]);
     }
 }
