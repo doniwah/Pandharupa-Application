@@ -63,18 +63,15 @@
         ->name('bahasa.paths');
 
     // Quiz routes
-Route::get('/quiz', [QuizGamesController::class, 'index'])->name('quiz.index');
-Route::get('/quiz/{id}', [QuizGamesController::class, 'showQuiz'])->name('quiz.show');
-Route::post('/quiz/{quiz}/submit', [QuizGamesController::class, 'submitQuiz'])->name('quiz.submit');
-Route::get('/quiz/stats', [QuizGamesController::class, 'getStats'])->name('quiz.stats'); // PERBAIKAN: Pakai QuizGamesController
+    Route::get('/quiz', [QuizGamesController::class, 'index'])->name('quiz.index');
+    Route::get('/quiz/{id}', [QuizGamesController::class, 'showQuiz'])->name('quiz.show');
+    Route::post('/quiz/{quiz}/submit', [QuizGamesController::class, 'submitQuiz'])->name('quiz.submit');
+    Route::get('/quiz/stats', [QuizGamesController::class, 'getStats'])->name('quiz.stats'); // PERBAIKAN: Pakai QuizGamesController
+
     // KOLABORASI
-Route::get('/kolaborasi', [KolaborasiController::class, 'index'])->name('kolaborasi.index');
- Route::post('/kolaborasi/upload', [KolaborasiController::class, 'store'])->name('kolaborasi.store');
-    
-    // Like karya
+    Route::get('/kolaborasi', [KolaborasiController::class, 'index'])->name('kolaborasi.index');
+    Route::get('/kolaborasi/{id}', [KolaborasiController::class, 'show'])->name('kolaborasi.show');
+    Route::post('/kolaborasi/store', [KolaborasiController::class, 'store'])->name('kolaborasi.store');
+    Route::get('/kolaborasi/{id}/download', [KolaborasiController::class, 'download'])->name('kolaborasi.download');
     Route::post('/kolaborasi/{id}/like', [KolaborasiController::class, 'like'])->name('kolaborasi.like');
-    
-    // Comment karya
-    Route::post('/kolaborasi/{id}/comment', [KolaborasiController::class, 'comment'])->name('kolaborasi.comment');
-Route::get('/kolaborasi/{id}', [KolaborasiController::class, 'show'])->name('kolaborasi.show');
-Route::get('/kolaborasi/{id}/download', [KolaborasiController::class, 'download'])->name('kolaborasi.download');
+    Route::get('/kolaborasi/category/{category}', [KolaborasiController::class, 'index'])->name('kolaborasi.category');

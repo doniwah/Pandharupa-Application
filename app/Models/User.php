@@ -67,16 +67,16 @@ class User extends Authenticatable
         return $this->hasMany(QuizResult::class);
     }
 
-public function achievements()
-{
-    return $this->belongsToMany(
-        \App\Models\quiz\Achievements::class,
-        'user_achievements',
-        'user_id',
-        'achievement_id'
-    )->withPivot('progress', 'is_unlocked', 'unlocked_at')
-     ->withTimestamps();
-}
+    public function achievements()
+    {
+        return $this->belongsToMany(
+            \App\Models\quiz\Achievements::class,
+            'user_achievements',
+            'user_id',
+            'achievement_id'
+        )->withPivot('progress', 'is_unlocked', 'unlocked_at')
+            ->withTimestamps();
+    }
 
     public function userAchievements()
     {
@@ -121,5 +121,22 @@ public function achievements()
     public function quizStats()
     {
         return $this->hasOne(UserQuizStats::class);
+    }
+
+    public function karyas()
+    {
+        return $this->hasMany(Karya::class);
+    }
+
+    // Relasi dengan karya yang dikolaborasikan
+    public function collaboratedKaryas()
+    {
+        return $this->belongsToMany(Karya::class, 'karya_collaborators');
+    }
+
+    // Relasi dengan karya yang dilike
+    public function likedKaryas()
+    {
+        return $this->belongsToMany(Karya::class, 'karya_likes')->withTimestamps();
     }
 }

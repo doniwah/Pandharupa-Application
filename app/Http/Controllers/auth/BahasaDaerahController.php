@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\bahasa\Language;
 use App\Models\bahasa\Lesson;
-use App\Models\bahasa\UserProgress;
-use App\Models\bahasa\LearningPath;
-use App\Models\bahasa\LearningPathProgress;
-use App\Models\bahasa\LessonCompletion;
+use App\Models\bahasa\Language;
 use App\Models\bahasa\AudioPhrase;
+use Illuminate\Support\Facades\DB;
+use App\Models\bahasa\LearningPath;
+use App\Models\bahasa\UserProgress;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\bahasa\LessonCompletion;
+use App\Models\bahasa\LearningPathProgress;
 
 class BahasaDaerahController extends Controller
 {
@@ -479,7 +480,7 @@ class BahasaDaerahController extends Controller
             ? ($completedCount / $learningPath->total_lessons) * 100
             : 0;
 
-        \Log::info('Learning Path Progress API', [
+        Log::info('Learning Path Progress API', [
             'user_id' => $userId,
             'path_id' => $pathId,
             'completed_lessons' => $completedCount,
@@ -570,7 +571,7 @@ class BahasaDaerahController extends Controller
                     // Cek jika file exists di storage
                     $filePath = storage_path('app/public/' . $phrase->audio_file);
                     if (!file_exists($filePath)) {
-                        \Log::warning("Audio file not found: " . $filePath);
+                        Log::warning("Audio file not found: " . $filePath);
                         $audioUrl = null;
                     }
                 }
@@ -584,7 +585,7 @@ class BahasaDaerahController extends Controller
                 ];
             });
 
-        \Log::info("Audio phrases loaded", [
+        Log::info("Audio phrases loaded", [
             'language_id' => $languageId,
             'count' => $phrases->count(),
             'phrases' => $phrases->toArray()
@@ -668,7 +669,7 @@ class BahasaDaerahController extends Controller
                     'total_lessons' => $path->total_lessons,
                     'completed_lessons' => $progress ? $progress->completed_lessons : 0,
                     'progress_percentage' => $progress ? $progress->progress_percentage : 0,
-                    'route' => route('bahasa.learning_path', [$languageId, $path->id])
+                    // 'route' => route('bahasa.learning_path', [$languageId, $path->id])
                 ];
             });
 
@@ -731,7 +732,7 @@ class BahasaDaerahController extends Controller
         }
 
         // Log untuk debug
-        \Log::info('showLesson_jalur called', [
+        Log::info('showLesson_jalur called', [
             'languageId' => $languageId,
             'pathId' => $pathId,
             'lessonId' => $lessonId,
