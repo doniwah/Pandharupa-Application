@@ -4,252 +4,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-Library Pendalungan</title>
-    <link rel="stylesheet" href="{{ asset('css/pages') }}/elibrary.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .modal {
+            display: none;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .hero {
+            background-color: #f9f8f5;
+
+        }
+
+        .container-koleksi {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        .hero-koleksi {
+            justify-content: center;
+            width: 700px;
+        }
+
+        .hero-koleksi h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 650;
+        }
+
+        .hero-koleksi p {
+            margin-top: 10px;
+            color: #5b5b5b;
+            font-size: 18px;
+            text-align: center
+        }
+
+        .judul {
+            color: #080808;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('css') }}/navbar.css">
 </head>
 
-<body>
-    <section class="hero-koleksi">
-        <div class="container-koleksi">
+<body class="hero">
+    @include('components.navbar')
+    <div class="container-koleksi">
+        <div class="hero-koleksi">
             <h1>E-Library Pendalungan</h1>
             <p>Perpustakaan digital lengkap untuk menjelajahi naskah, lagu, dan dokumentasi budaya Pendalungan</p>
         </div>
-    </section>
+    </div>
 
-    <section class="search-section-koleksi">
-        <div class="container-koleksi">
-            <div class="search-container-koleksi">
-                <div class="filter-tabs-koleksi">
-                    <input type="text" class="search-input-koleksi"
-                        placeholder="Cari naskah, lagu, atau dokumentasi...">
-                    <button class="filter-tab-koleksi active">Semua</button>
-                    <button class="filter-tab-koleksi">Naskah</button>
-                    <button class="filter-tab-koleksi">Lagu</button>
-                    <button class="filter-tab-koleksi">Dokumentasi</button>
-                    <button class="filter-tab-koleksi">Video</button>
-                    <button class="filter-tab-koleksi">Audio</button>
+    <div class="search-section-koleksi">
+        <div class="search-container-koleksi">
+
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <div class="mb-6">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="searchInput" placeholder="Cari naskah, lagu, atau dokumentasi..."
+                            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <button class="filter-btn active px-6 py-2 rounded-lg font-medium transition" data-type="all">
+                        <i class="fas fa-border-all mr-2"></i> Semua
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-lg font-medium transition" data-type="naskah">
+                        <i class="fas fa-book mr-2"></i> Naskah
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-lg font-medium transition" data-type="lagu">
+                        <i class="fas fa-music mr-2"></i> Lagu
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-lg font-medium transition" data-type="dokumentasi">
+                        <i class="fas fa-video mr-2"></i> Dokumentasi
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-lg font-medium transition" data-type="video">
+                        <i class="fas fa-film mr-2"></i> Video
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-lg font-medium transition" data-type="audio">
+                        <i class="fas fa-headphones mr-2"></i> Audio
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-orange-500 mb-2">{{ $stats['total'] }}</div>
+                        <div class="text-gray-600">Total Koleksi</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-orange-500 mb-2">{{ $stats['naskah'] }}</div>
+                        <div class="text-gray-600">Naskah</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-orange-500 mb-2">{{ $stats['audio_lagu'] }}</div>
+                        <div class="text-gray-600">Audio & Lagu</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+                        <div class="text-4xl font-bold text-orange-500 mb-2">{{ $stats['video_dokumentasi'] }}</div>
+                        <div class="text-gray-600">Video & Dokumenter</div>
+                    </div>
+                </div>
+
+                <!-- Library Cards -->
+                <div id="libraryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach ($libraries as $library)
+                        <div class="library-card bg-white rounded-xl shadow-sm hover:shadow-lg transition p-6"
+                            data-type="{{ $library->type }}" data-title="{{ strtolower($library->title) }}"
+                            data-author="{{ strtolower($library->author) }}">
+
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <i class="fas fa-{{ $library->type_icon }} text-orange-500 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">{{ $library->type_label }}</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $library->title }}</h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ $library->description }}</p>
+
+                            <div class="space-y-2 text-sm text-gray-600 mb-4">
+                                <div><span class="font-medium">Penulis:</span> {{ $library->author }}</div>
+                                <div><span class="font-medium">Tahun:</span> {{ $library->year }}</div>
+                                @if ($library->duration)
+                                    <div><span class="font-medium">Durasi:</span> {{ $library->duration }}</div>
+                                @endif
+                                @if ($library->pages)
+                                    <div><span class="font-medium">Halaman:</span> {{ $library->pages }}</div>
+                                @endif
+                            </div>
+
+                            <div class="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                                <span><i class="fas fa-download mr-1"></i> <span
+                                        class="download-count">{{ $library->downloads }}</span></span>
+                                <span><i class="fas fa-eye mr-1"></i> <span
+                                        class="view-count">{{ $library->views }}</span></span>
+                            </div>
+
+                            <div class="flex gap-3">
+                                <button onclick="viewLibrary({{ $library->id }})"
+                                    class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition">
+                                    <i class="fas fa-eye mr-2"></i> Lihat
+                                </button>
+                                <button onclick="downloadLibrary({{ $library->id }})"
+                                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition">
+                                    <i class="fas fa-download"></i> Unduh
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div id="noResults" class="hidden text-center py-12">
+                    <i class="fas fa-search text-gray-300 text-6xl mb-4"></i>
+                    <p class="text-gray-500 text-lg">Tidak ada hasil yang ditemukan</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="stats-koleksi">
-        <div class="container-koleksi">
-            <div class="stats-grid-koleksi">
-                <div class="stat-item-koleksi">
-                    <div class="stat-number-koleksi">245</div>
-                    <div class="stat-label-koleksi">Total Koleksi</div>
-                </div>
-                <div class="stat-item-koleksi">
-                    <div class="stat-number-koleksi">89</div>
-                    <div class="stat-label-koleksi">Naskah</div>
-                </div>
-                <div class="stat-item-koleksi">
-                    <div class="stat-number-koleksi">67</div>
-                    <div class="stat-label-koleksi">Audio & Lagu</div>
-                </div>
-                <div class="stat-item-koleksi">
-                    <div class="stat-number-koleksi">89</div>
-                    <div class="stat-label-koleksi">Video & Dokumenter</div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <!-- Modal Detail -->
+            <div id="detailModal"
+                class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 p-4">
+                <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-orange-100 p-4 rounded-xl">
+                                    <i id="modalIcon" class="fas fa-book text-orange-500 text-3xl"></i>
+                                </div>
+                                <h2 id="modalTitle" class="text-3xl font-bold text-gray-800"></h2>
+                            </div>
+                            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition">
+                                <i class="fas fa-times text-2xl"></i>
+                            </button>
+                        </div>
 
-    <!-- Content Grid -->
-    <section class="content-section-koleksi">
-        <div class="container-koleksi">
-            <div class="content-grid-koleksi">
-                <!-- Content Item 1 -->
-                <div class="content-card-koleksi">
-                    <span class="content-type-koleksi">Naskah</span>
-                    <span class="content-icon-koleksi">📖</span>
-                    <h3 class="content-title-koleksi">Legenda Asal Mula Pendalungan</h3>
-                    <p class="content-description-koleksi">Koleksi cerita rakyat tentang asal-usul daerah Pendalungan
-                    </p>
-                    <div class="content-meta-koleksi">
-                        <div>Penulis: Tim Peneliti Budaya</div>
-                        <div>Tahun: 2023</div>
-                        <div>Halaman: 45</div>
-                    </div>
-                    <div class="content-stats-koleksi">
-                        <span>👁️ 1230</span>
-                        <span>💾 5680</span>
-                    </div>
-                    <div class="content-actions-koleksi">
-                        <button class="btn btn-primary-koleksi">👁️ Lihat</button>
-                        <button class="btn btn-secondary-koleksi">💾 Unduh</button>
-                    </div>
-                </div>
+                        <p id="modalDescription"
+                            class="text-gray-600 mb-6 leading-relaxed bg-orange-50 p-6 rounded-xl"></p>
 
-                <!-- Content Item 2 -->
-                <div class="content-card-koleksi">
-                    <span class="content-type-koleksi">Lagu</span>
-                    <span class="content-icon-koleksi">🎵</span>
-                    <h3 class="content-title-koleksi">Lagu Tradisional 'Tanduk Majeng'</h3>
-                    <p class="content-description-koleksi">Rekaman dan lirik lagu tradisional Pendalungan</p>
-                    <div class="content-meta-koleksi">
-                        <div>Penulis: Sanggar Seni Budaya</div>
-                        <div>Tahun: 2022</div>
-                        <div>Durasi: 4:32</div>
-                    </div>
-                    <div class="content-stats-koleksi">
-                        <span>👁️ 890</span>
-                        <span>💾 3420</span>
-                    </div>
-                    <div class="content-actions-koleksi">
-                        <button class="btn btn-primary-koleksi">👁️ Lihat</button>
-                        <button class="btn btn-secondary-koleksi">💾 Unduh</button>
-                    </div>
-                </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <span class="text-gray-500 text-sm">Penulis:</span>
+                                <p id="modalAuthor" class="font-medium text-gray-800"></p>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 text-sm">Tahun:</span>
+                                <p id="modalYear" class="font-medium text-gray-800"></p>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 text-sm">Halaman:</span>
+                                <p id="modalPages" class="font-medium text-gray-800"></p>
+                            </div>
+                            <div class="flex items-center gap-4 text-gray-600">
+                                <span><i class="fas fa-download mr-1"></i> <span id="modalDownloads"></span></span>
+                                <span><i class="fas fa-eye mr-1"></i> <span id="modalViews"></span></span>
+                            </div>
+                        </div>
 
-                <!-- Content Item 3 -->
-                <div class="content-card-koleksi">
-                    <span class="content-type-koleksi">Dokumentasi</span>
-                    <span class="content-icon-koleksi">📚</span>
-                    <h3 class="content-title-koleksi">Dokumenter Tari Jejer</h3>
-                    <p class="content-description-koleksi">Film dokumenter tentang tarian tradisional Jejer</p>
-                    <div class="content-meta-koleksi">
-                        <div>Penulis: Studio Dokumenter Nusantara</div>
-                        <div>Tahun: 2024</div>
-                        <div>Durasi: 28:15</div>
-                    </div>
-                    <div class="content-stats-koleksi">
-                        <span>👁️ 456</span>
-                        <span>💾 2100</span>
-                    </div>
-                    <div class="content-actions-koleksi">
-                        <button class="btn btn-primary-koleksi">👁️ Lihat</button>
-                        <button class="btn btn-secondary-koleksi">💾 Unduh</button>
-                    </div>
-                </div>
-
-                <!-- Content Item 4 -->
-                <div class="content-card-koleksi">
-                    <span class="content-type-koleksi">Naskah</span>
-                    <span class="content-icon-koleksi">📖</span>
-                    <h3 class="content-title-koleksi">Kumpulan Pantun Pendalungan</h3>
-                    <p class="content-description-koleksi">Koleksi pantun dan syair tradisional daerah</p>
-                    <div class="content-meta-koleksi">
-                        <div>Penulis: Komunitas Sastra Lokal</div>
-                        <div>Tahun: 2023</div>
-                        <div>Halaman: 78</div>
-                    </div>
-                    <div class="content-stats-koleksi">
-                        <span>👁️ 670</span>
-                        <span>💾 2890</span>
-                    </div>
-                    <div class="content-actions-koleksi">
-                        <button class="btn btn-primary-koleksi">👁️ Lihat</button>
-                        <button class="btn btn-secondary-koleksi">💾 Unduh</button>
-                    </div>
-                </div>
-
-                <!-- Content Item 5 -->
-                <div class="content-card-koleksi">
-                    <span class="content-type-koleksi">Video</span>
-                    <span class="content-icon-koleksi">🎬</span>
-                    <h3 class="content-title-koleksi">Tutorial Membatik Motif Pendalungan</h3>
-                    <p class="content-description-koleksi">Panduan lengkap membuat batik dengan motif khas Pendalungan
-                    </p>
-                    <div class="content-meta-koleksi">
-                        <div>Penulis: Perajin Batik Tradisional</div>
-                        <div>Tahun: 2024</div>
-                        <div>Durasi: 45:22</div>
-                    </div>
-                    <div class="content-stats-koleksi">
-                        <span>👁️ 320</span>
-                        <span>💾 1560</span>
-                    </div>
-                    <div class="content-actions-koleksi">
-                        <button class="btn btn-primary-koleksi">👁️ Lihat</button>
-                        <button class="btn btn-secondary-koleksi">💾 Unduh</button>
-                    </div>
-                </div>
-
-                <!-- Content Item 6 -->
-                <div class="content-card-koleksi">
-                    <span class="content-type-koleksi">Naskah</span>
-                    <span class="content-icon-koleksi">📖</span>
-                    <h3 class="content-title-koleksi">Sejarah Kerajaan Pendalungan</h3>
-                    <p class="content-description-koleksi">Penelitian mendalam tentang sejarah kerajaan dan budaya</p>
-                    <div class="content-meta-koleksi">
-                        <div>Penulis: Prof. Dr. Budiono Sastro</div>
-                        <div>Tahun: 2023</div>
-                        <div>Halaman: 156</div>
-                    </div>
-                    <div class="content-stats-koleksi">
-                        <span>👁️ 1100</span>
-                        <span>💾 4200</span>
-                    </div>
-                    <div class="content-actions-koleksi">
-                        <button class="btn btn-primary-koleksi">👁️ Lihat</button>
-                        <button class="btn btn-secondary-koleksi">💾 Unduh</button>
+                        <div class="flex gap-4">
+                            <button id="modalDownloadBtn"
+                                class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-medium transition">
+                                <i class="fas fa-download mr-2"></i> Unduh Konten
+                            </button>
+                            <button onclick="closeModal()"
+                                class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-medium transition">
+                                Tutup
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <script>
-        const filterTabs = document.querySelectorAll('.filter-tab-koleksi');
-        const contentCards = document.querySelectorAll('.content-card-koleksi');
+            <script>
+                // Filter functionality
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.filter-btn').forEach(b => {
+                            b.classList.remove('active', 'bg-orange-500', 'text-white');
+                            b.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-300');
+                        });
 
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                filterTabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                tab.classList.add('active');
+                        this.classList.add('active', 'bg-orange-500', 'text-white');
+                        this.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-300');
 
-                const filter = tab.textContent.toLowerCase();
+                        filterLibraries();
+                    });
+                });
 
-                contentCards.forEach(card => {
-                    const contentType = card.querySelector('.content-type').textContent
-                        .toLowerCase();
-
-                    if (filter === 'semua' || contentType === filter) {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.5s ease';
+                // Initialize button styles
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    if (btn.classList.contains('active')) {
+                        btn.classList.add('bg-orange-500', 'text-white');
                     } else {
-                        card.style.display = 'none';
+                        btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-300');
                     }
                 });
-            });
-        });
 
-        // Search functionality
-        const searchInput = document.querySelector('.search-input-koleksi');
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
+                // Search functionality
+                document.getElementById('searchInput').addEventListener('input', filterLibraries);
 
-            contentCards.forEach(card => {
-                const title = card.querySelector('.content-title-koleksi').textContent.toLowerCase();
-                const description = card.querySelector('.content-description-koleksi').textContent
-                    .toLowerCase();
+                function filterLibraries() {
+                    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                    const activeType = document.querySelector('.filter-btn.active').dataset.type;
+                    const cards = document.querySelectorAll('.library-card');
+                    let visibleCount = 0;
 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+                    cards.forEach(card => {
+                        const cardType = card.dataset.type;
+                        const cardTitle = card.dataset.title;
+                        const cardAuthor = card.dataset.author;
+
+                        const matchesType = activeType === 'all' || cardType === activeType;
+                        const matchesSearch = cardTitle.includes(searchTerm) || cardAuthor.includes(searchTerm);
+
+                        if (matchesType && matchesSearch) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
                 }
-            });
-        });
-    </script>
 
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+                // View library details
+                function viewLibrary(id) {
+                    fetch(`/library/${id}`, {
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('modalTitle').textContent = data.title;
+                            document.getElementById('modalDescription').textContent = data.description;
+                            document.getElementById('modalAuthor').textContent = data.author;
+                            document.getElementById('modalYear').textContent = data.year;
+                            document.getElementById('modalPages').textContent = data.pages || data.duration || '-';
+                            document.getElementById('modalDownloads').textContent = data.downloads;
+                            document.getElementById('modalViews').textContent = data.views;
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+                            const iconMap = {
+                                'naskah': 'book',
+                                'lagu': 'music',
+                                'video': 'video',
+                                'dokumentasi': 'video',
+                                'audio': 'music'
+                            };
+                            document.getElementById('modalIcon').className =
+                                `fas fa-${iconMap[data.type]} text-orange-500 text-3xl`;
+
+                            document.getElementById('modalDownloadBtn').onclick = () => downloadLibrary(id);
+
+                            // Update view count in card
+                            const card = document.querySelector(`[data-type="${data.type}"]`);
+                            if (card) {
+                                const viewCount = card.querySelector('.view-count');
+                                if (viewCount) {
+                                    viewCount.textContent = data.views;
+                                }
+                            }
+
+                            document.getElementById('detailModal').classList.add('active');
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                // Download library
+                function downloadLibrary(id) {
+                    fetch(`/library/${id}/download`, {
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                return response.blob();
+                            }
+                            throw new Error('Download failed');
+                        })
+                        .then(blob => {
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `library-${id}`;
+                            document.body.appendChild(a);
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+                            document.body.removeChild(a);
+
+                            // Update download count
+                            setTimeout(() => {
+                                fetch(`/library/${id}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const card = document.querySelector(
+                                            `button[onclick="downloadLibrary(${id})"]`).closest('.library-card');
+                                        if (card) {
+                                            const downloadCount = card.querySelector('.download-count');
+                                            if (downloadCount) {
+                                                downloadCount.textContent = data.downloads;
+                                            }
+                                        }
+
+                                        const modalDownloads = document.getElementById('modalDownloads');
+                                        if (modalDownloads) {
+                                            modalDownloads.textContent = data.downloads;
+                                        }
+                                    });
+                            }, 500);
+                        })
+                        .catch(error => {
+                            console.error('Download error:', error);
+                            alert('Gagal mengunduh file. Silakan coba lagi.');
+                        });
+                }
+
+                // Close modal
+                function closeModal() {
+                    document.getElementById('detailModal').classList.remove('active');
+                }
+
+                // Close modal on outside click
+                document.getElementById('detailModal').addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+
+                // Close modal on ESC key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                    }
+                });
+            </script>
 </body>
 
 </html>

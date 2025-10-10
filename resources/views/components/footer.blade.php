@@ -31,7 +31,7 @@
              <div class="footer-section">
                  <h3>Kontak</h3>
                  <ul>
-                     <li>Email: doni@developer.id</li>
+                     <li>Email: cleverra@developer.id</li>
                      <li>Phone: +62 894 031 562</li>
                      <li>Alamat: Jl. Wolter Mongisidi No. 1</li>
                  </ul>

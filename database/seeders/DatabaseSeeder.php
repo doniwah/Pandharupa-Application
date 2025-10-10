@@ -2,24 +2,33 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
+use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\bahasa\Language;
-use App\Models\bahasa\Lesson;
-use App\Models\bahasa\AudioPhrase;
-use App\Models\bahasa\Vocabulary;
-use App\Models\bahasa\LearningPath;
 
 class DatabaseSeeder extends Seeder
 {
+
     public function run(): void
     {
-        $this->call([
-            BahasaSeeder::class,
-            LearningPathSeeder::class,
-            LessonSeeder::class,
-            LeaderboardSeeder::class,
-            QuizSeeder::class,
-            KaryaSeeder::class
+        \App\Models\User::factory(10)->create();
+
+        $this->call(KelasSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(TopicSeeder::class);
+        $this->call(LibrarySeeder::class);
+        $this->call(EventSeeder::class);
+        $this->call(BahasaSeeder::class);
+        $this->call(LearningPathSeeder::class);
+        $this->call(LessonSeeder::class);
+        $this->call(LeaderboardSeeder::class);
+        $this->call(QuizSeeder::class);
+        $this->call(KaryaSeeder::class);
+        User::factory()->create([
+            'name' => 'doni',
+            'email' => 'doni@developer.com',
+            'password' => bcrypt('password'),
         ]);
     }
 }

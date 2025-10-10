@@ -9,7 +9,7 @@ body {
 }
 
 .hero-koleksi {
-    background-color: #ffffff;
+    background-color: #f9f8f5;
     padding: 80px 0 60px;
     text-align: center;
 }
@@ -30,14 +30,14 @@ body {
 
 .search-section-koleksi {
     background: white;
-    padding: 40px 0;
+    padding: 10px 0;
     margin-top: -20px;
     position: relative;
     z-index: 2;
 }
 
 .search-container-koleksi {
-    max-width: 800px;
+    min-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
@@ -49,10 +49,10 @@ body {
 
 .search-input-koleksi {
     width: 400px;
-    padding: 15px 50px 15px 20px;
+    padding: 10px 20px 10px 20px;
     font-size: 1rem;
     border: 2px solid #e9ecef;
-    border-radius: 50px;
+    border-radius: 8px;
     outline: none;
     transition: all 0.3s ease;
 }
@@ -73,11 +73,10 @@ body {
 
 .filter-tabs-koleksi {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    outline: 2px solid red;
-    width: 1200px;
+    width: 100%;
 }
 
 .filter-tab-koleksi {
@@ -85,7 +84,7 @@ body {
     border: none;
     background: #f8f9fa;
     color: #6c757d;
-    border-radius: 25px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
@@ -97,7 +96,7 @@ body {
 }
 
 .filter-tab-koleksi:hover {
-    background: #e67e22;
+    background: #1081eb;
     color: white;
 }
 
@@ -115,11 +114,13 @@ body {
 }
 
 .stat-item-koleksi {
-    padding: 20px;
+    outline: 1px solid #705943;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .stat-number-koleksi {
-    font-size: 2.5rem;
+    font-size: 28px;
     font-weight: 700;
     color: #e67e22;
     margin-bottom: 5px;

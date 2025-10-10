@@ -6,6 +6,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    margin-top: 30px;
 }
 
 /* Hero Section */
@@ -16,14 +17,14 @@ body {
 }
 
 .hero h1 {
-    font-size: 55px;
+    font-size: 48px;
     font-weight: 700;
     color: #705943;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 22px;
+    font-size: 20px;
     color: #6c757d;
     max-width: 100%;
     margin: 0 auto;
@@ -31,8 +32,8 @@ body {
 
 .stats {
     background: white;
-    padding: 20px 0;
-    margin-top: -40px;
+    padding: 5px 0;
+    margin-top: -80px;
     position: relative;
     z-index: 2;
 }
@@ -46,14 +47,18 @@ body {
 .stat-item {
     padding: 20px;
     outline: 0.7px solid #ccbba8;
-    width: 320px;
+    width: 400px;
     height: 140px;
     border-radius: 4px;
-    margin: 10px;
+    margin: 15px;
 }
 
 .stat-icon {
     color: #e67e22;
+}
+
+.stat-icon span {
+    scale: 200px;
 }
 
 .stat-number {
@@ -71,13 +76,14 @@ body {
 .topics {
     padding: 80px 0;
     background: #f8f9fa;
+    margin-top: -80px;
 }
 
 .section-title {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 30px;
+    font-weight: 700;
     color: #664d36;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .topics-grid {
@@ -94,7 +100,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
     transition: all 0.3s ease;
     position: relative;
-    outline: 0.7px solid #ccbba8;
+    border: 1px solid #eee;
 }
 
 .topic-card:hover {
@@ -103,21 +109,23 @@ body {
 }
 
 .topic-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 35px;
+    margin-bottom: 10px;
 }
 
 .topic-meta {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
     margin-bottom: 15px;
 }
 
 .topic-level {
-    background: #e67e22;
+    background: #ababab;
     color: white;
-    padding: 4px 12px;
+    padding: 2px 10px;
+    align-items: center;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
@@ -157,7 +165,7 @@ body {
 }
 
 .btn {
-    background: #e67e22;
+    background: linear-gradient(90deg, #f1883e, #eeb05f);
     color: white;
     padding: 12px 30px;
     border: none;
@@ -172,57 +180,8 @@ body {
 }
 
 .btn:hover {
-    background: #d35400;
     transform: translateY(-2px);
 }
-
-.cta {
-    position: center;
-    justify-content: center;
-    padding: 80px 0;
-    text-align: center;
-    color: white;
-}
-
-.container-cta {
-    background-color: #e67e22;
-    max-width: 80%;
-    margin: 0 auto;
-    height: auto;
-    border-radius: 8px;
-    padding: 20px;
-}
-.cta h2 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.cta p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    opacity: 0.9;
-}
-
-.btn-white {
-    background: white;
-    color: #e67e22;
-    padding: 10px 30px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-white:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
 @media (max-width: 768px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);

@@ -52,6 +52,27 @@ class User extends Authenticatable
         ];
     }
 
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function answeredTopics()
+    {
+        return $this->belongsToMany(Topic::class, 'topic_user_answered')
+            ->withTimestamps();
+    }
+
     public function progress()
     {
         return $this->hasMany(UserProgress::class);
@@ -128,13 +149,11 @@ class User extends Authenticatable
         return $this->hasMany(Karya::class);
     }
 
-    // Relasi dengan karya yang dikolaborasikan
     public function collaboratedKaryas()
     {
         return $this->belongsToMany(Karya::class, 'karya_collaborators');
     }
 
-    // Relasi dengan karya yang dilike
     public function likedKaryas()
     {
         return $this->belongsToMany(Karya::class, 'karya_likes')->withTimestamps();
