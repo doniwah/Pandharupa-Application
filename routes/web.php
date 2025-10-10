@@ -62,26 +62,10 @@
     Route::get('/api/bahasa/{languageId}/paths', [BahasaDaerahController::class, 'getLearningPaths'])
         ->name('bahasa.paths');
 
-    // QUIZ ROUTES
-    Route::get('/quiz', [QuizGamesController::class, 'index'])->name('quiz.index');
-    Route::get('/sejarah-budaya-quiz', function () {
-        return view('pages.quiz_games.all_quiz.sejarah_budaya');
-    })->name('sejarah-budaya-quiz');
-    Route::get('/bahasa-daerah-quiz', function () {
-        return view('pages.quiz_games.all_quiz.bahasa_daerah');
-    })->name('bahasa-daerah-quiz');
-    Route::get('/seni-kerajinan-quiz', function () {
-        return view('pages.quiz_games.all_quiz.seni_kerajinan');
-    })->name('seni-kerajinan-quiz');
-    Route::get('/kuliner-tradisional-quiz', function () {
-        return view('pages.quiz_games.all_quiz.kuliner_tradisional');
-    })->name('kuliner-tradisional-quiz');
-    Route::get('/tarian-musik-quiz', function () {
-        return view('pages.quiz_games.all_quiz.tarian_musik');
-    })->name('tarian-musik-quiz');
-    Route::get('/upacara-adat-quiz', function () {
-        return view('pages.quiz_games.all_quiz.upacara_adat');
-    })->name('upacara-adat-quiz');
-
+    // Quiz routes
+Route::get('/quiz', [QuizGamesController::class, 'index'])->name('quiz.index');
+Route::get('/quiz/{id}', [QuizGamesController::class, 'showQuiz'])->name('quiz.show');
+Route::post('/quiz/{quiz}/submit', [QuizGamesController::class, 'submitQuiz'])->name('quiz.submit');
+Route::get('/quiz/stats', [QuizGamesController::class, 'getStats'])->name('quiz.stats'); // PERBAIKAN: Pakai QuizGamesController
     // KOLABORASI
     Route::get('/kolaborasi', [KolaborasiController::class, 'index'])->name('kolaborasi.index');

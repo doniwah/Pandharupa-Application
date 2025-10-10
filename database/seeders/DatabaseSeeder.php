@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             BahasaSeeder::class,
             LearningPathSeeder::class,
             LessonSeeder::class,
+            LeaderboardSeeder::class,
+            QuizSeeder::class
         ]);
     }
 }

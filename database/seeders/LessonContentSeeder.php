@@ -27,7 +27,8 @@ class LessonContentSeeder extends Seeder
                         ['text' => 'a', 'sound' => 'a']
                     ],
                     'tip' => 'Huruf A dalam bahasa Madura diucapkan dengan jelas dan tegas',
-                    'order' => 1
+                    'order' => 1,
+                    'audiofile' => 'audio-phrases/jawa/A.mp3'
                 ],
                 [
                     'word' => 'E',
