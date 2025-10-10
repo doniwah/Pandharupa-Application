@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             LearningPathSeeder::class,
             LessonSeeder::class,
             LeaderboardSeeder::class,
-            QuizSeeder::class
+            QuizSeeder::class,
+            KaryaSeeder::class
         ]);
     }
 }

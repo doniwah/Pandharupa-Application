@@ -182,39 +182,39 @@ function setupEventListeners() {
 
 function displayQuestion(index) {
     const question = quizData.questions[index];
-    
+
     document.getElementById('questionNumber').textContent = index + 1;
     document.getElementById('questionText').textContent = question.question_text;
     document.getElementById('currentQuestion').textContent = index + 1;
-    
+
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
-    
+
     ['a', 'b', 'c', 'd'].forEach(opt => {
         const optionText = question['option_' + opt];
         if (optionText) {
             const optionDiv = document.createElement('div');
             optionDiv.className = 'option-all-quiz';
             optionDiv.dataset.option = opt;
-            
+
             if (userAnswers[question.id] === opt) {
                 optionDiv.classList.add('selected');
             }
-            
+
             optionDiv.innerHTML = `
                 <div class="option-radio-all-quiz"></div>
                 <div class="option-text-all-quiz">${optionText}</div>
                 <div class="check-icon-all-quiz">✓</div>
             `;
-            
+
             optionsContainer.appendChild(optionDiv);
         }
     });
-    
+
     document.getElementById('btnPrev').disabled = index === 0;
-    document.getElementById('btnNext').textContent = 
+    document.getElementById('btnNext').textContent =
         index === quizData.questions.length - 1 ? 'Selesai' : 'Selanjutnya →';
-    
+
     document.querySelectorAll('.nav-number-all-quiz').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
         btn.classList.toggle('answered', userAnswers[quizData.questions[i].id] !== undefined);
@@ -224,17 +224,17 @@ function displayQuestion(index) {
 function selectOption(optionElement) {
     const questionId = quizData.questions[currentQuestionIndex].id;
     const selectedOption = optionElement.dataset.option;
-    
+
     document.querySelectorAll('.option-all-quiz').forEach(opt => {
         opt.classList.remove('selected');
     });
-    
+
     optionElement.classList.add('selected');
     userAnswers[questionId] = selectedOption;
-    
+
     const navBtn = document.querySelector(`.nav-number-all-quiz[data-question="${currentQuestionIndex + 1}"]`);
     if (navBtn) navBtn.classList.add('answered');
-    
+
     if (navigator.vibrate) {
         navigator.vibrate(50);
     }
@@ -242,12 +242,12 @@ function selectOption(optionElement) {
 
 function handleNext() {
     const currentQuestion = quizData.questions[currentQuestionIndex];
-    
+
     if (!userAnswers[currentQuestion.id]) {
         alert('Silakan pilih jawaban terlebih dahulu!');
         return;
     }
-    
+
     if (currentQuestionIndex === quizData.questions.length - 1) {
         finishQuiz();
     } else {
@@ -280,12 +280,12 @@ function updateProgress() {
 function startTimer() {
     timerInterval = setInterval(function() {
         timeRemaining--;
-        
+
         const minutes = Math.floor(timeRemaining / 60);
         const seconds = timeRemaining % 60;
-        document.getElementById('timer').textContent = 
+        document.getElementById('timer').textContent =
             `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        
+
         if (timeRemaining <= 0) {
             clearInterval(timerInterval);
             finishQuiz();
@@ -295,7 +295,7 @@ function startTimer() {
 
 function finishQuiz() {
     clearInterval(timerInterval);
-    
+
     // Calculate results
     let correctAnswers = 0;
     quizData.questions.forEach(question => {
@@ -303,11 +303,11 @@ function finishQuiz() {
             correctAnswers++;
         }
     });
-    
+
     const totalQuestions = quizData.questions.length;
     const percentage = Math.round((correctAnswers / totalQuestions) * 100);
     const points = correctAnswers * 10;
-    
+
     // PERBAIKAN: Hitung waktu yang benar (dalam detik)
     const timeTaken = (quizData.timeLimit * 60) - timeRemaining;
 
@@ -324,10 +324,10 @@ function finishQuiz() {
     document.getElementById('correctCount').textContent = correctAnswers;
     document.getElementById('incorrectCount').textContent = totalQuestions - correctAnswers;
     document.getElementById('pointsEarned').textContent = '+' + points;
-    
+
     // Show modal
     document.getElementById('quizModal').classList.add('active');
-    
+
     // PERBAIKAN: Submit dengan data yang benar
     submitQuizResults({
         time_taken: timeTaken,  // PASTIKAN INI time_taken BUKAN time_token
@@ -349,7 +349,7 @@ function finishQuiz() {
 function submitQuizResults(results) {
     console.log('=== SUBMITTING QUIZ ===');
     console.log('Data to submit:', results);
-    
+
     // PERBAIKAN: Payload yang konsisten
     const payload = {
         time_taken: parseInt(results.time_taken) || 0,
@@ -360,7 +360,7 @@ function submitQuizResults(results) {
     };
 
     console.log('Final payload:', payload);
-    
+
     return fetch(`/quiz/${quizData.id}/submit`, {
         method: 'POST',
         headers: {
@@ -373,7 +373,7 @@ function submitQuizResults(results) {
     .then(response => {
         console.log('Response status:', response.status);
         console.log('Response headers:', response.headers);
-        
+
         if (!response.ok) {
             return response.text().then(text => {
                 console.error('Server error response:', text);
@@ -393,9 +393,9 @@ function submitQuizResults(results) {
         console.error('=== SUBMIT ERROR ===');
         console.error('Error:', error);
         console.error('Stack:', error.stack);
-        return { 
-            success: false, 
-            error: error.message 
+        return {
+            success: false,
+            error: error.message
         };
     });
 }

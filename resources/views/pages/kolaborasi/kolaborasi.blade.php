@@ -12,22 +12,22 @@
     <div class="stats-grid-kolaborasi">
         <div class="stat-item-kolaborasi">
             <div class="stat-icon-kolaborasi"><i class="bi bi-share-fill"></i></div>
-            <div class="stat-number-kolaborasi">456</div>
+            <div class="stat-number-kolaborasi">{{ $stats['total_karya'] }}</div>
             <div class="stat-label-kolaborasi">Total Karya</div>
         </div>
         <div class="stat-item-kolaborasi">
             <div class="stat-icon-kolaborasi"><i class="bi bi-people-fill"></i></div>
-            <div class="stat-number-kolaborasi">89</div>
+            <div class="stat-number-kolaborasi">{{ $stats['active_collaborators'] }}</div>
             <div class="stat-label-kolaborasi">Kolaborator Aktif</div>
         </div>
         <div class="stat-item-kolaborasi">
             <div class="stat-icon-kolaborasi"><i class="bi bi-download"></i></div>
-            <div class="stat-number-kolaborasi">2,340</div>
+            <div class="stat-number-kolaborasi">{{ number_format($stats['downloads_month']) }}</div>
             <div class="stat-label-kolaborasi">Download Bulan Ini</div>
         </div>
         <div class="stat-item-kolaborasi">
             <div class="stat-icon-kolaborasi"><i class="bi bi-heart-fill"></i></div>
-            <div class="stat-number-kolaborasi">1,234</div>
+            <div class="stat-number-kolaborasi">{{ number_format($stats['total_likes']) }}</div>
             <div class="stat-label-kolaborasi">Karya Difavoritkan</div>
         </div>
     </div>
@@ -35,174 +35,131 @@
     <div class="filter-upload-section">
         <div class="filter-tabs">
             <i class="bi bi-funnel"></i>
-            <div class="filter-tab active">Semua</div>
-            <div class="filter-tab">Tari</div>
-            <div class="filter-tab">Musik</div>
-            <div class="filter-tab">Puisi</div>
-            <div class="filter-tab">Dokumenter</div>
-            <div class="filter-tab">Fotografi</div>
-            <div class="filter-tab">Kerajinan</div>
+            <a href="{{ route('kolaborasi.index') }}"
+                class="filter-tab {{ $category == 'semua' ? 'active' : '' }}">Semua</a>
+            <a href="{{ route('kolaborasi.index', ['category' => 'tari']) }}"
+                class="filter-tab {{ $category == 'tari' ? 'active' : '' }}">Tari</a>
+            <a href="{{ route('kolaborasi.index', ['category' => 'musik']) }}"
+                class="filter-tab {{ $category == 'musik' ? 'active' : '' }}">Musik</a>
+            <a href="{{ route('kolaborasi.index', ['category' => 'puisi']) }}"
+                class="filter-tab {{ $category == 'puisi' ? 'active' : '' }}">Puisi</a>
+            <a href="{{ route('kolaborasi.index', ['category' => 'dokumenter']) }}"
+                class="filter-tab {{ $category == 'dokumenter' ? 'active' : '' }}">Dokumenter</a>
+            <a href="{{ route('kolaborasi.index', ['category' => 'fotografi']) }}"
+                class="filter-tab {{ $category == 'fotografi' ? 'active' : '' }}">Fotografi</a>
+            <a href="{{ route('kolaborasi.index', ['category' => 'kerajinan']) }}"
+                class="filter-tab {{ $category == 'kerajinan' ? 'active' : '' }}">Kerajinan</a>
         </div>
+        @auth
         <button class="upload-btn" onclick="openUploadModal()">
             <p><strong>+</strong></p>
             <p>Upload Karya</p>
         </button>
+        @endauth
     </div>
 
+    @if($featuredKaryas->count() > 0)
     <div class="featured-section-kolaborasi">
         <h2 class="section-title-kolaborasi">Karya Unggulan</h2>
         <div class="content-grid-kolaborasi">
-            <div class="content-card-kolaborasi">
+            @foreach($featuredKaryas as $karya)
+            <div class="content-card-kolaborasi" data-karya-id="{{ $karya->id }}">
                 <div class="card-content-kolaborasi">
-                    <div class="card-icon-kolaborasi"><i class="bi bi-boombox"></i></div>
-                    <div class="card-badge badge-video-kolaborasi">Video</div>
-                    <h3 class="card-title-kolaborasi">Kolaborasi Tari Jejer Modern</h3>
-                    <p class="card-description-kolaborasi">Interpretasi modern dari tarian tradisional Jejer dengan
-                        sentuhan kontemporer.</p>
+                    <div class="card-icon-kolaborasi">
+                        @if($karya->file_type == 'video')
+                        <i class="bi bi-play-circle-fill"></i>
+                        @elseif($karya->file_type == 'audio')
+                        <i class="bi bi-music-note-beamed"></i>
+                        @elseif($karya->file_type == 'image')
+                        <i class="bi bi-image-fill"></i>
+                        @else
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                        @endif
+                    </div>
+                    <div class="card-badge badge-{{ $karya->category }}-kolaborasi">{{ ucfirst($karya->category) }}
+                    </div>
+                    <h3 class="card-title-kolaborasi">{{ $karya->title }}</h3>
+                    <p class="card-description-kolaborasi">{{ Str::limit($karya->description, 100) }}</p>
                     <div class="card-collaborators-kolaborasi">
-                        <span><i class="bi bi-person-fill"></i> Sari D. <i class="bi bi-person-fill"></i> Budi K. <i
-                                class="bi bi-person-fill"></i> Rina M.</span>
+                        <span>
+                            <i class="bi bi-person-fill"></i> {{ $karya->user->name }}
+                            @foreach($karya->collaborators as $collab)
+                            <i class="bi bi-person-fill"></i> {{ $collab->name }}
+                            @endforeach
+                        </span>
                     </div>
                     <div class="card-stats-kolaborasi">
                         <div class="stat-icons-kolaborasi">
-                            <span><i class="bi bi-eye-fill"></i> 1250</span>
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i> 89</span>
-                            <span><i class="bi bi-chat-fill"></i> 45</span>
+                            <span><i class="bi bi-eye-fill"></i> {{ $karya->views }}</span>
+                            <span><i class="bi bi-hand-thumbs-up-fill"></i> {{ $karya->likes }}</span>
+                            <span><i class="bi bi-chat-fill"></i> {{ $karya->comments->count() }}</span>
                         </div>
-                        <span>3 hari lalu</span>
+                        <span>{{ $karya->created_at->diffForHumans() }}</span>
                     </div>
                     <div class="card-actions-kolaborasi">
-                        <button class="btn btn-primary-kolaborasi"><i class="bi bi-eye-fill"></i> Lihat</button>
-                        <button class="btn btn-secondary-kolaborasi"><i class="bi bi-download"></i> Unduh</button>
+                        <button class="btn btn-primary-kolaborasi" onclick="viewKarya({{ $karya->id }})">
+                            <i class="bi bi-eye-fill"></i> Lihat
+                        </button>
+                        <a href="{{ route('kolaborasi.download', $karya->id) }}" class="btn btn-secondary-kolaborasi">
+                            <i class="bi bi-download"></i> Unduh
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <div class="content-card-kolaborasi">
-                <div class="card-content-kolaborasi">
-                    <div class="card-icon-kolaborasi"><i class="bi bi-file-earmark-text-fill"></i></div>
-                    <div class="card-badge badge-outstanding-kolaborasi">Outstanding</div>
-                    <h3 class="card-title-kolaborasi">Dokumenter: Perajin Batik Pendalungan</h3>
-                    <p class="card-description-kolaborasi">Film dokumenter tentang kehidupan dan karya para perajin
-                        batik tradisional.</p>
-                    <div class="card-collaborators-kolaborasi">
-                        <span><i class="bi bi-person-fill"></i> Ahmad S. <i class="bi bi-person-fill"></i> Lisa P. <i
-                                class="bi bi-person-fill"></i> Doni W.</span>
-                    </div>
-                    <div class="card-stats-kolaborasi">
-                        <div class="stat-icons-kolaborasi">
-                            <span><i class="bi bi-eye-fill"></i> 2100</span>
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i> 156</span>
-                            <span><i class="bi bi-chat-fill"></i> 78</span>
-                        </div>
-                        <span>1 minggu lalu</span>
-                    </div>
-                    <div class="card-actions-kolaborasi">
-                        <button class="btn btn-primary-kolaborasi"><i class="bi bi-eye-fill"></i> Lihat</button>
-                        <button class="btn btn-secondary-kolaborasi"><i class="bi bi-download"></i> Unduh</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
+    @endif
 
     <div class="all-works-section-kolaborasi">
         <h2 class="section-title-kolaborasi">Semua Karya</h2>
         <div class="all-works-grid-kolaborasi">
-            <div class="small-card-kolaborasi">
+            @forelse($allKaryas as $karya)
+            <div class="small-card-kolaborasi" data-karya-id="{{ $karya->id }}">
                 <div class="small-card-content-kolaborasi">
-                    <div class="small-card-icon-kolaborasi"><i class="bi bi-file-text-fill"></i></div>
-                    <div class="small-card-badge badge-puisi-kolaborasi">Puisi</div>
-                    <h3 class="small-card-title-kolaborasi">Kumpulan Puisi: Rindu Kampung</h3>
-                    <p class="small-card-description-kolaborasi">Kumpulan puisi yang menggambarkan kerinduan
-                        terhadap kampung halaman dan budaya lokal.</p>
-                    <div class="small-card-meta-kolaborasi">oleh Maya Ek - 1</div>
+                    <div class="small-card-icon-kolaborasi">
+                        @if($karya->file_type == 'video')
+                        <i class="bi bi-play-circle-fill"></i>
+                        @elseif($karya->file_type == 'audio')
+                        <i class="bi bi-music-note-beamed"></i>
+                        @elseif($karya->file_type == 'image')
+                        <i class="bi bi-image-fill"></i>
+                        @else
+                        <i class="bi bi-file-text-fill"></i>
+                        @endif
+                    </div>
+                    <div class="small-card-badge badge-{{ $karya->category }}-kolaborasi">{{ ucfirst($karya->category)
+                        }}</div>
+                    <h3 class="small-card-title-kolaborasi">{{ $karya->title }}</h3>
+                    <p class="small-card-description-kolaborasi">{{ Str::limit($karya->description, 80) }}</p>
+                    <div class="small-card-meta-kolaborasi">oleh {{ $karya->user->name }}</div>
                     <div class="small-card-stats-kolaborasi">
                         <div class="stat-icons-kolaborasi">
-                            <span><i class="bi bi-eye-fill"></i> 67</span>
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i> 12</span>
-                            <span><i class="bi bi-chat-fill"></i> 4</span>
+                            <span><i class="bi bi-eye-fill"></i> {{ $karya->views }}</span>
+                            <span><i class="bi bi-hand-thumbs-up-fill"></i> {{ $karya->likes }}</span>
+                            <span><i class="bi bi-chat-fill"></i> {{ $karya->comments->count() }}</span>
                         </div>
-                        <span>2 minggu lalu</span>
+                        <span>{{ $karya->created_at->diffForHumans() }}</span>
                     </div>
                     <div class="small-card-actions-kolaborasi">
-                        <button class="small-btn small-btn-primary-kolaborasi">Lihat</button>
-                        <button class="small-btn small-btn-secondary-kolaborasi"><i class="bi bi-download"></i>
-                            Unduh</button>
+                        <button class="small-btn small-btn-primary-kolaborasi"
+                            onclick="viewKarya({{ $karya->id }})">Lihat</button>
+                        <a href="{{ route('kolaborasi.download', $karya->id) }}"
+                            class="small-btn small-btn-secondary-kolaborasi">
+                            <i class="bi bi-download"></i> Unduh
+                        </a>
                     </div>
                 </div>
             </div>
+            @empty
+            <div class="col-12 text-center py-5">
+                <p>Belum ada karya yang tersedia.</p>
+            </div>
+            @endforelse
+        </div>
 
-            <div class="small-card-kolaborasi">
-                <div class="small-card-content-kolaborasi">
-                    <div class="small-card-icon-kolaborasi"><i class="bi bi-music-note-beamed"></i></div>
-                    <div class="small-card-badge badge-musik-kolaborasi">Musik</div>
-                    <h3 class="small-card-title-kolaborasi">Musik Fusion: Gamelan Digital</h3>
-                    <p class="small-card-description-kolaborasi">Perpaduan gamelan tradisional dengan sentuhan musik
-                        digital modern.</p>
-                    <div class="small-card-meta-kolaborasi">oleh Iri Np</div>
-                    <div class="small-card-stats-kolaborasi">
-                        <div class="stat-icons-kolaborasi">
-                            <span><i class="bi bi-eye-fill"></i> 1400</span>
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i> 98</span>
-                            <span><i class="bi bi-chat-fill"></i> 23</span>
-                        </div>
-                        <span>3 minggu lalu</span>
-                    </div>
-                    <div class="small-card-actions-kolaborasi">
-                        <button class="small-btn small-btn-primary-kolaborasi">Lihat</button>
-                        <button class="small-btn small-btn-secondary-kolaborasi"><i class="bi bi-download"></i>
-                            Unduh</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="small-card-kolaborasi">
-                <div class="small-card-content-kolaborasi">
-                    <div class="small-card-icon-kolaborasi"><i class="bi bi-camera-fill"></i></div>
-                    <div class="small-card-badge badge-foto-kolaborasi">Foto</div>
-                    <h3 class="small-card-title-kolaborasi">Fotografi: Potret Kehidupan Nelayan</h3>
-                    <p class="small-card-description-kolaborasi">Dokumentasi visual kehidupan sehari-hari para
-                        nelayan yang melestarikan nelayan Pendalungan.</p>
-                    <div class="small-card-meta-kolaborasi">oleh Ri Si</div>
-                    <div class="small-card-stats-kolaborasi">
-                        <div class="stat-icons-kolaborasi">
-                            <span><i class="bi bi-eye-fill"></i> 780</span>
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i> 54</span>
-                            <span><i class="bi bi-chat-fill"></i> 12</span>
-                        </div>
-                        <span>1 bulan lalu</span>
-                    </div>
-                    <div class="small-card-actions-kolaborasi">
-                        <button class="small-btn small-btn-primary-kolaborasi">Lihat</button>
-                        <button class="small-btn small-btn-secondary-kolaborasi"><i class="bi bi-download"></i>
-                            Unduh</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="small-card-kolaborasi">
-                <div class="small-card-content-kolaborasi">
-                    <div class="small-card-icon-kolaborasi"><i class="bi bi-scissors"></i></div>
-                    <div class="small-card-badge badge-kerajinan-kolaborasi">Kerajinan</div>
-                    <h3 class="small-card-title-kolaborasi">Kerajinan: Vas Bambu Kontemporer</h3>
-                    <p class="small-card-description-kolaborasi">Desain vas dari bambu dengan sentuhan modern untuk
-                        dekorasi rumah.</p>
-                    <div class="small-card-meta-kolaborasi">oleh Ana - 1</div>
-                    <div class="small-card-stats-kolaborasi">
-                        <div class="stat-icons-kolaborasi">
-                            <span><i class="bi bi-eye-fill"></i> 420</span>
-                            <span><i class="bi bi-hand-thumbs-up-fill"></i> 34</span>
-                        </div>
-                        <span>1 bulan lalu</span>
-                    </div>
-                    <div class="small-card-actions-kolaborasi">
-                        <button class="small-btn small-btn-primary-kolaborasi">Lihat</button>
-                        <button class="small-btn small-btn-secondary-kolaborasi"><i class="bi bi-download"></i>
-                            Unduh</button>
-                    </div>
-                </div>
-            </div>
+        <div class="mt-4">
+            {{ $allKaryas->links() }}
         </div>
     </div>
 
@@ -212,139 +169,38 @@
         <p class="cta-description-kolaborasi">Bergabunglah dengan komunitas kreatif dan ciptakan karya seni digital
             yang menginspirasi!</p>
         <div class="cta-buttons-kolaborasi">
-            <a onclick="openUploadModal()" class="cta-btn cta-btn-primary-kolaborasi"><i class="bi bi-cloud-upload-fill"></i> Upload
-                Karya</a>
-            <a href="#" class="cta-btn cta-btn-secondary-kolaborasi">Daftar Sekarang</a>
+            @auth
+            <a onclick="openUploadModal()" class="cta-btn cta-btn-primary-kolaborasi">
+                <i class="bi bi-cloud-upload-fill"></i> Upload Karya
+            </a>
+            @else
+            <a href="{{ route('login') }}" class="cta-btn cta-btn-secondary-kolaborasi">Login untuk Upload</a>
+            @endauth
         </div>
     </div>
 </div>
 
-<div class="modal-overlay-kolaborasi" id="modalKarya">
-    <div class="modal-container-kolaborasi">
-        <button class="modal-close-btn-kolaborasi" onclick="closeModal()">×</button>
-
-        <div class="modal-content-kolaborasi">
-            <div class="modal-header-kolaborasi">
-                <h2 class="modal-title-kolaborasi" id="modalTitle">Kolaborasi Tari Jejer Modern</h2>
-                <div class="modal-badge-kolaborasi badge-video-kolaborasi" id="modalBadge">Video</div>
-            </div>
-
-            <div class="modal-video-container-kolaborasi" id="modalVideoContainer">
-                <iframe src=""
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="modal-audio-container-kolaborasi" id="modalAudioContainer">
-                <div class="modal-audio-icon-kolaborasi">
-                    <i class="bi bi-volume-up-fill"></i>
-                </div>
-                <audio controls id="modalAudioPlayer">
-                    <source src="" type="audio/mpeg">
-                    Browser Anda tidak mendukung audio player.
-                </audio>
-                <p class="modal-audio-title-kolaborasi" id="modalAudioTitle">Gamelan Digital Fusion - 5:24</p>
-            </div>
-
-            <div class="modal-text-container-kolaborasi" id="modalTextContainer">
-                <div class="modal-text-header-kolaborasi">
-                    <i class="bi bi-file-text-fill"></i>
-                    <span>Puisi</span>
-                </div>
-                <div class="modal-text-content-kolaborasi" id="modalTextContent"></div>
-            </div>
-
-            <div class="modal-gallery-container-kolaborasi" id="modalGalleryContainer">
-                <div class="modal-gallery-item-kolaborasi">
-                    <i class="bi bi-image-fill"></i>
-                    <span>Foto Nelayan 1</span>
-                </div>
-                <div class="modal-gallery-item-kolaborasi">
-                    <i class="bi bi-image-fill"></i>
-                    <span>Foto Nelayan 2</span>
-                </div>
-                <div class="modal-gallery-item-kolaborasi">
-                    <i class="bi bi-image-fill"></i>
-                    <span>Foto Nelayan 3</span>
-                </div>
-                <div class="modal-gallery-item-kolaborasi">
-                    <i class="bi bi-image-fill"></i>
-                    <span>Foto Nelayan 4</span>
-                </div>
-            </div>
-
-            <div class="modal-craft-container-kolaborasi" id="modalCraftContainer">
-                <i class="bi bi-image-fill"></i>
-                <span id="modalCraftTitle">Vas Bambu Kontemporer</span>
-            </div>
-
-            <p class="modal-description-kolaborasi" id="modalDescription">
-                Interpretasi modern dari tarian tradisional Jejer dengan sentuhan kontemporer.
-            </p>
-
-            <div class="modal-collaborators-section-kolaborasi">
-                <h4>Kolaborator:</h4>
-                <div class="modal-collaborators-list-kolaborasi" id="modalCollaborators">
-                    <span class="modal-collaborator-item-kolaborasi">Sari D.</span>
-                    <span class="modal-collaborator-item-kolaborasi">Budil K.</span>
-                    <span class="modal-collaborator-item-kolaborasi">Rina M.</span>
-                </div>
-            </div>
-
-            <div class="modal-stats-section-kolaborasi">
-                <div class="modal-stats-left-kolaborasi">
-                    <div class="modal-stat-item-kolaborasi">
-                        <i class="bi bi-eye-fill"></i>
-                        <span id="modalViews">1250</span>
-                        <span>views</span>
-                    </div>
-                    <div class="modal-stat-item-kolaborasi">
-                        <i class="bi bi-hand-thumbs-up-fill"></i>
-                        <span id="modalLikes">89</span>
-                        <span>likes</span>
-                    </div>
-                    <div class="modal-stat-item-kolaborasi">
-                        <i class="bi bi-chat-fill"></i>
-                        <span id="modalComments">45</span>
-                        <span>comments</span>
-                    </div>
-                </div>
-                <div class="modal-time-kolaborasi" id="modalTime">3 hari lalu</div>
-            </div>
-
-            <div class="modal-actions-kolaborasi">
-                <button class="modal-btn-kolaborasi modal-btn-download-kolaborasi">
-                    <i class="bi bi-download"></i>
-                    Download Karya
-                </button>
-                <button class="modal-btn-kolaborasi modal-btn-favorite-kolaborasi">
-                    <i class="bi bi-heart"></i>
-                    Favorit
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@include('components.footer')
+{{-- Modal untuk upload --}}
+@auth
 <div class="modal-overlay-upload" id="modalUpload">
     <div class="modal-container-upload">
         <button class="modal-close-btn-upload" onclick="closeUploadModal()">×</button>
-
         <div class="modal-content-upload">
             <h2 class="modal-title-upload">Upload Karya Baru</h2>
             <p class="modal-subtitle-upload">Bagikan karya seni digital Anda dengan komunitas Pendalungan</p>
 
-            <form id="uploadForm" class="upload-form">
+            <form action="{{ route('kolaborasi.store') }}" method="POST" enctype="multipart/form-data" id="uploadForm"
+                class="upload-form">
+                @csrf
                 <div class="form-group-upload">
                     <label class="form-label-upload">Judul Karya</label>
-                    <input type="text" class="form-input-upload" placeholder="Masukkan judul karya" required>
+                    <input type="text" name="title" class="form-input-upload" placeholder="Masukkan judul karya"
+                        required>
                 </div>
 
                 <div class="form-group-upload">
                     <label class="form-label-upload">Kategori</label>
-                    <select class="form-select-upload" required>
+                    <select name="category" class="form-select-upload" required>
                         <option value="">Pilih kategori</option>
                         <option value="tari">Tari</option>
                         <option value="musik">Musik</option>
@@ -357,14 +213,14 @@
 
                 <div class="form-group-upload">
                     <label class="form-label-upload">Deskripsi</label>
-                    <textarea class="form-textarea-upload" placeholder="Deskripsikan karya Anda" rows="4"
-                        required></textarea>
+                    <textarea name="description" class="form-textarea-upload" placeholder="Deskripsikan karya Anda"
+                        rows="4" required></textarea>
                 </div>
 
                 <div class="form-group-upload">
                     <label class="form-label-upload">File Karya</label>
                     <div class="file-upload-wrapper">
-                        <input type="file" id="fileInput" class="file-input-upload"
+                        <input type="file" name="file" id="fileInput" class="file-input-upload"
                             accept="image/*,video/*,audio/*,.pdf" required>
                         <label for="fileInput" class="file-label-upload">
                             <span id="fileName">Choose File</span>
@@ -381,211 +237,269 @@
         </div>
     </div>
 </div>
+@endauth
+
+{{-- Modal untuk view detail karya --}}
+<div class="modal-overlay-kolaborasi" id="modalKarya">
+    <div class="modal-container-kolaborasi">
+        <button class="modal-close-btn-kolaborasi" onclick="closeModal()">×</button>
+        <div class="modal-content-kolaborasi" id="modalContentArea">
+            {{-- Content will be loaded dynamically via AJAX --}}
+            <div class="text-center py-5">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@include('components.footer')
 
 <script>
-    const filterTabs = document.querySelectorAll('.filter-tab');
-
-filterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        filterTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-    });
-});
-
-const buttons = document.querySelectorAll('.btn, .small-btn');
-buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            btn.style.transform = '';
-        }, 150);
-    });
-});
-
-function openModal(data) {
+    // Function untuk view karya detail
+function viewKarya(karyaId) {
     const modal = document.getElementById('modalKarya');
-    
-    document.getElementById('modalVideoContainer').classList.remove('active');
-    document.getElementById('modalAudioContainer').classList.remove('active');
-    document.getElementById('modalTextContainer').classList.remove('active');
-    document.getElementById('modalGalleryContainer').classList.remove('active');
-    document.getElementById('modalCraftContainer').classList.remove('active');
-    
-    document.getElementById('modalTitle').textContent = data.title;
-    document.getElementById('modalBadge').textContent = data.badge;
-    document.getElementById('modalBadge').className = 'modal-badge-kolaborasi ' + data.badgeClass;
-    document.getElementById('modalDescription').textContent = data.description;
-    document.getElementById('modalViews').textContent = data.views;
-    document.getElementById('modalLikes').textContent = data.likes;
-    document.getElementById('modalComments').textContent = data.comments || '0';
-    document.getElementById('modalTime').textContent = data.time;
-    
-    const collabContainer = document.getElementById('modalCollaborators');
-    collabContainer.innerHTML = data.collaborators.map(name => 
-        `<span class="modal-collaborator-item-kolaborasi">${name}</span>`
-    ).join('');
-    
-    const contentType = data.contentType || 'video';
-    
-    if (contentType === 'video') {
-        const videoContainer = document.getElementById('modalVideoContainer');
-        videoContainer.classList.add('active');
-        videoContainer.querySelector('iframe').src = data.videoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ';
-    } 
-    else if (contentType === 'audio') {
-        const audioContainer = document.getElementById('modalAudioContainer');
-        audioContainer.classList.add('active');
-        document.getElementById('modalAudioPlayer').src = data.audioUrl || '';
-        document.getElementById('modalAudioTitle').textContent = data.audioTitle || 'Audio Track';
-    } 
-    else if (contentType === 'text' || contentType === 'puisi') {
-        const textContainer = document.getElementById('modalTextContainer');
-        textContainer.classList.add('active');
-        document.getElementById('modalTextContent').textContent = data.textContent || '';
-    } 
-    else if (contentType === 'gallery' || contentType === 'foto') {
-        const galleryContainer = document.getElementById('modalGalleryContainer');
-        galleryContainer.classList.add('active');
-        
-        if (data.galleryItems) {
-            galleryContainer.innerHTML = data.galleryItems.map((item, index) => `
-                <div class="modal-gallery-item-kolaborasi">
-                    <i class="bi bi-image-fill"></i>
-                    <span>${item.title || 'Foto ' + (index + 1)}</span>
-                </div>
-            `).join('');
-        }
-    } 
-    else if (contentType === 'craft' || contentType === 'kerajinan') {
-        const craftContainer = document.getElementById('modalCraftContainer');
-        craftContainer.classList.add('active');
-        document.getElementById('modalCraftTitle').textContent = data.craftTitle || data.title;
-    }
+    const modalContent = document.getElementById('modalContentArea');
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Fetch data karya via AJAX
+    fetch(`/kolaborasi/${karyaId}`)
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                const data = result.data;
+                modalContent.innerHTML = generateModalContent(data);
+                
+                // Initialize like button if user is authenticated
+                @auth
+                initializeLikeButton(karyaId, data.is_liked);
+                @endauth
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            modalContent.innerHTML = '<p class="text-center text-danger">Gagal memuat data karya.</p>';
+        });
 }
+
+function generateModalContent(data) {
+    let mediaContent = '';
+    
+    // Generate media content based on file type
+    if (data.file_type === 'video') {
+        mediaContent = `
+            <div class="modal-video-container-kolaborasi active">
+                <video controls style="width: 100%; max-height: 500px;">
+                    <source src="${data.file_path}" type="video/mp4">
+                    Browser Anda tidak mendukung video player.
+                </video>
+            </div>
+        `;
+    } else if (data.file_type === 'audio') {
+        mediaContent = `
+            <div class="modal-audio-container-kolaborasi active">
+                <div class="modal-audio-icon-kolaborasi">
+                    <i class="bi bi-volume-up-fill"></i>
+                </div>
+                <audio controls>
+                    <source src="${data.file_path}" type="audio/mpeg">
+                    Browser Anda tidak mendukung audio player.
+                </audio>
+            </div>
+        `;
+    } else if (data.file_type === 'image') {
+        mediaContent = `
+            <div class="modal-gallery-container-kolaborasi active">
+                <img src="${data.file_path}" alt="${data.title}" style="width: 100%; max-height: 500px; object-fit: contain;">
+            </div>
+        `;
+    } else {
+        mediaContent = `
+            <div class="modal-text-container-kolaborasi active">
+                <div class="modal-text-header-kolaborasi">
+                    <i class="bi bi-file-text-fill"></i>
+                    <span>Dokumen</span>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Generate collaborators list
+    const collaboratorsList = data.collaborators.map(collab => 
+        `<span class="modal-collaborator-item-kolaborasi">${collab.name}</span>`
+    ).join('');
+    
+    return `
+        <div class="modal-header-kolaborasi">
+            <h2 class="modal-title-kolaborasi">${data.title}</h2>
+            <div class="modal-badge-kolaborasi badge-${data.category}-kolaborasi">${data.category}</div>
+        </div>
+
+        ${mediaContent}
+
+        <p class="modal-description-kolaborasi">${data.description}</p>
+
+        <div class="modal-collaborators-section-kolaborasi">
+            <h4>Dibuat oleh:</h4>
+            <div class="modal-collaborators-list-kolaborasi">
+                <span class="modal-collaborator-item-kolaborasi">${data.user.name}</span>
+                ${collaboratorsList}
+            </div>
+        </div>
+
+        <div class="modal-stats-section-kolaborasi">
+            <div class="modal-stats-left-kolaborasi">
+                <div class="modal-stat-item-kolaborasi">
+                    <i class="bi bi-eye-fill"></i>
+                    <span>${data.views}</span>
+                    <span>views</span>
+                </div>
+                <div class="modal-stat-item-kolaborasi">
+                    <i class="bi bi-hand-thumbs-up-fill"></i>
+                    <span id="likesCount">${data.likes}</span>
+                    <span>likes</span>
+                </div>
+                <div class="modal-stat-item-kolaborasi">
+                    <i class="bi bi-chat-fill"></i>
+                    <span>${data.comments.length}</span>
+                    <span>comments</span>
+                </div>
+            </div>
+            <div class="modal-time-kolaborasi">${data.created_at}</div>
+        </div>
+
+        <div class="modal-actions-kolaborasi">
+            <a href="/kolaborasi/${data.id}/download" class="modal-btn-kolaborasi modal-btn-download-kolaborasi">
+                <i class="bi bi-download"></i>
+                Download Karya
+            </a>
+            @auth
+            <button class="modal-btn-kolaborasi modal-btn-favorite-kolaborasi" id="likeBtn">
+                <i class="bi bi-heart"></i>
+                <span id="likeBtnText">Favorit</span>
+            </button>
+            @endauth
+        </div>
+
+        <div class="modal-comments-section" style="margin-top: 2rem;">
+            <h4>Komentar (${data.comments.length})</h4>
+            <div id="commentsList">
+                ${data.comments.map(comment => `
+                    <div class="comment-item" style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>${comment.user_name}</strong>
+                        <small style="color: #666;">${comment.created_at}</small>
+                        <p style="margin: 0.5rem 0 0 0;">${comment.comment}</p>
+                    </div>
+                `).join('')}
+            </div>
+            
+            @auth
+            <form id="commentForm" style="margin-top: 1rem;">
+                <textarea id="commentInput" class="form-textarea-upload" placeholder="Tulis komentar..." rows="3" required></textarea>
+                <button type="submit" class="btn-upload-submit" style="margin-top: 0.5rem;">
+                    <i class="bi bi-send"></i> Kirim Komentar
+                </button>
+            </form>
+            @endauth
+        </div>
+    `;
+}
+
+@auth
+function initializeLikeButton(karyaId, isLiked) {
+    const likeBtn = document.getElementById('likeBtn');
+    const likeBtnText = document.getElementById('likeBtnText');
+    const likesCount = document.getElementById('likesCount');
+    
+    if (isLiked) {
+        likeBtn.classList.add('liked');
+        likeBtn.querySelector('i').classList.remove('bi-heart');
+        likeBtn.querySelector('i').classList.add('bi-heart-fill');
+        likeBtnText.textContent = 'Difavoritkan';
+    }
+    
+    likeBtn.addEventListener('click', function() {
+        fetch(`/kolaborasi/${karyaId}/like`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                likesCount.textContent = result.likes_count;
+                
+                if (result.liked) {
+                    likeBtn.classList.add('liked');
+                    likeBtn.querySelector('i').classList.remove('bi-heart');
+                    likeBtn.querySelector('i').classList.add('bi-heart-fill');
+                    likeBtnText.textContent = 'Difavoritkan';
+                } else {
+                    likeBtn.classList.remove('liked');
+                    likeBtn.querySelector('i').classList.remove('bi-heart-fill');
+                    likeBtn.querySelector('i').classList.add('bi-heart');
+                    likeBtnText.textContent = 'Favorit';
+                }
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
+    // Comment form handler
+    const commentForm = document.getElementById('commentForm');
+    if (commentForm) {
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const commentInput = document.getElementById('commentInput');
+            const comment = commentInput.value;
+            
+            fetch(`/kolaborasi/${karyaId}/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({ comment: comment })
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    const commentsList = document.getElementById('commentsList');
+                    const newComment = `
+                        <div class="comment-item" style="padding: 1rem; border-bottom: 1px solid #eee;">
+                            <strong>${result.comment.user_name}</strong>
+                            <small style="color: #666;">${result.comment.created_at}</small>
+                            <p style="margin: 0.5rem 0 0 0;">${result.comment.comment}</p>
+                        </div>
+                    `;
+                    commentsList.insertAdjacentHTML('beforeend', newComment);
+                    commentInput.value = '';
+                    
+                    // Update comment count
+                    const commentCount = commentsList.parentElement.querySelector('h4');
+                    const currentCount = parseInt(commentCount.textContent.match(/\d+/)[0]);
+                    commentCount.textContent = `Komentar (${currentCount + 1})`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+}
+@endauth
 
 function closeModal() {
     const modal = document.getElementById('modalKarya');
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    
-    const videoIframe = document.querySelector('#modalVideoContainer iframe');
-    if (videoIframe) {
-        videoIframe.src = videoIframe.src;
-    }
-    
-    const audioPlayer = document.getElementById('modalAudioPlayer');
-    if (audioPlayer) {
-        audioPlayer.pause();
-    }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const viewButtons = document.querySelectorAll('.btn-primary-kolaborasi, .small-btn-primary-kolaborasi');
-    
-    viewButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const card = this.closest('.content-card-kolaborasi, .small-card-kolaborasi');
-            const title = card.querySelector('.card-title-kolaborasi, .small-card-title-kolaborasi').textContent;
-            const description = card.querySelector('.card-description-kolaborasi, .small-card-description-kolaborasi').textContent;
-            const badge = card.querySelector('.card-badge, .small-card-badge').textContent.trim();
-            const badgeClass = card.querySelector('.card-badge, .small-card-badge').className;
-            
-            const stats = card.querySelectorAll('.stat-icons-kolaborasi span');
-            const views = stats[0] ? stats[0].textContent.replace(/\D/g, '') : '0';
-            const likes = stats[1] ? stats[1].textContent.replace(/\D/g, '') : '0';
-            const comments = stats[2] ? stats[2].textContent.replace(/\D/g, '') : '0';
-            
-            const time = card.querySelector('.card-stats-kolaborasi > span, .small-card-stats-kolaborasi > span').textContent;
-            
-            const collabText = card.querySelector('.card-collaborators-kolaborasi, .small-card-meta-kolaborasi');
-            let collaborators = [];
-            if (collabText) {
-                const text = collabText.textContent;
-                if (text.includes('oleh')) {
-                    collaborators = [text.replace('oleh', '').trim()];
-                } else {
-                    const names = text.split(/\s{2,}/).filter(name => {
-                        const cleaned = name.trim().replace(/[^\w\s.-]/g, '');
-                        return cleaned.length > 0;
-                    });
-                    collaborators = names.length > 0 ? names : ['Tidak ada kolaborator'];
-                }
-            }
-            
-            let contentType = 'video';
-            let additionalData = {};
-            
-            if (badge.toLowerCase().includes('video')) {
-                contentType = 'video';
-                additionalData.videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
-            } else if (badge.toLowerCase().includes('musik')) {
-                contentType = 'audio';
-                additionalData.audioTitle = 'Gamelan Digital Fusion - 5:24';
-            } else if (badge.toLowerCase().includes('puisi')) {
-                contentType = 'text';
-                additionalData.textContent = `Rindu Kampung
-
-Di bawah langit senja kemerahan
-Terdengar suara gamelan berdentang
-Mengingatkan masa kecil yang indah
-Di kampung halaman penuh kenangan
-
-Sawah menguning terhampar luas
-Angin sepoi menyapa dengan mesra
-Sungai kecil mengalir tanpa lelah
-Membawa cerita leluhur kita
-
-Wahai kampung, betapa dirindukan
-Hidup sederhana namun penuh makna
-Kekeluargaan yang takkan tergantikan
-Warisan budaya yang harus dijaga`;
-            } else if (badge.toLowerCase().includes('foto')) {
-                contentType = 'gallery';
-                additionalData.galleryItems = [
-                    { title: 'Foto Nelayan 1' },
-                    { title: 'Foto Nelayan 2' },
-                    { title: 'Foto Nelayan 3' },
-                    { title: 'Foto Nelayan 4' }
-                ];
-            } else if (badge.toLowerCase().includes('kerajinan')) {
-                contentType = 'craft';
-                additionalData.craftTitle = title;
-            }
-            
-            openModal({
-                title: title,
-                description: description,
-                badge: badge,
-                badgeClass: badgeClass,
-                views: views,
-                likes: likes,
-                comments: comments,
-                time: time,
-                collaborators: collaborators,
-                contentType: contentType,
-                ...additionalData
-            });
-        });
-    });
-    
-    document.getElementById('modalKarya').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-    });
-});
-
+@auth
 function openUploadModal() {
     const modal = document.getElementById('modalUpload');
     modal.classList.add('active');
@@ -614,44 +528,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    const uploadBtn = document.querySelector('.upload-btn');
-    if (uploadBtn) {
-        uploadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openUploadModal();
-        });
-    }
-    
-    const ctaUploadBtn = document.querySelector('.cta-btn-primary-kolaborasi');
-    if (ctaUploadBtn) {
-        ctaUploadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openUploadModal();
-        });
-    }
-    
-    document.getElementById('modalUpload').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeUploadModal();
-        }
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('modalUpload');
-            if (modal.classList.contains('active')) {
+    const modalUpload = document.getElementById('modalUpload');
+    if (modalUpload) {
+        modalUpload.addEventListener('click', function(e) {
+            if (e.target === this) {
                 closeUploadModal();
             }
-        }
-    });
-    
-    const uploadForm = document.getElementById('uploadForm');
-    if (uploadForm) {
-        uploadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Karya berhasil diupload! (Demo)');
-            closeUploadModal();
         });
+    }
+});
+@endauth
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+        @auth
+        closeUploadModal();
+        @endauth
+    }
+});
+
+// Close modal on overlay click
+document.getElementById('modalKarya').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
     }
 });
 </script>

@@ -85,7 +85,18 @@
                 </div>
                 <div class="user-info">
                     <div class="username">{{ $entry->user->name }}</div>
-                    <span class="user-level level-{{ $entry->level }}">{{ ucfirst($entry->level) }}</span>
+                    @php
+                    $levelLabels = [
+                    'beginner' => 'Pemula',
+                    'intermediate' => 'Menengah',
+                    'advanced' => 'Mahir',
+                    'expert' => 'Ahli',
+                    'master' => 'Master'
+                    ];
+                    @endphp
+                    <span class="user-level level-{{ $entry->level }}">
+                        {{ $levelLabels[$entry->level] ?? 'Pemula' }}
+                    </span>
                 </div>
                 <div class="score">
                     <div class="score-number">{{ number_format($entry->total_score) }}</div>
@@ -109,7 +120,7 @@
 <script>
     document.getElementById('startQuiz').addEventListener('click', function() {
         document.getElementById('quiz').scrollIntoView({
-            behavior: 'smooth' 
+            behavior: 'smooth'
         });
     });
 
