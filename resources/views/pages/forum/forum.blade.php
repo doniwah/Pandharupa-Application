@@ -23,14 +23,13 @@
         /* Header Styles */
         .header {
             padding: 48px 16px;
-                        justify-content: center;
+            justify-content: center;
         }
 
         .header-content {
-            max-width: 1152px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: center;
-            outline: 1px solid red;
             justify-content: center;
         }
 
@@ -42,11 +41,11 @@
         }
 
         .header-description {
-            outline: 1px solid red;
             color: #4b5563;
             font-size: 18px;
-            max-width: 700px;
+            position: center;
         }
+
         .stats-container {
             max-width: 1152px;
             margin: -32px auto 32px;
@@ -134,6 +133,12 @@
             position: relative;
         }
 
+        .element-search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .search-icon {
             position: absolute;
             left: 12px;
@@ -158,7 +163,7 @@
             background-color: #f97316;
             color: white;
             padding: 8px 24px;
-            border-radius: 8px;
+            border-radius: 4px;
             font-weight: 500;
             border: none;
             cursor: pointer;
@@ -216,7 +221,7 @@
             flex: 1;
         }
 
-        .post-body a{
+        .post-body a {
             text-decoration: none;
         }
 
@@ -273,11 +278,11 @@
             color: #4b5563;
         }
 
-        .replies-count a{
+        .replies-count a {
             color: #4b5563;
         }
 
-        .replies-count a:hover{
+        .replies-count a:hover {
             color: #f6a104;
         }
 
@@ -498,6 +503,7 @@
         .btn-close:hover {
             color: #374151;
         }
+
         .form-group {
             margin-bottom: 16px;
         }
@@ -575,10 +581,23 @@
 
         /* Animation */
         @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.3); }
-            50% { transform: scale(0.9); }
-            75% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.3);
+            }
+
+            50% {
+                transform: scale(0.9);
+            }
+
+            75% {
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
@@ -619,15 +638,12 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-container">
         <div class="content-grid">
-            <!-- Left Column - Posts -->
             <div class="left-column">
-                <!-- Search and New Topic -->
                 <div class="search-container">
                     <form method="GET" action="{{ route('forum.index') }}" class="search-wrapper">
-                        <div>
+                        <div class="element-search">
                             <i class="fas fa-search search-icon"></i>
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Cari diskusi..." class="search-input">
@@ -650,11 +666,9 @@
                                     @endif
                                     <span class="category-badge">{{ $topic->category->name }}</span>
                                 </div>
-                                <a href="">
-                                    <h3 class="post-title">
-                                        {{ $topic->title }}
-                                    </h3>
-                                </a>
+                                <h3 class="post-title">
+                                    {{ $topic->title }}
+                                </h3>
                                 <p class="post-excerpt">
                                     {{ Str::limit($topic->content, 150) }}
                                 </p>
@@ -666,13 +680,14 @@
                                 <div class="post-footer">
                                     <span class="replies-count">
                                         <a href="{{ route('forum.show', $topic->id) }}">
-                                        <i class="far fa-comment"></i> {{ $topic->replies->count() }} balasan</a>
+                                            <i class="far fa-comment"></i> {{ $topic->replies->count() }} balasan</a>
                                     </span>
                                     <button onclick="toggleLike(event, {{ $topic->id }})"
                                         class="like-btn {{ $topic->isLikedBy(auth()->user()) ? 'text-red-500' : 'text-gray-400' }}"
                                         data-topic-id="{{ $topic->id }}"
                                         {{ $topic->isLikedBy(auth()->user()) ? 'disabled' : '' }}>
-                                        <i class="{{ $topic->isLikedBy(auth()->user()) ? 'fas' : 'far' }} fa-heart"></i>
+                                        <i
+                                            class="{{ $topic->isLikedBy(auth()->user()) ? 'fas' : 'far' }} fa-heart"></i>
                                         <span class="likes-count">{{ $topic->likes->count() }}</span>
                                     </button>
                                 </div>
@@ -795,7 +810,6 @@
     </div>
 
     <script>
-
         function openModal() {
             document.getElementById('createTopicModal').classList.add('active');
         }

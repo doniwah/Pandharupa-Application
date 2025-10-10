@@ -30,19 +30,6 @@
             <button type="submit" class="login-button">Masuk</button>
         </form>
 
-        <div class="divider">ATAU MASUK DENGAN</div>
-
-        <div class="social-buttons">
-            <button class="social-button">
-                <span class="social-icon">G</span>
-                <span>Google</span>
-            </button>
-            <button class="social-button">
-                <span class="social-icon">f</span>
-                <span>Facebook</span>
-            </button>
-        </div>
-
         <p class="register-link">Belum punya akun? <a href="{{ route('register.index') }}">Daftar sekarang</a></p>
     </div>
 </body>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css') }}/footer.css">
     <link rel="stylesheet" href="{{ asset('css/pages') }}/kelas_detail.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 
 <body>
@@ -18,13 +19,16 @@
         <div class="container">
 
             <a href="{{ route('kelas.index') }}" class="back-button">
-                <i class="bi bi-arrow-left"></i> Kembali ke Beranda
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#4a5568">
+                    <path d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z" />
+                </svg> Kembali ke Beranda
             </a>
 
 
             <div class="course-header">
                 <div class="course-icon-wrapper">
-                    <div class="course-icon">{!! $kelas->icon !!}</div>
+                    <div class="course-icon" style="color: #e67e22">{!! $kelas->icon !!}</div>
                 </div>
                 <div class="course-info">
                     <div class="course-badges">

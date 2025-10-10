@@ -14,198 +14,219 @@ class KelasSeeder extends Seeder
     public function run()
     {
         $kelas1 = Kelas::create([
-            'judul' => 'Musik Pendalungan',
-            'deskripsi' => 'Pelajari harmoni sempurna dari berbagai tradisi musikal Pendalungan',
+            'judul' => 'Pengenalan Budaya Pendalungan',
+            'deskripsi_singkat' => 'Kelas fundamental ini merupakan gerbang masuk untuk memahami kompleksitas budaya Pendalungan',
+            'deskripsi' => 'Kelas fundamental ini merupakan gerbang masuk untuk memahami kompleksitas budaya Pendalungan secara holistik. Peserta akan diajak melakukan perjalanan intelektual menelusuri proses kelahiran, pertumbuhan, dan perkembangan identitas kultural unik yang terbentuk dari percampuran harmonis antara budaya Jawa dan Madura. Materi dirancang berdasarkan penelitian etnografis mendalam selama lebih dari satu dekade, menggabungkan pendekatan historis, antropologis, dan sosiologis. Kelas ini tidak hanya menyajikan fakta-fakta kultural tetapi juga melatih peserta untuk menganalisis dinamika kontemporer masyarakat Pendalungan dalam konteks globalisasi. Setiap modul dilengkapi dengan studi kasus aktual, wawancara dengan pelaku budaya, dan analisis dokumen historis yang otentik',
             'icon' => '🎵',
             'kategori' => 'Pemula',
             'warna_kategori' => '#FF8C42',
-            'jumlah_pelajaran' => 3,
-            'durasi' => 4,
+            'jumlah_pelajaran' => 5,
+            'durasi' => 1,
             'status' => true,
             'urutan' => 1
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas1->id,
-            'judul' => 'Pengenalan Musik Pendalungan',
-            'durasi' => 15,
-            'deskripsi' => "Musik Pendalungan adalah harmoni sempurna dari berbagai tradisi musikal. Gamelan, angklung, dan berbagai instrumen perkusi menciptakan suara yang khas dan memukau.\n\nMusik ini tidak hanya hiburan, tetapi juga media komunikasi spiritual dan sosial masyarakat.",
+            'judul' => 'Konsep Dasar dan Identitas Pendalungan',
+            'durasi' => 70,
+            'deskripsi' => "Mengurai makna filosofis Pendalungan sebagai entitas kultural yang dinamis, menganalisis perbedaan eksonim dan endonim dalam penamaan kelompok masyarakat, serta memetakan proses pembentukan identitas kolektif masyarakat Tapal Kuda melalui teori identitas Stuart Hall. Pembahasan mencakup analisis kritis terhadap deklarasi Kota Pendalungan oleh Bupati Faida tahun 2016 sebagai political act dalam konstruksi identitas",
             'urutan' => 1
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas1->id,
-            'judul' => 'Gamelan Banyuwangen',
-            'durasi' => 25,
-            'deskripsi' => "Gamelan Banyuwangen adalah ansambel musik tradisional yang terdiri dari berbagai instrumen perkusi perunggu. Setiap instrumen memiliki peran dan fungsinya masing-masing dalam menciptakan harmoni yang indah.\n\nDalam pembelajaran ini, Anda akan mengenal berbagai instrumen gamelan seperti gong, kenong, saron, dan bonang.",
+            'judul' => 'Etimologi dan Makna Simbolik "Pendalungan"',
+            'durasi' => 65,
+            'deskripsi' => "Menelusuri asal-usul linguistik kata Pendalungan melalui analisis komparatif berbagai kamus kuno (Bausastra Jawa-Indonesia, Javanese English Dictionary) dan naskah historis (Serat Centhini). Dekonstruksi metafora periuk besar sebagai simbol melting pot budaya, serta analisis makna ganda berbicara tanpa tata krama dalam konteks egalitarianisme masyarakat.",
             'urutan' => 2
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas1->id,
-            'judul' => 'Teknik Bermain Angklung',
-            'durasi' => 20,
-            'deskripsi' => "Angklung adalah alat musik multitonal yang terbuat dari bambu. Teknik memainkannya memerlukan koordinasi dan kekompakan yang baik antar pemain.\n\nPelajari teknik dasar menggoyang angklung, membaca notasi, dan berkolaborasi dalam ansambel angklung.",
+            'judul' => 'Sejarah Migrasi dan Formasi Sosial',
+            'durasi' => 75,
+            'deskripsi' => "Rekonstruksi sejarah gelombang migrasi orang Jawa dan Madura ke wilayah Tapal Kuda sejak abad ke-16 menggunakan teori migrasi Lee. Analisis faktor push-pull migration, dampak sistem perkebunan kolonial terhadap formasi sosial, dan proses terbentuknya masyarakat hybrid. Studi kasus migrasi bedol desa dan pola permukiman tanean lanjang.",
             'urutan' => 3
+        ]);
+
+        Pelajaran::create([
+            'kelas_id' => $kelas1->id,
+            'judul' => 'Karakteristik Psiko-Sosial Masyarakat Pendalungan',
+            'durasi' => 60,
+            'deskripsi' => "Eksplorasi mendalam sifat-sifat khas masyarakat Pendalungan: keterbukaan, religiusitas, egalitarianisme, temperamen, etos kerja keras, dan solidaritas pragmatis. Analisis memori kolektif yang cair dan dampaknya terhadap preservasi budaya. Studi komparatif dengan masyarakat Jawa Mataraman dan Madura Pulau.",
+            'urutan' => 4
+        ]);
+
+        Pelajaran::create([
+            'kelas_id' => $kelas1->id,
+            'judul' => 'Pluralisme dalam Kehidupan Sehari-hari',
+            'durasi' => 60,
+            'deskripsi' => "Eksplorasi mendalam sifat-sifat khas masyStudi etnografis praktik multikulturalisme di Jember: mekanisme koeksistensi harmonis, peran agama Islam sebagai common platform, strategi resolusi konflik, dan kearifan lokal dalam menjaga keberagaman. Analisis konsep Bhinneka Tunggal Ika dalam konteks lokal.",
+            'urutan' => 5
         ]);
 
         // Kelas 2: Tarian Tradisional
         $kelas2 = Kelas::create([
-            'judul' => 'Tarian Tradisional Pendalungan',
-            'deskripsi' => 'Kuasai gerakan dan filosofi di balik tarian tradisional daerah',
+            'judul' => 'Bahasa Jemberan: Linguistik dan Praktek Komunikasi Sehari-hari',
+            'deskripsi_singkat' => 'Kelas intensif ini menyajikan analisis linguistik komprehensif terhadap bahasa Jemberan',
+            'deskripsi' => 'Kelas intensif ini menyajikan analisis linguistik komprehensif terhadap bahasa Jemberan sebagai living dialect yang terus berevolusi. Menggunakan pendekatan sosiolinguistik dan antropolinguistik, peserta akan mendalami struktur fonetik, morfologi, sintaksis, serta fenomena kebahasaan unik seperti alih kode (code-switching), campur kode (code-mixing), dan interferensi. Kelas dirancang secara metodologis dengan porsi teori 40% dan praktek 60%, termasuk simulasi percakapan dalam berbagai konteks sosial, analisis teks media lokal, dan workshop penulisan kreatif bahasa Jemberan. Dibimbing oleh linguis Universitas Jember dan penutur asli berpengalaman.',
             'icon' => '💃',
-            'kategori' => 'Menengah',
+            'kategori' => 'Pemula',
             'warna_kategori' => '#667eea',
-            'jumlah_pelajaran' => 4,
-            'durasi' => 6,
+            'jumlah_pelajaran' => 5,
+            'durasi' => 1,
             'status' => true,
             'urutan' => 2
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas2->id,
-            'judul' => 'Sejarah Tarian Pendalungan',
-            'durasi' => 20,
-            'deskripsi' => "Tarian Pendalungan merupakan perpaduan unik antara tarian Jawa dan Madura. Setiap gerakan memiliki makna filosofis yang mendalam.\n\nPelajari asal-usul tarian, perkembangannya, dan makna di balik setiap gerakan.",
+            'judul' => 'Fonetik dan Kosakata Unik Jemberan',
+            'durasi' => 80,
+            'deskripsi' => "Analisis sistem bunyi vokal dan konsonan khas Jemberan, pola penekanan kata, dan intonasi. Dekonstruksi kosakata unik seperti Sih koh ! (ekspresi menggoda), mbois (keren/kekinian), nggilani (menjijikkan), polae (tingkah/dikarenakan) beserta etimologi dan variasi makna kontekstualnya.",
             'urutan' => 1
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas2->id,
-            'judul' => 'Gerakan Dasar Tari Gandrung',
-            'durasi' => 30,
-            'deskripsi' => "Tari Gandrung adalah tarian khas Banyuwangi yang menggambarkan kegembiraan dan keanggunan. Gerakan dasar meliputi langkah kaki, ayunan tangan, dan ekspresi wajah.\n\nLatihan gerakan dasar ini akan menjadi fondasi untuk menguasai tarian yang lebih kompleks.",
+            'judul' => 'Fenomena Alih Kode dan Campur Kode',
+            'durasi' => 75,
+            'deskripsi' => "Studi sosiolinguistik tentang bilingualisme masyarakat Jember, mekanisme peralihan bahasa Jawa-Madura-Indonesia dalam satu percakapan, dan faktor sosio-psikologis yang mempengaruhinya. Analisis kontekstual penggunaan masing-masing bahasa dalam domain keluarga, pendidikan, pasar, dan agama.",
             'urutan' => 2
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas2->id,
-            'judul' => 'Kostum dan Properti Tari',
-            'durasi' => 15,
-            'deskripsi' => "Kostum tari Pendalungan memiliki makna simbolis yang mendalam. Warna, motif, dan aksesori dipilih sesuai dengan karakter tarian.\n\nPelajari jenis-jenis kostum, cara memakainya, dan properti pendukung seperti selendang dan kipas.",
+            'judul' => 'Struktur Gramatikal dan Pola Kalimat',
+            'durasi' => 75,
+            'deskripsi' => "Analisis komparatif struktur gramatikal bahasa Jemberan dengan bahasa Jawa standar (Surakarta) dan Madura (Sumenep). Dekonstruksi pola kalimat khas seperti Gak onok,
+            iki ku - mlaku dan pola ¾ seperti lun - alun (alun-alun), ku - mlaku (berjalan-jalan). Workshop penyusunan kalimat kompleks.",
             'urutan' => 3
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas2->id,
-            'judul' => 'Koreografi Lengkap',
-            'durasi' => 40,
-            'deskripsi' => "Gabungkan semua gerakan dasar menjadi koreografi lengkap. Pelajari formasi, transisi antar gerakan, dan sinkronisasi dengan musik.\n\nPada akhir pelajaran ini, Anda akan mampu membawakan satu tarian lengkap dengan percaya diri.",
+            'judul' => 'Ungkapan, Singkatan, dan Slang Kontemporer',
+            'durasi' => 75,
+            'deskripsi' => "Dekonstruksi ungkapan khas seperti cek enggake (tidak banget), kardhi (karepa dhibhik - semaunya sendiri), kardhiman (semaunya dan seenaknya sendiri), serta evolusi slang di kalangan generasi muda. Analisis pembentukan neologisme dan pengaruh media sosial.",
             'urutan' => 4
+        ]);
+
+        Pelajaran::create([
+            'kelas_id' => $kelas2->id,
+            'judul' => 'Praktek Percakapan Kontekstual',
+            'durasi' => 75,
+            'deskripsi' => "Simulasi percakapan intensif dalam berbagai ranah: percakapan keluarga (parent-child interaction), transaksi pasar (market discourse), situasi pendidikan (classroom interaction), dan komunikasi media sosial (digital communication). Focus pada pragmatic competence dan cultural appropriateness.",
+            'urutan' => 5
         ]);
 
         // Kelas 3: Bahasa Osing
         $kelas3 = Kelas::create([
-            'judul' => 'Bahasa Osing untuk Pemula',
-            'deskripsi' => 'Mulai percakapan sehari-hari dalam bahasa lokal Pendalungan',
+            'judul' => 'Kesenian Tradisional Pendalungan: Bentuk, Makna, dan Fungsi Sosial',
+            'deskripsi_singkat' => 'Eksplorasi mendalam dan komprehensif terhadap seluruh spektrum kesenian tradisional Pendalungan',
+            'deskripsi' => 'Eksplorasi mendalam dan komprehensif terhadap seluruh spektrum kesenian tradisional Pendalungan melalui pendekatan etnografis dan semiotik. Kelas ini tidak hanya mengajarkan teknik dan bentuk kesenian, tetapi lebih penting lagi, menganalisis makna simbolik, fungsi sosial, konteks historis, dan transformasi kontemporer setiap genre kesenian. Peserta akan mendapatkan akses ke dokumentasi video langka, wawancara dengan maestro seniman, dan analisis partitur musikal yang detail. Dibimbing oleh akademisi seni dan praktisi budaya senior.',
             'icon' => '🗣️',
             'kategori' => 'Pemula',
             'warna_kategori' => '#48bb78',
             'jumlah_pelajaran' => 5,
-            'durasi' => 5,
+            'durasi' => 1,
             'status' => true,
             'urutan' => 3
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas3->id,
-            'judul' => 'Pengenalan Bahasa Osing',
-            'durasi' => 15,
-            'deskripsi' => "Bahasa Osing adalah bahasa asli masyarakat Banyuwangi yang masih digunakan hingga saat ini. Bahasa ini memiliki keunikan tersendiri dengan pengaruh Jawa dan Madura.\n\nPelajari sejarah, karakteristik, dan pentingnya melestarikan bahasa Osing sebagai warisan budaya.",
+            'judul' => 'Musik Patrol: Orkestra Kentungan Kayu',
+            'durasi' => 80,
+            'deskripsi' => "Sejarah evolusi musik patrol dari tradisi Madura ke bentuk hybrid Pendalungan. Analisis organologis detail: instrumentasi (kenthir, kenthar, ting-tung, bas), teknik pembuatan alat musik dari kayu nangka, sistem notasi tradisional, dan aransemen musikal. Studi fungsi sosial dalam bulan Ramadan: membangunkan sahur, ronda siskamling, dan festival tahunan.",
             'urutan' => 1
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas3->id,
-            'judul' => 'Kosakata Dasar Sehari-hari',
-            'durasi' => 20,
-            'deskripsi' => "Mulai dengan kosakata dasar yang sering digunakan dalam kehidupan sehari-hari. Pelajari cara menyapa, memperkenalkan diri, angka, hari, dan kata-kata umum lainnya.\n\nLatihan pengucapan yang benar sangat penting untuk dikuasai sejak awal.",
+            'judul' => 'Can-Macanan Kaddhuk dan Singo Ulung',
+            'durasi' => 70,
+            'deskripsi' => "Analisis komparatif kesenian topeng macan di Jember (Can-Macanan Kaddhuk) dan Bondowoso (Singo Ulung). Dekonstruksi makna simbolik macan dalam kosmologi Jawa-Madura, ritual persiapan pertunjukan, struktur koreografi, dan transformasi dalam konteks modern. Dokumentasi video pertunjukan lengkap.",
             'urutan' => 2
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas3->id,
-            'judul' => 'Struktur Kalimat Sederhana',
+            'judul' => 'Seni Jaranan dan Lengger',
             'durasi' => 25,
-            'deskripsi' => "Pelajari cara menyusun kalimat sederhana dalam bahasa Osing. Pahami pola subjek-predikat-objek dan penggunaan kata kerja.\n\nBerlatih membuat kalimat sendiri untuk memperkuat pemahaman struktur bahasa.",
+            'deskripsi' => "Studi komprehensif tari kuda lumping (jaranan) dan lengger sebagai ekspresi spiritualitas dan hiburan. Analisis aspek trance (intrance) dalam pertunjukan, fungsi ritual dalam hajatan, struktur musikal, dan transformasi koreografi dari tradisional ke kontemporer. Wawancara dengan penari dan pemain musik.",
             'urutan' => 3
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas3->id,
-            'judul' => 'Percakapan Praktis',
-            'durasi' => 30,
-            'deskripsi' => "Praktikkan percakapan dalam situasi nyata seperti di pasar, bertanya arah, dan berbicara dengan tetangga.\n\nDialog interaktif akan membantu Anda lebih percaya diri berbicara bahasa Osing.",
+            'judul' => 'Kesenian Pesantren: Hadrah dan Terbangan',
+            'durasi' => 70,
+            'deskripsi' => "Eksplorasi seni bernuansa Islami di pondok pesantren Tapal Kuda. Analisis struktur musik hadrah dan terbangan, lirik pujian dalam bahasa Arab dan Jawa, teknik permainan rebana, dan perannya dalam pendidikan karakter santri. Studi kasus Pondok Pesantren Al Falah Silo.",
             'urutan' => 4
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas3->id,
-            'judul' => 'Peribahasa dan Ungkapan',
-            'durasi' => 18,
-            'deskripsi' => "Peribahasa Osing mengandung nilai-nilai kearifan lokal yang mendalam. Pelajari makna dan penggunaan berbagai peribahasa dalam konteks yang tepat.\n\nMemahami peribahasa akan memperkaya kemampuan berbahasa dan pemahaman budaya Anda.",
+            'judul' => 'Seni Barongsai dan Leang Leong',
+            'durasi' => 65,
+            'deskripsi' => "Analisis akulturasi kesenian Tionghoa dalam masyarakat Pendalungan. Sejarah perkembangan barongsai dan leang leong di Jember, struktur pertunjukan, makna simbolik warna dan gerakan, serta aspek multietnis dalam kelompok seni. Wawancara dengan keturunan Tionghoa pelaku seni.",
             'urutan' => 5
         ]);
 
         // Kelas 4: Kuliner Tradisional
         $kelas4 = Kelas::create([
-            'judul' => 'Kuliner Tradisional Pendalungan',
-            'deskripsi' => 'Belajar memasak hidangan khas dengan resep autentik',
+            'judul' => 'Sejarah Migrasi dan Transformasi Sosial di Tapal Kuda',
+            'deskripsi_singkat' => 'Kelas analitis-kritis yang menelusuri dinamika panjang migrasi dan transformasi',
+            'deskripsi' => 'Kelas analitis-kritis yang menelusuri dinamika panjang migrasi dan transformasi sosial masyarakat Tapal Kuda dari perspektif sejarah sosial-ekonomi yang komprehensif. Menggunakan pendekatan sejarah total (total history) Braudel, kelas ini menganalisis tiga level temporal: jangka panjang (struktur geografis dan demografis), jangka menengah (konjungtur ekonomi dan politik), dan jangka pendek (peristiwa sejarah). Peserta akan bekerja dengan arsip kolonial, data statistik historis, dan narasi lisan untuk merekonstruksi proses formasi masyarakat Pendalungan. Dibimbing oleh sejarawan dan sosiolog spesialis sejarah Jawa Timur.',
             'icon' => '🍲',
-            'kategori' => 'Menengah',
+            'kategori' => 'Pemula',
             'warna_kategori' => '#ed8936',
-            'jumlah_pelajaran' => 6,
-            'durasi' => 8,
+            'jumlah_pelajaran' => 5,
+            'durasi' => 1,
             'status' => true,
             'urutan' => 4
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas4->id,
-            'judul' => 'Pengenalan Kuliner Pendalungan',
+            'judul' => 'Gelombang Migrasi Awal ',
             'durasi' => 12,
-            'deskripsi' => "Kuliner Pendalungan adalah perpaduan cita rasa Jawa dan Madura yang unik. Penggunaan rempah-rempah lokal menciptakan karakteristik rasa yang khas.\n\nPelajari sejarah, bahan-bahan khas, dan filosofi di balik setiap hidangan tradisional.",
+            'deskripsi' => "Rekonstruksi migrasi era kerajaan Demak-Mataram menggunakan kitab Pararaton dan prasasti Mulamalurung. Analisis peran Arya Wiraraja dalam migrasi Madura ke Jawa, pola permukiman awal, dan formasi komunitas hybrid di perbatasan. Studi arkeologis situs-situs kuno Bondowoso-Jember.",
             'urutan' => 1
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas4->id,
-            'judul' => 'Resep Rujak Soto',
+            'judul' => 'Era Kolonial dan Sistem Perkebunan',
             'durasi' => 35,
-            'deskripsi' => "Rujak Soto adalah hidangan khas Banyuwangi yang memadukan kesegaran rujak dengan kehangatan soto. Kombinasi unik ini menciptakan rasa yang tak terlupakan.\n\nPelajari cara membuat kuah, menyiapkan bumbu, dan teknik penyajian yang benar.",
+            'deskripsi' => "Analisis dampak UU Agraria 1870 terhadap transformasi sosial-ekonomi Tapal Kuda. Studi tentang peran George Birnie sebagai pionir perkebunan tembakau, sistem rekruitmen buruh dari Madura dan Jawa, serta terbentuknya masyarakat multietnis di sekitar perkebunan. Analisis arsip kolonial dan laporan tahunan perkebunan.",
             'urutan' => 2
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas4->id,
-            'judul' => 'Membuat Pecel Rawon',
+            'judul' => 'Pola Permukiman Tanean Lanjang',
             'durasi' => 40,
-            'deskripsi' => "Pecel Rawon adalah inovasi kuliner yang menggabungkan pecel dan rawon. Kuah rawon yang kaya rempah dipadukan dengan sayuran pecel yang segar.\n\nTeknik membuat kuah rawon hitam yang pekat dan bumbu pecel yang pas adalah kunci kelezatan hidangan ini.",
+            'deskripsi' => "Studi arsitektur dan antropologis permukiman Madura tanean lanjang dan transformasinya di tanah rantau. Analisis hierarki spatial (barat-timur menunjukkan tua-muda), struktur koren (rumpun bambu), dan adaptasi pola permukiman dalam konteks urban. Dokumentasi foto dan peta permukiman historis.",
             'urutan' => 3
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas4->id,
-            'judul' => 'Jajanan Pasar Tradisional',
+            'judul' => 'Proses Akulturasi dan Hibridisasi',
             'durasi' => 25,
-            'deskripsi' => "Jajanan pasar Pendalungan sangat beragam, mulai dari kue basah hingga kue kering. Setiap jajanan memiliki teknik pembuatan yang berbeda.\n\nPelajari cara membuat klepon, onde-onde, dan lupis dengan teknik tradisional yang autentik.",
+            'deskripsi' => "Analisis mekanisme akulturasi budaya Jawa-Madura menggunakan teori akulturasi Berry. Studi faktor pendorong (perkawinan campuran, ekonomi pasar, pendidikan), hambatan (prasangka, stereotipe), dan hasil hibridisasi dalam bahasa, kesenian, dan sistem nilai. Studi kasus keluarga campuran Jawa-Madura.",
             'urutan' => 4
         ]);
 
         Pelajaran::create([
             'kelas_id' => $kelas4->id,
-            'judul' => 'Minuman Tradisional',
+            'judul' => 'Dampak Sosial-Ekonomi Kontemporer',
             'durasi' => 20,
-            'deskripsi' => "Minuman tradisional seperti dawet, es campur khas, dan wedang ronde memiliki tempat khusus di hati masyarakat Pendalungan.\n\nPelajari resep dan teknik pembuatan minuman tradisional yang menyegarkan dan menyehatkan.",
+            'deskripsi' => "Analisis transformasi ekonomi agraris ke jasa dan industri kreatif. Studi perubahan struktur pekerjaan, dampak urbanisasi terhadap identitas kultural, dan peran pendidikan tinggi dalam mobilitas sosial. Data statistik BPS 2020-2023 dan proyeksi masa depan.",
             'urutan' => 5
-        ]);
-
-        Pelajaran::create([
-            'kelas_id' => $kelas4->id,
-            'judul' => 'Seni Penyajian dan Presentasi',
-            'durasi' => 18,
-            'deskripsi' => "Penyajian makanan juga merupakan seni tersendiri. Pelajari cara menata hidangan agar terlihat menarik tanpa menghilangkan keaslian tradisional.\n\nTeknik garnish, pemilihan wadah, dan tata letak yang tepat akan membuat hidangan Anda lebih menggugah selera.",
-            'urutan' => 6
         ]);
     }
 }

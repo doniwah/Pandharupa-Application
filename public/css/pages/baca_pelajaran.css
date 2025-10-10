@@ -6,13 +6,14 @@
 
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f9f8f6;
     color: #2d3748;
     line-height: 1.6;
 }
 
 .page-container {
     padding-top: 100px;
+    margin-top: 20px;
     padding-bottom: 3rem;
     min-height: 100vh;
 }
@@ -31,35 +32,39 @@ body {
     color: #4a5568;
     text-decoration: none;
     font-size: 1rem;
+    font-weight: 600;
     margin-bottom: 2rem;
     padding: 0.5rem 0;
     transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 6px;
 }
 
 .back-button:hover {
-    color: #2d3748;
-    transform: translateX(-5px);
+    color: #ffffff;
+    background: #f27726;
 }
 
-/* Content Card */
+.back-button:hover svg {
+    fill: #ffffff;
+}
+
 .content-card {
     background: white;
-    border-radius: 16px;
-    padding: 3rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 10px;
+    border: 1px solid #d5d7d8;
 }
 
-/* Lesson Meta */
 .lesson-meta {
     color: #9ca3af;
     font-size: 0.875rem;
-    margin-bottom: 1rem;
+    margin-bottom: 14px;
 }
 
-/* Lesson Header */
 .lesson-title {
-    font-size: 2.5rem;
+    font-size: 34px;
     color: #1a202c;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -72,7 +77,7 @@ body {
     gap: 0.5rem;
     color: #6b7280;
     font-size: 0.95rem;
-    margin-bottom: 2rem;
+    margin-bottom: 15px;
     padding-bottom: 2rem;
     border-bottom: 1px solid #e5e7eb;
 }
@@ -83,36 +88,34 @@ body {
 
 /* Lesson Content */
 .lesson-content {
-    font-size: 1.125rem;
+    font-size: 15px;
     line-height: 1.8;
     color: #374151;
 }
 
 .lesson-content p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 15px;
 }
 
 /* Navigation Section */
 .navigation-section {
-    background: white;
+    background: transparent;
     border-radius: 16px;
-    padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
 }
 
 .nav-button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 650;
     text-decoration: none;
     transition: all 0.3s ease;
     border: none;
@@ -127,13 +130,18 @@ body {
 }
 
 .btn-back:hover {
-    background: #f7fafc;
-    border-color: #cbd5e0;
+    color: #ffffff;
+    background: #f27726;
+}
+
+.btn-back:hover svg {
+    fill: #ffffff;
 }
 
 .btn-complete {
     background: white;
     color: #4a5568;
+
     border: 1px solid #e2e8f0;
 }
 
@@ -143,9 +151,9 @@ body {
 }
 
 .btn-complete.completed {
-    background: #48bb78;
+    background: #08e665;
     color: white;
-    border-color: #48bb78;
+    border-color: #18e66e;
 }
 
 .btn-complete:disabled {
@@ -157,6 +165,7 @@ body {
     background: #ff8c42;
     color: white;
     border: 1px solid #ff8c42;
+    margin-left: 20px;
 }
 
 .btn-next:hover {
@@ -165,12 +174,11 @@ body {
     box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
 }
 
-/* Next Lesson Card */
 .next-lesson-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: #fff8f4;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #d5d7d8;
 }
 
 .next-label {
@@ -222,6 +230,7 @@ body {
 .notification-success {
     background: #48bb78;
     color: white;
+    border-radius: 6px;
 }
 
 .notification-error {

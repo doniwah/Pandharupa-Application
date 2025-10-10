@@ -7,7 +7,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\ForumController;
 use App\Http\Controllers\auth\EventController;
 use App\Http\Controllers\auth\LibraryController;
-
+use App\Http\Controllers\GeminiController;
 
 Route::get('/', function () {
     return view('index');

@@ -1,13 +1,12 @@
 #hero {
     height: 100vh;
-    background: rgb(174, 174, 163);
+    background: #f5f4ef;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .hero-content {
-    background: blue;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -37,9 +36,30 @@
 
 .hero-btn a {
     text-decoration: none;
-    color: black;
     padding: 8px 20px;
     font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid black;
+}
+
+.startLearn {
+    border-radius: 0px 20px 20px 20px;
+    transition: all 0.3s ease-in-out;
+    background: #ff8c42;
+    color: white;
+}
+
+.startLearn:hover {
+    border-radius: 20px;
+    background: #ff8c42;
+}
+
+.explorePlatform {
+    border-radius: 20px 0px 20px 20px;
+    transition: all 0.3s ease-in-out;
+    color: black;
+}
+
+.explorePlatform:hover {
+    border-radius: 20px;
+    background: #ff8c42;
+    color: #f5f4ef;
 }

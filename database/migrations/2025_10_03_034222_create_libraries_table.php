@@ -14,7 +14,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('type', ['naskah', 'lagu', 'video', 'dokumentasi', 'audio']);
             $table->string('author');
-            $table->year('year');
+            $table->integer('year');
             $table->string('duration')->nullable();
             $table->integer('pages')->nullable();
             $table->string('file_path');

@@ -6,498 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Event Hub Pendalungan</title>
+    <link rel="stylesheet" href="{{ asset('css') }}/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #FF8C42 0%, #FFA563 100%);
-            color: white;
-            padding: 60px 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            opacity: 0.95;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            margin: -40px auto 40px;
-            padding: 0 80px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #FF8C42;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 80px;
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: none;
-            background: white;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            background: #FF8C42;
-            color: white;
-        }
-
-        .section-title {
-            font-size: 28px;
-            margin-bottom: 25px;
-            color: #333;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        .event-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .event-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .event-icon {
-            font-size: 40px;
-        }
-
-        .badge {
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
-            color: white;
-        }
-
-        .badge-festival {
-            background: #9B59B6;
-        }
-
-        .badge-kompetisi {
-            background: #E74C3C;
-        }
-
-        .badge-workshop {
-            background: #3498DB;
-        }
-
-        .badge-webinar {
-            background: #2ECC71;
-        }
-
-        .badge-pertunjukan {
-            background: #F39C12;
-        }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-            color: #FF8C42;
-            margin-top: 5px;
-        }
-
-        .event-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .event-description {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .event-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #666;
-        }
-
-        .detail-icon {
-            color: #FF8C42;
-        }
-
-        .event-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            gap: 10px;
-        }
-
-        .event-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: #FF8C42;
-        }
-
-        .event-price.gratis {
-            color: #2ECC71;
-        }
-
-        .btn-primary {
-            background: #FF8C42;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-            white-space: nowrap;
-        }
-
-        .btn-primary:hover {
-            background: #E67A30;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #FF8C42;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: 2px solid #FF8C42;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .btn-secondary:hover {
-            background: #FF8C42;
-            color: white;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #FF8C42 0%, #FFA563 100%);
-            color: white;
-            padding: 60px;
-            text-align: center;
-            border-radius: 12px;
-            margin: 40px 0;
-        }
-
-        .cta-section h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .cta-section p {
-            font-size: 16px;
-            margin-bottom: 25px;
-            opacity: 0.95;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            padding: 35px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #999;
-            cursor: pointer;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border 0.3s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #FF8C42;
-        }
-
-        textarea.form-input {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        select.form-input {
-            cursor: pointer;
-        }
-
-        .modal-subtitle {
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .detail-box {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .detail-box-icon {
-            font-size: 24px;
-            color: #FF8C42;
-        }
-
-        .detail-box-content h4 {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 5px;
-        }
-
-        .detail-box-content p {
-            font-size: 15px;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .alert {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .empty-state-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        @media (max-width: 768px) {
-
-            .navbar,
-            .container {
-                padding: 20px;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 0 20px;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .event-footer {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn-group {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/pages') }}/event.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 
 <body>
-
+    @include('components.navbar')
     <section class="hero">
         <h1>Event Hub Pendalungan</h1>
         <p>Temukan dan ikuti berbagai acara menarik untuk memperdalam pengetahuan budaya Pendalungan</p>
     </section>
 
-    <!-- Stats Section -->
+
     <div class="stats">
         <div class="stat-card">
             <div class="stat-number">{{ $stats['total_events'] }}</div>
@@ -517,9 +39,9 @@
         </div>
     </div>
 
-    <!-- Main Container -->
+
     <div class="container">
-        <!-- Filter Tabs -->
+
         <div class="filter-tabs">
             <button class="tab {{ $kategori == 'Semua' ? 'active' : '' }}"
                 onclick="filterEvents('Semua')">Semua</button>
@@ -535,7 +57,7 @@
                 onclick="filterEvents('Pertunjukan')">Pertunjukan</button>
         </div>
 
-        <!-- Event Unggulan -->
+
         <h2 class="section-title">Event Unggulan</h2>
         @if ($eventUnggulan->count() > 0)
             <div class="events-grid">
@@ -548,7 +70,7 @@
                                     class="badge badge-{{ strtolower($event->kategori) }}">{{ $event->kategori }}</span>
                                 @if ($event->rating > 0)
                                     <div class="rating">
-                                        ⭐ {{ $event->rating }}
+                                        <i class="bi bi-star"></i> {{ $event->rating }}
                                     </div>
                                 @endif
                             </div>
@@ -590,7 +112,7 @@
             </div>
         @endif
 
-        <!-- Event Mendatang -->
+
         <h2 class="section-title">Event Mendatang</h2>
         @if ($eventMendatang->count() > 0)
             <div class="events-grid">
@@ -603,7 +125,7 @@
                                     class="badge badge-{{ strtolower($event->kategori) }}">{{ $event->kategori }}</span>
                                 @if ($event->rating > 0)
                                     <div class="rating">
-                                        ⭐ {{ $event->rating }}
+                                        <i class="bi bi-star"></i> {{ $event->rating }}
                                     </div>
                                 @endif
                             </div>
@@ -649,7 +171,7 @@
             </div>
         @endif
 
-        <!-- CTA Section -->
+
         <div class="cta-section">
             <h2>Ajukan Event Anda</h2>
             <p>Punya event budaya yang ingin dibagikan? Ajukan event Anda dan jangkau lebih banyak peserta!</p>
@@ -658,7 +180,7 @@
         </div>
     </div>
 
-    <!-- Modal: Daftar Event -->
+
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -692,7 +214,7 @@
         </div>
     </div>
 
-    <!-- Modal: Detail Event -->
+
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -747,7 +269,7 @@
         </div>
     </div>
 
-    <!-- Modal: Ajukan Event -->
+
     <div id="submitEventModal" class="modal">
         <div class="modal-content" style="max-width: 700px;">
             <div class="modal-header">
@@ -839,16 +361,16 @@
     <script>
         let currentEventId = null;
 
-        // Check if page loaded correctly
+
         console.log('Page loaded successfully');
         console.log('CSRF Token:', document.querySelector('meta[name="csrf-token"]')?.content);
 
-        // Filter Events
+
         function filterEvents(kategori) {
             window.location.href = `{{ route('events.index') }}?kategori=${kategori}`;
         }
 
-        // Open Register Modal
+
         function openRegisterModal(eventId) {
             console.log('Opening register modal for event:', eventId);
             currentEventId = eventId;
@@ -880,7 +402,7 @@
                 });
         }
 
-        // Open Detail Modal
+
         function openDetailModal(eventId) {
             console.log('Opening detail modal for event:', eventId);
             currentEventId = eventId;
@@ -919,7 +441,7 @@
                     }
                     document.getElementById('detailModalDate').textContent = dateStr;
 
-                    // Format waktu
+
                     document.getElementById('detailModalTime').textContent =
                         `${event.waktu_mulai.substring(0, 5)} - ${event.waktu_selesai.substring(0, 5)} WIB`;
 
@@ -943,13 +465,13 @@
                 });
         }
 
-        // Open Register from Detail
+
         function openRegisterFromDetail() {
             closeModal('detailModal');
             setTimeout(() => openRegisterModal(currentEventId), 300);
         }
 
-        // Open Submit Event Modal
+
         function openSubmitEventModal() {
             console.log('Opening submit event modal');
             document.getElementById('submitEventAlert').innerHTML = '';
@@ -957,13 +479,13 @@
             document.getElementById('submitEventModal').classList.add('active');
         }
 
-        // Close Modal
+
         function closeModal(modalId) {
             console.log('Closing modal:', modalId);
             document.getElementById(modalId).classList.remove('active');
         }
 
-        // Submit Registration
+
         function submitRegistration(e) {
             e.preventDefault();
             console.log('Submitting registration for event:', currentEventId);
@@ -1005,7 +527,7 @@
                 });
         }
 
-        // Submit Event
+
         function submitEvent(e) {
             e.preventDefault();
             console.log('Submitting new event');
@@ -1015,7 +537,7 @@
 
             console.log('Event data:', data);
 
-            // Validasi tanggal
+
             if (data.tanggal_selesai && data.tanggal_selesai < data.tanggal_mulai) {
                 document.getElementById('submitEventAlert').innerHTML =
                     `<div class="alert alert-error">Tanggal selesai tidak boleh lebih awal dari tanggal mulai</div>`;
@@ -1068,7 +590,7 @@
                 });
         }
 
-        // Show Alert
+
         function showAlert(message, type) {
             const alertDiv = document.createElement('div');
             alertDiv.className = `alert alert-${type}`;

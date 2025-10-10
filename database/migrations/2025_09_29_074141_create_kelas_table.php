@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->text('deskripsi_singkat');
             $table->text('deskripsi');
             $table->string('icon')->nullable();
             $table->enum('kategori', ['Pemula', 'Menengah', 'Lanjutan'])->default('Pemula');

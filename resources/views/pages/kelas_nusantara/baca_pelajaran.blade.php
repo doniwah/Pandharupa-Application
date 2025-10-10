@@ -16,19 +16,22 @@
 
     <div class="page-container">
         <div class="container">
-            <!-- Back Button -->
+
             <a href="{{ route('kelas.show', $kelas->id) }}" class="back-button">
-                <i class="bi bi-arrow-left"></i> Kembali ke Kursus
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#4a5568">
+                    <path d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z" />
+                </svg> Kembali ke Kursus
             </a>
 
-            <!-- Main Content -->
+
             <div class="content-card">
-                <!-- Lesson Meta -->
+
                 <div class="lesson-meta">
                     Pelajaran {{ $pelajaran->urutan }} dari {{ $kelas->pelajaran->count() }}
                 </div>
 
-                <!-- Lesson Header -->
+
                 <h1 class="lesson-title">{{ $pelajaran->judul }}</h1>
 
                 <div class="lesson-info">
@@ -36,31 +39,36 @@
                     <span>{{ $pelajaran->durasi }} menit</span>
                 </div>
 
-                <!-- Lesson Content -->
+
                 <div class="lesson-content">
                     {!! nl2br(e($pelajaran->deskripsi)) !!}
                 </div>
             </div>
 
-            <!-- Navigation Section -->
+
             <div class="navigation-section">
-                <a href="{{ route('kelas.show', $kelas->id) }}" class="nav-button btn-back">
-                    <i class="bi bi-arrow-left"></i> Daftar Pelajaran
-                </a>
-
-                <button class="nav-button btn-complete" id="markComplete">
-                    <i class="bi bi-check-circle"></i> Tandai Selesai
-                </button>
-
-                @if ($next)
-                    <a href="#" class="nav-button btn-next" id="nextLessonBtn"
-                        data-next-url="{{ route('kelas.baca', ['kelasId' => $kelas->id, 'pelajaranId' => $next->id]) }}">
-                        Pelajaran Selanjutnya <i class="bi bi-arrow-right"></i>
+                <div>
+                    <a href="{{ route('kelas.show', $kelas->id) }}" class="nav-button btn-back">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#4a5568">
+                            <path d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z" />
+                        </svg> Daftar Pelajaran
                     </a>
-                @endif
+                </div>
+                <div>
+                    <button class="nav-button btn-complete" id="markComplete">
+                        <i class="bi bi-check-circle"></i> Tandai Selesai
+                    </button>
+                    @if ($next)
+                        <a href="#" class="nav-button btn-next" id="nextLessonBtn"
+                            data-next-url="{{ route('kelas.baca', ['kelasId' => $kelas->id, 'pelajaranId' => $next->id]) }}">
+                            Pelajaran Selanjutnya <i class="bi bi-arrow-right"></i>
+                        </a>
+                    @endif
+                </div>
             </div>
 
-            <!-- Next Lesson Preview -->
+
             @if ($next)
                 <div class="next-lesson-card">
                     <div class="next-label">Selanjutnya:</div>
@@ -75,7 +83,6 @@
     </div>
 
     <script>
-        // Mark as complete functionality
         document.getElementById('markComplete')?.addEventListener('click', function() {
             const button = this;
             const originalText = button.innerHTML;
@@ -121,7 +128,7 @@
                 });
         });
 
-        // Auto-save progress as "sedang_belajar"
+
         @if (auth()->check())
             window.addEventListener('load', function() {
                 fetch('{{ route('kelas.update-progress', ['kelasId' => $kelas->id, 'pelajaranId' => $pelajaran->id]) }}', {

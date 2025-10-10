@@ -202,7 +202,7 @@
             border-bottom: 1px solid #e5e7eb;
         }
 
-.reply-body {
+        .reply-body {
             flex: 1;
             min-width: 0;
             overflow-wrap: break-word;
@@ -283,20 +283,20 @@
         }
 
         .btn-submit {
-            padding: 8px 24px;
+            padding: 12px 24px;
             background-color: #f97316;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
         }
 
         .btn-submit:hover {
-            background-color: #ea580c;
+            background-color: #f58346;
         }
 
-        /* Sidebar */
+
         .sidebar {
             display: flex;
             flex-direction: column;
@@ -404,18 +404,31 @@
             color: #4b5563;
         }
 
-        /* Animation */
+
         @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.3); }
-            50% { transform: scale(0.9); }
-            75% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.3);
+            }
+
+            50% {
+                transform: scale(0.9);
+            }
+
+            75% {
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
+
     <div class="header">
         <div class="header-content">
             <a href="{{ route('forum.index') }}" class="back-link">
@@ -424,12 +437,12 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+
     <div class="main-container">
         <div class="content-grid">
-            <!-- Left Column - Topic & Replies -->
+
             <div class="left-column">
-                <!-- Topic Card -->
+
                 <div class="card">
                     <div class="topic-header">
                         <div class="avatar">
@@ -471,10 +484,10 @@
                     </div>
                 </div>
 
-                <!-- Replies Section -->
+
                 <div class="card">
                     <h2 class="replies-title">
-                        <i class="far fa-comments"></i> Balasan ({{ $topic->replies->count() }})
+                        <i class="bi bi-chat-right-text"></i> Balasan ({{ $topic->replies->count() }})
                     </h2>
 
                     @forelse($topic->replies as $reply)
@@ -498,14 +511,13 @@
                     @endforelse
                 </div>
 
-                <!-- Reply Form -->
+
                 <div class="card">
                     <h3 class="form-title">Tulis Balasan</h3>
                     <form method="POST" action="{{ route('forum.reply', $topic->id) }}">
                         @csrf
                         <div class="form-group">
-                            <textarea name="content" rows="4" required placeholder="Tulis balasan Anda..."
-                                class="form-textarea"></textarea>
+                            <textarea name="content" rows="4" required placeholder="Tulis balasan Anda..." class="form-textarea"></textarea>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn-submit">
@@ -516,7 +528,7 @@
                 </div>
             </div>
 
-            <!-- Right Column - Sidebar -->
+
             <div class="sidebar">
                 <!-- Topic Stats -->
                 <div class="card">
@@ -541,7 +553,7 @@
                     </div>
                 </div>
 
-                <!-- Categories -->
+
                 <div class="card">
                     <h3 class="sidebar-title">Kategori</h3>
                     <p class="sidebar-description">Jelajahi topik berdasarkan kategori</p>
@@ -558,7 +570,7 @@
                     </div>
                 </div>
 
-                <!-- Forum Rules -->
+
                 <div class="card">
                     <h3 class="sidebar-title">Aturan Forum</h3>
                     <div class="rules-list">
@@ -589,7 +601,6 @@
     </div>
 
     <script>
-        // Like toggle function (Instagram style)
         function toggleLike(event, topicId) {
             event.preventDefault();
 
