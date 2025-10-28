@@ -3,7 +3,7 @@
 @include('components.navbar')
 
 <div class="container-other-bahasa">
-    <button class="back-button-other-bahasa" onclick="window.history.back()">
+    <button class="back-button-other-bahasa" onclick="window.location.href = '/bahasa'">
         <i class="bi bi-chevron-left"></i>
         Kembali
     </button>
@@ -136,13 +136,13 @@ let isRefreshing = false;
 // Check if we need to refresh data (coming back from lesson page)
 window.addEventListener('pageshow', function(event) {
     console.log('Page show event triggered');
-    
+
     // Check for back/forward cache
     if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
         console.log('Page loaded from cache, refreshing...');
         refreshProgressData();
     }
-    
+
     // Also check sessionStorage
     const lessonCompleted = sessionStorage.getItem('lessonCompleted');
     if (lessonCompleted === 'true') {
@@ -156,7 +156,7 @@ let focusTimeout;
 window.addEventListener('focus', function() {
     console.log('Window focus event');
     clearTimeout(focusTimeout);
-    
+
     focusTimeout = setTimeout(() => {
         const lastActivity = sessionStorage.getItem('lessonCompleted');
         if (lastActivity === 'true') {
@@ -180,7 +180,7 @@ document.addEventListener('visibilitychange', function() {
 
 window.addEventListener('load', function() {
     console.log('Page loaded');
-    
+
     // Animate progress bar
     const progressBar = document.querySelector('.progress-bar-other-bahasa');
     if (progressBar) {
@@ -212,10 +212,10 @@ async function refreshProgressData() {
         console.log('Already refreshing, skipping...');
         return;
     }
-    
+
     isRefreshing = true;
     console.log('Starting progress refresh for language:', languageId);
-    
+
     try {
         const response = await fetch(`/api/bahasa/${languageId}/progress`, {
             method: 'GET',
@@ -246,7 +246,7 @@ async function refreshProgressData() {
         const completedLessonsEl = document.getElementById('completedLessons');
         const studyTimeEl = document.getElementById('studyTime');
         const streakEl = document.getElementById('streak');
-        
+
         if (completedLessonsEl) completedLessonsEl.textContent = data.stats.completed_lessons;
         if (studyTimeEl) studyTimeEl.textContent = data.stats.study_time;
         if (streakEl) {
@@ -262,7 +262,7 @@ async function refreshProgressData() {
 
                 if (icon) {
                     const wasCompleted = icon.classList.contains('completed');
-                    
+
                     if (lesson.completed) {
                         icon.classList.remove('not-completed');
                         icon.classList.add('completed');
@@ -270,7 +270,7 @@ async function refreshProgressData() {
                         icon.classList.remove('completed');
                         icon.classList.add('not-completed');
                     }
-                    
+
                     // If newly completed, add celebration animation
                     if (lesson.completed && !wasCompleted) {
                         icon.style.animation = 'iconBounce 0.6s ease-out';
@@ -284,7 +284,7 @@ async function refreshProgressData() {
                 if (trophy) {
                     const wasVisible = trophy.style.display !== 'none';
                     trophy.style.display = lesson.completed ? 'block' : 'none';
-                    
+
                     // If trophy just appeared, animate it
                     if (lesson.completed && !wasVisible) {
                         console.log('Showing trophy for lesson:', lesson.id);
@@ -292,7 +292,7 @@ async function refreshProgressData() {
                         // Force reflow
                         void trophy.offsetWidth;
                         trophy.style.animation = 'trophyBounce 0.8s ease-out';
-                        
+
                         // Add sparkle effect
                         setTimeout(() => addSparkleEffect(trophy), 100);
                     }
@@ -304,7 +304,7 @@ async function refreshProgressData() {
         sessionStorage.removeItem('lessonCompleted');
         sessionStorage.removeItem('completedLessonId');
         sessionStorage.removeItem('completedLanguageId');
-        
+
 
     } catch (error) {
         console.error('Error refreshing progress:', error);
@@ -318,7 +318,7 @@ async function refreshProgressData() {
 function addSparkleEffect(element) {
     const sparkles = ['✨', '⭐', '🌟', '💫'];
     const rect = element.getBoundingClientRect();
-    
+
     for (let i = 0; i < 4; i++) {
         const sparkle = document.createElement('div');
         sparkle.textContent = sparkles[i % sparkles.length];
@@ -332,7 +332,7 @@ function addSparkleEffect(element) {
             animation: sparkleFloat ${0.8 + i * 0.2}s ease-out forwards;
         `;
         document.body.appendChild(sparkle);
-        
+
         setTimeout(() => sparkle.remove(), 1000);
     }
 }
@@ -398,12 +398,12 @@ function playAudio() {
 
     // Coba beberapa kemungkinan field name untuk audio
     const audioUrl = phrase.audio_url || phrase.audio_file;
-    
+
     console.log('Trying to play audio from URL:', audioUrl); // Debug log
 
     if (audioUrl) {
         currentAudio = new Audio(audioUrl);
-        
+
         currentAudio.onloadeddata = function() {
             console.log('Audio loaded successfully');
             currentAudio.play().catch(error => {
@@ -411,16 +411,16 @@ function playAudio() {
                 showAudioError();
             });
         };
-        
+
         currentAudio.onerror = function() {
             console.error('Error loading audio file');
             showAudioError();
         };
-        
+
         currentAudio.oncanplaythrough = function() {
             console.log('Audio can play through');
         };
-        
+
     } else {
         console.error('No audio URL available for phrase:', phrase);
         showAudioError();
@@ -494,7 +494,7 @@ function showAudioError() {
     const originalText = mainPhrase.textContent;
     mainPhrase.textContent = 'Audio tidak tersedia';
     mainPhrase.style.color = '#ff6b6b';
-    
+
     setTimeout(() => {
         mainPhrase.textContent = originalText;
         mainPhrase.style.color = '';
@@ -504,7 +504,7 @@ function showAudioError() {
 // Tambahkan event listener untuk tombol play saat modal terbuka
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded');
-    
+
     // Close modal on outside click
     document.getElementById('audioModal').addEventListener('click', function(e) {
         if (e.target === this) {
@@ -539,33 +539,33 @@ document.addEventListener('DOMContentLoaded', function() {
 const style = document.createElement('style');
 style.textContent = `
     @keyframes trophyBounce {
-        0% { 
+        0% {
             transform: scale(0) rotate(0deg);
             opacity: 0;
         }
-        50% { 
+        50% {
             transform: scale(1.4) rotate(180deg);
             opacity: 1;
         }
-        70% { 
+        70% {
             transform: scale(0.9) rotate(350deg);
         }
-        85% { 
+        85% {
             transform: scale(1.1) rotate(365deg);
         }
-        100% { 
+        100% {
             transform: scale(1) rotate(360deg);
             opacity: 1;
         }
     }
-    
+
     @keyframes iconBounce {
         0%, 100% { transform: scale(1); }
         25% { transform: scale(1.2) rotate(-5deg); }
         50% { transform: scale(1.15) rotate(5deg); }
         75% { transform: scale(1.2) rotate(-3deg); }
     }
-    
+
     @keyframes sparkleFloat {
         0% {
             transform: translate(0, 0) scale(0);
@@ -579,7 +579,7 @@ style.textContent = `
             opacity: 0;
         }
     }
-    
+
     @keyframes miniNotifSlide {
         from {
             transform: translate(-50%, -100%);
@@ -590,11 +590,11 @@ style.textContent = `
             opacity: 1;
         }
     }
-    
+
     .trophy-icon-other-bahasa {
         transition: all 0.3s ease;
     }
-    
+
     .lesson-icon-other-bahasa {
         transition: all 0.3s ease;
     }

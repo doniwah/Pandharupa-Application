@@ -1,9 +1,25 @@
 #hero {
     height: 100vh;
-    background: #f5f4ef;
+    background: url("/storage/pictures/bg_hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
+}
+
+#hero > * {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content {

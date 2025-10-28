@@ -2,7 +2,7 @@
 @include('components.navbar')
 
 <div class="container-rute-learn">
-    <a onclick="window.history.back()" class="back-btn-rute-learn">
+    <a onclick="window.location.href='/bahasa'" class="back-btn-rute-learn">
         <i class="bi bi-chevron-left"></i> Kembali
     </a>
 
@@ -77,23 +77,23 @@
     async function checkCompletionAndRefresh() {
         const lessonJustCompleted = sessionStorage.getItem('lessonJustCompleted');
         const completedPathId = sessionStorage.getItem('completedPathId');
-        
+
         console.log('=== BACKUP CHECK ===');
         console.log('Flags:', {
             lessonJustCompleted,
             completedPathId,
             currentPathId: pathId
         });
-        
+
         // Kalau flags sudah tidak ada, berarti sudah di-handle immediate check
         if (!lessonJustCompleted) {
             console.log('No flags found (already handled)');
             return;
         }
-        
+
         if (lessonJustCompleted === 'true' && completedPathId == pathId) {
             console.log('✅ BACKUP: Path ID matches! Refreshing...');
-            
+
             // Clear flags
             sessionStorage.removeItem('lessonJustCompleted');
             sessionStorage.removeItem('completedLessonId');

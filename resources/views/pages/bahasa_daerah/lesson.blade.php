@@ -89,7 +89,7 @@ function formatTime(seconds) {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    
+
     if (hours > 0) {
         return `${hours} jam ${minutes} menit`;
     } else if (minutes > 0) {
@@ -111,16 +111,16 @@ async function checkInitialCompletion() {
         });
 
         const data = await response.json();
-        
+
         if (data.completed) {
             wasAlreadyCompleted = true;
             hasCompleted = true;
-            
+
             // Show completed state immediately
             progressIndicator.style.display = 'flex';
             progressIndicator.style.background = 'rgba(40, 167, 69, 0.9)';
             progressText.innerHTML = '<i class="bi bi-check-circle-fill"></i> <strong>Sudah Selesai</strong>';
-            
+
             console.log('Lesson was already completed');
         }
     } catch (error) {
@@ -134,7 +134,7 @@ function updateScrollProgress() {
     if (hasCompleted) {
         progressIndicator.style.display = 'flex';
         progressIndicator.style.background = 'rgba(40, 167, 69, 0.9)';
-        
+
         if (wasAlreadyCompleted) {
             progressText.innerHTML = '<i class="bi bi-check-circle-fill"></i> <strong>Sudah Selesai</strong>';
         } else {
@@ -142,15 +142,15 @@ function updateScrollProgress() {
         }
         return 100;
     }
-    
+
     const windowHeight = window.innerHeight;
     const documentHeight = lessonContent.offsetHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     // Calculate percentage - better calculation for small content
     const scrollableHeight = Math.max(documentHeight - windowHeight, 1);
     let scrollPercentage = Math.min(Math.round((scrollTop / scrollableHeight) * 100), 100);
-    
+
     // For very short content, use different calculation
     if (documentHeight - windowHeight < 200) {
         const totalHeight = document.documentElement.scrollHeight;
@@ -194,17 +194,17 @@ let scrollCheckTimeout;
 window.addEventListener('scroll', () => {
     clearTimeout(scrollCheckTimeout);
     clearTimeout(scrollProgressTimeout);
-    
+
     scrollCheckTimeout = setTimeout(() => {
         const scrollPercentage = updateScrollProgress();
-        
+
         // Auto-complete if scrolled to 95% or more
         if (scrollPercentage >= 95 && !hasCompleted && !isProcessing) {
             console.log('Scroll threshold reached (95%), marking as completed...');
             markAsCompleted();
         }
     }, 100);
-    
+
     scrollProgressTimeout = setTimeout(() => {
         updateScrollProgress();
     }, 50);
@@ -214,31 +214,31 @@ window.addEventListener('scroll', () => {
 window.addEventListener('load', () => {
     // Start study time tracking
     startStudyTimeTracking();
-    
+
     // Check if already completed
     checkInitialCompletion();
-    
+
     setTimeout(() => {
         const documentHeight = lessonContent.offsetHeight;
         const windowHeight = window.innerHeight;
-        
+
         // If content is shorter than viewport
         if (documentHeight - windowHeight < 300 && !wasAlreadyCompleted) {
             console.log('Content is very short, using alternative completion detection');
-            
+
             const shortContentCheck = setInterval(() => {
                 if (hasCompleted) {
                     clearInterval(shortContentCheck);
                     return;
                 }
-                
+
                 const scrollPercentage = updateScrollProgress();
                 if (scrollPercentage >= 80 && !hasCompleted && !isProcessing) {
                     clearInterval(shortContentCheck);
                     markAsCompleted();
                 }
             }, 500);
-            
+
             setTimeout(() => clearInterval(shortContentCheck), 30000);
         }
     }, 500);
@@ -263,13 +263,13 @@ async function markAsCompleted() {
         console.log('Already completed or processing, skipping...');
         return;
     }
-    
+
     console.log('Starting completion process...');
     isProcessing = true;
-    
+
     // Stop study time tracking
     stopStudyTimeTracking();
-    
+
     // Calculate study time in minutes for backend
     const studyTimeMinutes = Math.ceil(studyTime / 60);
 
@@ -298,23 +298,23 @@ async function markAsCompleted() {
             hasCompleted = true;
             console.log('Lesson marked as completed successfully!');
             console.log('Study time:', formatTime(studyTime));
-            
+
             // Lock the completion state - this will never change
             progressIndicator.style.background = 'rgba(40, 167, 69, 0.9)';
             progressText.innerHTML = '<i class="bi bi-check-circle-fill"></i> <strong>Pelajaran Selesai!</strong>';
-            
-            
+
+
             // Mark that lesson was completed
             sessionStorage.setItem('lessonCompleted', 'true');
             sessionStorage.setItem('completedLessonId', lessonId);
             sessionStorage.setItem('completedLanguageId', languageId);
             sessionStorage.setItem('studyTime', studyTime);
-            
+
             // Add pulse animation
             setTimeout(() => {
                 progressIndicator.style.animation = 'pulse 1.5s infinite';
             }, 1000);
-            
+
         } else {
             throw new Error(data.message || 'Gagal menyelesaikan pelajaran');
         }
@@ -322,10 +322,10 @@ async function markAsCompleted() {
         console.error('Error completing lesson:', error);
         showNotification('Terjadi kesalahan saat menyimpan progres. Silakan coba lagi.', 'error');
         hasCompleted = false;
-        
+
         // Restart study time tracking if failed
         startStudyTimeTracking();
-        
+
         // Reset progress indicator
         progressIndicator.style.background = 'rgba(0, 123, 255, 0.9)';
         updateScrollProgress();
@@ -408,7 +408,7 @@ style.textContent = `
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
         }
-        
+
         .notification {
             right: 10px;
             top: 10px;
